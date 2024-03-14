@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend of Farmer | Trang chủ</title>
+    <!-- TAG -->
+    <link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
+
+    <!-- font google  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- css bootstrap  -->
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
+    <!-- OWL CAROUSEL  -->
+    <link rel="stylesheet" href="./CSS/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./CSS/owl.carousel.min.css">
+    <!-- MAIN CSS  -->
+    <link rel="stylesheet" href="./CSS/index.css">
+</head>
+
+<body>
+    <!-- HEADER  -->
+    <header class="container-fluid-my">
+
+        <div class="header__top d-flex justify-content-between">
+            <div class="header__left">
+                <a href="tel:0816754927" class="mr-4"><i class="fa-solid fa-phone"></i> 081.675.4927</a>
+                <a href="mailto:fof.nt208@googlegroups.com" class=""><i class="far fa-envelope"></i>
+                    fof.nt208@googlegroups.com</a>
+            </div>
+            <div class="header__right">
+
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="./login.html"><i class="fa-solid fa-user"></i></a>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light header__menu">
+            <a class="navbar-brand header__logo" href="#">
+                <img class="img-fluid" src="./IMG/LogoFinal.png" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Trang chủ <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dịch vụ
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item drop" href="#">Quản lý mùa vụ</a>
+                            <a class="dropdown-item drop" href="#">Tìm kiếm thị trường</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item drop" href="#">Trợ lý ảo</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Nguyên vật liệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên hệ</a>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0 header__form">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search__icon" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </nav>
+
+    </header>
+    <!-- CAROUSEL  -->
+
+    <section class="FOFCarousel container-fluid-my">
+        <div id="FOFCarousel" class="carousel slide" data-ride="">
+            <ol class="carousel-indicators">
+                <li data-target="#FOFCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#FOFCarousel" data-slide-to="1"></li>
+                <li data-target="#FOFCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="FOF__Inner carousel-inner">
+                <div class="carousel-item active">
+                    <img class="img-fluid" src="./IMG/slide1.jpg" class="d-block w-100" alt="banner1">
+                    <div class="carousel-caption  container my-white">
+                        <div class="carousel__border">
+                            <h1>QUẢN LÝ MÙA VỤ DỄ DÀNG</h1>
+                            <p>Thuận tiện hơn trong việc theo dõi các yếu tố năng suất về mùa vụ của bạn</p>
+                            <button class="btn">Read More <i class="fa fa-angle-double-right"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./IMG/slide2.jpg" class="d-block w-100" alt="banner2">
+                    <div class="carousel-caption  container my-white">
+                        <h1>NGUỒN THỊ TRƯỜNG RỘNG MỞ</h1>
+                        <p>Là đầu mối trung gian giữa thương lái và nông dân, nơi mà nông dân có thể tìm kiếm cho mình
+                            một đầu ra hợp lý</p>
+                        <button class="btn">Read More <i class="fa fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./IMG/slide3.jpg" class="d-block w-100" alt="banner3">
+                    <div class="carousel-caption  container my-white">
+                        <h1>TIẾP CẬN NGUYÊN VẬT LIỆU GIÁ RẺ</h1>
+                        <p>Trang web cung cấp những đề xuất gợi ý về các nguyên vật liệu cho nông nghiệp với mức giá
+                            phải chăng, hợp lý</p>
+                        <button class="btn">Read More <i class="fa fa-angle-double-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#FOFCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#FOFCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- NUMBER  -->
+
+    <section class="number container-fluid-my section">
+        <div class="row num__row">
+            <div class="col-3 num__col">
+                <p class="num">10000</p>
+                <p>Lượt sử dụng</p>
+            </div>
+            <div class="col-3 num__col">
+                <p class="num">200</p>
+                <p>Thị trường tiêu thụ</p>
+            </div>
+            <div class="col-3 num__col">
+                <p class="num">99</p>
+                <p>Nguồn nguyên vật liệu giá rẻ</p>
+            </div>
+            <div class="col-3 num__col">
+                <p class="num">3</p>
+                <p>Năm đồng hành</p>
+            </div>
+        </div>
+    </section>
+    <!-- FEEDBACK  -->
+    <section class="feedback container-fluid-my section" id="feedback">
+
+        <h1>FEEDBACK VỀ CHÚNG TÔI</h1>
+        <div class="feedback__content">
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <p><i class="fa fa-quote-left"></i> Trang web rất tiện lợi, cung cấp cho tôi những công cụ hữu ích
+                        để quản lý các loại cây của trang trại. Rất hữu ích! <i class="fa fa-quote-right"></i></p>
+                    <p class="feedback__name">GIÁM ĐỐC CÔNG TY NÔNG SẢN A</p>
+                </div>
+                <div class="item">
+                    <p><i class="fa fa-quote-left"></i> Tôi dễ dàng tiếp cận với nguồn nông sản đa dạng từ các chủ vựa
+                        trái cây, rất nhiều sự lựa chọn cho thương lái. <i class="fa fa-quote-right"></i></p>
+                    <p class="feedback__name">CÔ AN - BUÔN BÁN TRÁI CÂY</p>
+                </div>
+                <div class="item">
+                    <p><i class="fa fa-quote-left"></i> Friend of Farmer (FOF) luôn hướng đến lợi ích của người nông
+                        dân. FOF cung cấp
+                        các sản phẩm và dịch vụ chất lượng cao với giá cả hợp lý, giúp người nông dân tăng năng suất và
+                        thu nhập. <i class="fa fa-quote-right"></i></p>
+                    <p class="feedback__name">ÔNG BÌNH - NÔNG DÂN</p>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+    <!-- SERVICES  -->
+    <section class="services section container-fluid-my">
+        <div class="services__heading">
+            <h1>OFFER</h1>
+            <p> <i class="fab fa-pagelines"></i> Chúng tôi cung cấp những dịch vụ <i class="fab fa-pagelines"></i></p>
+        </div>
+        <div class="services_content container">
+            <div class="row">
+                <div class="svices--col col-lg-4 col-12">
+                    <div class="svices-item">
+                        <i class="fa fa-graduation-cap"></i>
+                        <h3>KIẾN THỨC</h3>
+                        <p>Cung cấp kiến thức về cây trồng miễn phí cho nông dân.</p>
+                    </div>
+                </div>
+
+                <div class="svices--col col-lg-4 col-12">
+                    <div class="svices-item">
+                        <i class="fa fa-money-bill"></i>
+                        <h3>GIÁ CẢ</h3>
+                        <p>Cung cấp giá cả của từng loại nguyên vật liệu nhanh chóng và chính xác.</p>
+                    </div>
+                </div>
+
+                <div class="svices--col col-lg-4 col-12">
+                    <div class="svices-item">
+                        <i class="fa fa-users"></i>
+                        <h3>TRỢ LÝ ẢO</h3>
+                        <p>Phân tích yếu tố tự nhiên để đưa ra đề xuất cho bạn.</p>
+                    </div>
+                </div>
+
+                <div class="svices--col col-lg-4 col-12">
+                    <div class="svices-item">
+                        <i class="fa fa-signal"></i>
+                        <h3>THỐNG KÊ</h3>
+                        <p>Thống kê năng suất, lãi suất, chi phí sản xuất thông qua các mùa vụ.</p>
+                    </div>
+                </div>
+
+                <div class="svices--col col-lg-4 col-12">
+                    <div class="svices-item">
+                        <i class="fa fa-user-shield"></i>
+                        <h3>THỊ TRƯỜNG</h3>
+                        <p>Giúp bạn tìm thị trường tiêu thụ nông sản và kết nối với các thương lái.</p>
+                    </div>
+                </div>
+
+                <div class="svices--col col-lg-4 col-12">
+                    <div class="svices-item">
+                        <i class="fa fa-question-circle"></i>
+                        <h3>TIN TỨC</h3>
+                        <p>Cung cấp tin tức cũng như sự kiện về nông nghiệp một cách nhanh chóng.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- NEWS -->
+    <section class="news section">
+        <div class="heading">
+            <h1>TIN TỨC VÀ SỰ KIỆN</h1>
+            <p> <i class="fab fa-pagelines"></i> Những tin tức về nông nghiệp mới nhất <i class="fab fa-pagelines"></i></p>
+        </div>
+        <div class="news__content container">
+            <div class="news__row row">
+                <div class="col-5">
+                    <img class="img-fluid" src="./img/news1.png" alt="">
+                </div>
+                <div class="col-7">
+                    <h3><a href="" data-toggle="modal" data-target="#cybermodal">Australia hợp tác với Việt Nam về khoa học nông nghiệp, hướng đến nông nghiệp xanh và bền vững</a></h3>
+                    <h4>09/03/2024</h4>
+                    <p>Trong khuôn khổ chuyến thăm của đoàn công tác Chính phủ Việt Nam đến Australia, nhiều tổ chức khoa học tại Australia như CSIRO, ACIAR đã cùng bày tỏ sẽ sát cánh cùng Việt Nam trong lĩnh vực nghiên cứu, chuyển giao tiến bộ khoa học vào sản xuất nông nghiệp. Trong đó, hướng trọng tâm vào chuẩn hóa chất lượng nông sản, bảo vệ sinh kế cho nông dân, thúc đẩy nông nghiệp xanh, giảm phát thải, bảo vệ môi trường…</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <h3><a href="" data-toggle="modal" data-target="#cybermodal1">Việt Nam trở thành quốc gia xuất khẩu rau quả lớn thứ 2 sang Trung Quốc</a></h3>
+                    <h4>03/01/2021</h4>
+                    <p>Trong năm 2023, Trung Quốc đã chi hơn 24,4 tỷ USD để nhập các loại rau quả. Nhờ xuất khẩu sầu riêng tăng vọt gấp hơn 10 lần, Việt Nam hiện đã vượt Chile trở thành nước xuất khẩu rau quả lớn thứ 2 sang Trung Quốc…</p>
+                </div>
+                <div class="col-5">
+                    <img class="img-fluid" src="./img/news2.png" alt="">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="cybermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>TIN TỨC</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid" src="./img/news3.png" alt="">
+                    <p>"Chúng tôi vui mừng được hợp tác với Việt Nam về chương trình hợp tác khoa học công nghệ như chương trình ngành tôm ở Đồng bằng sông Cửu Long, chương trình chấm dứt rác thải nhựa mà hai nước đang đối mặt; hay như công nghệ quan sát bằng vệ tinh; chương trình nghiên cứu y tế phục vụ chữa trị ung thư. Australia mong muốn phát huy thành tựu, xây dựng tương lai đổi mới sáng tạo", ông Doug Hilton chia sẻ.
+
+                        Ông Lê Minh Hoan, Bộ trưởng Nông nghiệp và Phát triển nông thôn Việt Nam bày tỏ vui mừng thăm CSIRO lần thứ hai, lần trước CSIRO đã hợp tác với Đồng Tháp về xoài và một số chương trình giữa Đồng bằng sông Cửu Long với CSIRO. Hiện CSIRO đang hợp tác với Học viện Nông nghiệp Việt Nam về ngành hàng trái cây, khoai tây chất lượng cao.
+                        
+                        “Thủ tướng Chính phủ đã phê duyệt Chiến lược phát triển nông nghiệp Việt Nam, phê duyệt Đề án phát triển 1 triệu ha lúa ít phát thải, chất lượng cao. Các mô hình phát triển nông nghiệp của Việt Nam đều gắn với chuyển đổi xanh. Việc hợp tác này giúp giải quyết các thách thức trong lĩnh vực nông nghiệp mà Việt Nam đang đối mặt", Bộ trưởng Lê Minh Hoan khẳng định.
+                        
+                        Bộ trưởng Lê Minh Hoan cho biết thời gian tới, Việt Nam tập trung hợp tác vào chuẩn hoá trong lĩnh vực nông sản, nhất là cá tra và tôm mà Việt Nam đang dẫn đầu thế giới, gắn ngành này với xu thế của thế giới là ít phát thải và chuyển đổi xanh, do đó mong muốn CSIRO hỗ trợ Việt Nam trong các ngành hàng này.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cybermodal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>TIN TỨC</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img class="img-fluid" src="./img/news2.png" alt="">
+                    <p>Theo số liệu từ Hải quan Trung Quốc, trong năm 2023 quốc gia tỷ dân đã chi hơn 24 tỷ USD để nhập khẩu các mặt hàng rau quả và sản phẩm chế biến của nhiều quốc gia, vùng lãnh thổ nhằm đáp ứng nhu cầu tiêu dùng nội địa.
+
+                        Theo đó, Thái Lan tiếp tục dẫn đầu với kim ngạch 8,6 tỷ USD, chiếm 36% thị phần tại thị trường Trung Quốc về sản phẩm rau quả. So với năm 2022, thị phần của Thái Lan đã giảm gần 2%.
+                        
+                        Đáng chú ý, quốc gia đứng thứ 2 trong danh sách này chính là Việt Nam với kim ngạch 3,4 tỷ USD. Thị phần xuất khẩu rau quả Việt Nam tại thị trường Trung Quốc đã tăng mạnh từ 8% năm 2022 lên 14% năm 2023. Điều này khiến Việt Nam vượt Chile trở thành quốc gia đứng thứ 2 về kim ngạch xuất khẩu rau quả sang Trung Quốc.
+                        
+                        Lý giải về cú bứt phá và trở thành hiện tượng cung cấp rau quả vào thị trường Trung Quốc, ông Đặng Phúc Nguyên, Tổng Thư ký Hiệp hội Rau quả Việt Nam, cho biết nguyên nhân là do kim ngạch xuất khẩu sầu riêng tăng đột biến. Cùng với đó, Trung Quốc cũng tăng nhập rau quả chế biến từ Việt Nam trong năm vừa qua nên kim ngạch xuất khẩu ngành hàng này tăng vọt, lập kỷ lục lịch sử.
+                        
+                        Thực tế, theo Hiệp hội Rau quả Việt Nam, sản lượng sầu riêng của Việt Nam mỗi năm đều tăng 15 - 20%. Năm ngoái kim ngạch xuất khẩu đạt 2,2 tỷ USD. Nếu số lượng mã số vùng trồng nhiều hơn và thêm Nghị định thư của sầu riêng cấp đông thì kim ngạch xuất khẩu sầu riêng có thể đạt 3 - 3,5 tỷ USD/năm.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER  -->
+
+    <footer>
+        <section class="footer_section layout_padding2 container-fluid-my">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 footer_col">
+                        <div class="footer_contact">
+                            <h4>LIÊN LẠC</h4>
+                            <div class="contact_link_box">
+                                <a href="">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <span>Trường Đại học Công nghệ Thông tin, ĐHQG-HCM</span><br>
+                                </a>
+                                <a href="tel:0816754927" class="">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <span>081.675.4927</span><br>
+                                </a>
+                                <a href="mailto:fof.nt208@googlegroups.com" class="">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span>fof.nt208@googlegroups.com</span><br>
+                                </a>
+                            </div>
+                            <div class="footer_social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3 footer_col">
+                        <div class="footer_contact">
+                            <h4>SỨ MỆNH </h4>
+                            <p>Với mục tiêu đưa ngành nông nghiệp lên tầm cao mới. Biến người "nông dân" thành "nông dân
+                                mới", luôn quản lí tình hình của mùa vụ và nắm bắt được xu thế hiện tại. FOF luôn đồng
+                                hành cùng người nông dân.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-2 footer_col">
+                        <div class="footer_link_box">
+                            <h4>
+                                LIÊN KẾT
+                            </h4>
+                            <div class="footer_links">
+                                <a class="active" href="index.html"><i class="fa fa-angle-right"></i> Trang chủ</a>
+                                <a class="" href="about.html"><i class="fa fa-angle-right"></i> About Us</a>
+                                <a class="" href="service.html"><i class="fa fa-angle-right"></i> Dịch vụ</a>
+                                <a class="" href="#feedback"><i class="fa fa-angle-right"></i> Feedback</a>
+                                <a class="" href="service.html"><i class="fa fa-angle-right"></i> Tin tức</a>
+                                <a class="" href="contact.html"><i class="fa fa-angle-right"></i> Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3 footer_col ">
+                        <h4>ĐĂNG KÝ</h4>
+                        <form action="#">
+                            <input type="text" placeholder="Nhập email" />
+                            <button type="submit">ĐĂNG KÝ</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="footer_end_section">
+            <div class="container">
+                <p>
+                    &copy; <span id="displayYear"></span> Nhóm 10 - Lớp Lập trình Ứng dụng Web
+                </p>
+            </div>
+        </section>
+    </footer>
+
+   
+
+
+
+
+
+    <!-- Thư viện jquery  -->
+    <script src="./JS/jquery.min.js"></script>
+    <!-- Thư viện waypoint  -->
+    <script src="./JS/jquery.waypoints.min.js"></script>
+    <!-- bootstrap  -->
+    <script src="./JS/bootstrap.bundle.min.js"></script>
+    <!-- owl carousel  -->
+    <script src="./JS/owl.carousel.min.js"></script>
+    <!-- Count up  -->
+    <script src="./JS/jquery.countup.js"></script>
+
+    <script>
+        $('.num').countUp({
+
+            'time': 2000,
+
+            'delay': 10
+
+        });
+
+
+    </script>
+
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: true,
+                    loop: false
+                }
+            }
+        })
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
