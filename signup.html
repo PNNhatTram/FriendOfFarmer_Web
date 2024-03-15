@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend of Farmer | Đăng nhập</title>
+    <!-- TAG -->
+    <link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
+
+    <!-- font google  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- css bootstrap  -->
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
+    <!-- MAIN CSS  -->
+    <link rel="stylesheet" href="./CSS/login.css">
+</head>
+<div class="header__top d-flex justify-content-between">
+    <div class="header__left">
+        <a href="tel:0816754927" class="mr-4"><i class="fa-solid fa-phone"></i> 081.675.4927</a>
+        <a href="mailto:fof.nt208@googlegroups.com" class=""><i class="far fa-envelope"></i>
+            fof.nt208@googlegroups.com</a>
+    </div>
+    <div class="header__right">
+
+        <a href="./login.html"><i class="fa-solid fa-user"></i></a>
+        <a href="./index.html"><i class="fa fa-sign-out-alt"></i></i></a>
+    </div>
+</div>
+ <!-- Login -->
+ <div id="wrapper">
+    <form>
+      <img class="mb-4" src="./IMG/LogoFinal.png" alt="Logo">
+      <h3 class="h3 mb-3 fw-normal line">ĐĂNG KÝ TÀI KHOẢN</h1>
+  
+      <div class="form-floating">
+        <label for="floatingsignup">Tài khoản gmail đăng kí</label>
+        <input type="email" class="form-control" id="floatingsignup" placeholder="name@gmail.com">
+      </div>
+      <div class="form-floating">
+        <label for="floatingname">Họ và tên</label>
+        <input type="name" class="form-control" id="floatingname" placeholder="Nguyễn Văn A">
+      </div>
+      <div class="form-floating">
+        <label for="floatingdate">Ngày sinh</label>
+        <input type="date" class="form-control" id="floatingdate" placeholder="11/02/2001">
+      </div>
+      <div class="form-floating">
+        <label for="floatingaddress">Địa chỉ</label>
+        <input type="address" class="form-control" id="floatingaddress" placeholder="Thôn sú 2, xã Lâm Động, huyện Thủy Nguyên, thành phố Hải Phòng">
+      </div>
+      <div class="form-floating form-floating--pass">
+        <label for="floatingPassword">Mật khẩu</label>
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Mật khẩu">
+      </div>
+      <div class="form-floating form-floating--pass">
+        <label for="confirm_password">Nhập lại mật khẩu</label>
+        <input type="password" class="form-control" id="confirm_password" placeholder="Nhập lại mật khẩu">
+      </div>
+      <div class = "form-floating--pass form-group">
+        <label for="gender">Giới tính</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input type="radio" class="form-check-input" value="male" id="male" name = "gender">
+              <label class="form-check-label" for="male">Nam</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" class="form-check-input" value="male" id="fmale" name = "gender">
+              <label class="form-check-label" for="fmale">Nữ</label>
+            </div>
+          </div>
+      </div>
+
+
+
+      <button class="btn w-100 py-2 btn-primary form__button--signup" type="submit">Đăng kí</button>
+    </form>
+  </div>
+    
+
+<!-- Thư viện jquery  -->
+<script src="./JS/jquery.min.js"></script>
+<!-- Thư viện waypoint  -->
+<script src="./JS/jquery.waypoints.min.js"></script>
+<!-- bootstrap  -->
+<script src="./JS/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

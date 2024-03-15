@@ -1,0 +1,162 @@
+/* Không được thay đổi phần này */
+/* bộ màu sử dụng: 
+12372A
+436850
+ADBC9F
+FBFADA*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+
+}
+
+body {
+    background-image: url('../IMG/slide3.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.section {
+    margin: 75px 0;
+
+}
+
+.container-fluid-my {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.line::after {
+    content: '';
+    display: block;
+    width: 40%;
+    height: 4px;
+    background-color: #12372A;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+}
+
+
+/* HEADER  */
+.header__top {
+    padding: 10px;
+    background-color: #12372A;
+    font-size: 1rem;
+}
+
+.header__top a {
+    text-decoration: none;
+    color: white;
+}
+
+.header__top .header__right a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    margin-left: 0.25rem;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 10px;
+    transition: all .5s;
+}
+
+.header__top .header__right a:hover {
+    background-color: white;
+    color: #12372A;
+}
+
+/* Login */
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    margin: 1px;
+
+}
+
+#wrapper h3 {
+    text-align: center;
+    font-size: 24;
+    font-weight: 900;
+    color: #12372A;
+}
+
+#wrapper .user label {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+#wrapper .form-floating__pass label {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.form-floating__pass {
+    padding-top: 8px;
+}
+
+form {
+
+    margin-top: 3rem;
+    padding: 2rem 5rem;
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.form__button--signup {
+    margin-top: 10px;
+    /* margin-left: 83%; */
+}
+
+.my__btn {
+    width: 100%;
+    padding: 7px;
+    text-transform: uppercase;
+    color: white;
+    background-color: #12372A;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: all .5s;
+    border: none;
+    border: 1px solid #12372A;
+
+}
+
+.my__btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.my__btn:hover {
+    background-color: white;
+
+    border: 1px solid #12372A;
+
+}
+
+.my__btn:hover a {
+    color: #12372A;
+
+}
+
+#wrapper .form__login {
+    margin-right: 10px;
+}
+
+#wrapper .form__signup {
+    margin-left: 10px;
+}
