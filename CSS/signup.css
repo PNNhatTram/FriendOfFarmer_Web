@@ -46,6 +46,40 @@ body {
     margin-top: 0.5rem;
 }
 
+/* Header  */
+.header__top {
+    padding: 10px;
+    background-color: #12372A;
+    font-size: 1rem;
+}
+.header__top a{
+    text-decoration: none;
+    color: white;
+}
+.header__top .header__right a{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    margin-left: 0.25rem;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 10px;
+    transition: all .5s;
+}
+.header__top .header__right a:hover{
+    background-color: white;
+    color: #12372A;
+}
+
+.header__menu .header__logo img{
+    display: inline-block;
+    width: 180px;
+    height: 120px;
+}
+.header__top .header__menu {
+    padding: 0;
+}
 /* Login */
 
 #wrapper{

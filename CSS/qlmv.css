@@ -1,0 +1,262 @@
+/* Không được thay đổi phần này */
+/* bộ màu sử dụng: 
+12372A
+436850
+ADBC9F
+FBFADA*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+    background-color: white;
+}
+
+/* CODE TỰ DO  */
+.section {
+    margin: 75px 0;
+    
+}
+
+.container-fluid-my {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.line::after {
+    content: '';
+    display: block; 
+    width: 10%;
+    height: 4px;
+    background-color: #12372A;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+}
+
+.overplay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0);
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+}
+/* HEADER  */
+.header__top {
+    padding: 10px;
+    background-color: #12372A;
+    font-size: 1rem;
+}
+.header__top a{
+    text-decoration: none;
+    color: white;
+}
+.header__top .header__right a{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    margin-left: 0.25rem;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 10px;
+    transition: all .5s;
+}
+.header__top .header__right a:hover{
+    background-color: white;
+    color: #12372A;
+}
+
+/* main  */
+.man__content {
+    margin-bottom: 2rem;
+}
+.manage .text {
+    font-size: 2.5rem;
+    color: #12372A;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.manage__row .manage__col2 .manage__season {
+    width: 80%;
+    margin: 1rem auto;
+    height: 3rem;
+    border: 2px solid #12372A;
+    border-radius: 5px;
+    cursor: pointer;   
+    transition: all .5s;
+}
+.manage__row .manage__col2 .manage__season:hover {
+    background-color: #12372A;
+    
+}
+.manage__row .manage__col2 .manage__season:hover p{
+    color: white;
+    
+}
+.manage__row .manage__col2 .manage__season p{
+    color: #12372A;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 3rem;
+    transition: all .5s;
+    
+    
+}
+.my__active {
+    background-color: #12372A;
+}
+.manage .manage__col2 .my__active p{
+    color: white;
+}
+
+/* Page manage */
+.manage .manage__col10 .nav {
+    border: none;
+}
+.manage .manage__col10 .nav-link {
+    color: #12372A;
+    font-weight: 700;
+    padding: 10px;
+    margin: 0 20px 0 0;
+    border: none;
+    font-size: 1.2rem;
+    
+}
+.manage .manage__col10 .nav-link::after {
+   width: 0;
+   transition: all .5s;
+}
+.manage .manage__col10 .active::after {
+    width: 100%;
+    transition: all .5s;
+ }
+.manage .manage__col10 .nav-link:hover::after {
+    width: 100%;
+}
+
+
+/* Inside */
+.manage__col10 .tab-pane {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.manage__land h3, .manage__plant>h3 {
+    color: #12372A;
+    font-size: 1.5rem;
+    margin: 10px 0 10px 5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.manage__land .my__row3l .my__col3l p {
+    color: #12372A;
+    font-size: 1.3rem;
+    margin: 10px 0 10px 5px;
+  
+}
+.manage__land .my__row3l .my__col3l p i {
+   color: #ADBC9F;
+  
+}
+
+
+
+
+/* SHOW TIME  */
+.showTimes .nav-tabs .nav-item.show .nav-link,.showTimes .nav-tabs .nav-link.active{
+    border: none;
+}
+.showTimes .nav-tabs .nav-link.active{
+    color:#ec7532 ;
+}
+.showTimes .nav-tabs .nav-link{
+    border:none;
+    padding: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #4a4a4a;
+}
+
+.showTimes .nav-tabs .nav-item{
+    margin-bottom: 0;
+}
+
+.showTimes .nav-tabs .nav-link span{
+    padding: 15px 30px;
+    display: block;
+}
+
+.man__row{
+    border-bottom: 1px solid #ADBC9F;
+}
+#myTabContent .tab-pane .man__row:last-child{
+    border-bottom: none;
+}
+
+.man__row img{
+    border-radius: 10px;
+}
+
+.man__row div p:first-of-type{
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #12372A;
+    margin-bottom: 0;
+}
+
+.man__row h3{
+    font-size: 24px;
+    font-weight: 300;
+    color: #101010;
+    letter-spacing: 1px;
+}
+
+.man__row a{
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #12372A;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.man__row a:hover{
+    color: #101010;
+}
+
+.showTimes__runingTimes{
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: #4a4a4a;
+}
+
+.showTimes__runingTimes button{
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #717171;
+    background-color: #d8d8d8;
+}
+
+.showTimes__mins span:last-child{
+    width:33px;
+    height: 33px;
+    display: inline-block;
+    color: white;
+    background-color: #4a4a4a;
+    text-align: center;
+    line-height: 33px;
+    border-radius: 50%;
+    font-weight: 700;
+}
