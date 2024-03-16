@@ -94,6 +94,7 @@ html, body {
     border: 2px solid #12372A;
     border-radius: 5px;
     cursor: pointer;   
+    box-shadow: 6px 10px 8px 0px rgba(158,158,158,0.75);
     transition: all .5s;
 }
 .manage__row .manage__col2 .manage__season:hover {
@@ -135,12 +136,13 @@ html, body {
     
 }
 .manage .manage__col10 .nav-link::after {
-   width: 0;
+   width: 0%;
+ 
    transition: all .5s;
 }
 .manage .manage__col10 .active::after {
     width: 100%;
-    transition: all .5s;
+   
  }
 .manage .manage__col10 .nav-link:hover::after {
     width: 100%;
@@ -149,114 +151,86 @@ html, body {
 
 /* Inside */
 .manage__col10 .tab-pane {
-    border: 1px solid black;
-    border-radius: 5px;
     padding: 10px 20px;
 }
 
-.manage__land h3, .manage__plant>h3 {
+.manage__land h3, .manage__plantOverall>h3 {
     color: #12372A;
     font-size: 1.5rem;
-    margin: 10px 0 10px 5px;
+    margin: 10px 0 20px 5px;
     font-weight: 700;
     letter-spacing: 2px;
 }
-.manage__land .my__row3l .my__col3l p {
+.manage__land .my__col2l {
+    border: 2px solid #12372A;
+    margin: 0 0.7rem 1rem 0.7rem;
+    border-radius: 5px;
+}
+.manage__land .my__row3l .my__col2l p {
     color: #12372A;
     font-size: 1.3rem;
-    margin: 10px 0 10px 5px;
+    margin: 10px 0 10px 0px;
   
 }
-.manage__land .my__row3l .my__col3l p i {
+.manage__land .my__row3l .my__col2l p i {
    color: #ADBC9F;
   
 }
 
+/* Plant  */
 
 
 
-/* SHOW TIME  */
-.showTimes .nav-tabs .nav-item.show .nav-link,.showTimes .nav-tabs .nav-link.active{
-    border: none;
-}
-.showTimes .nav-tabs .nav-link.active{
-    color:#ec7532 ;
-}
-.showTimes .nav-tabs .nav-link{
-    border:none;
-    padding: 0;
-    font-size: 18px;
-    letter-spacing: 1px;
-    color: #4a4a4a;
+.manage__plantOverall .manage__imgPlant img{
+   border-radius: 10px;
+   height: 85%;
+   
 }
 
-.showTimes .nav-tabs .nav-item{
-    margin-bottom: 0;
+.manage__plantOverall .manage__item {
+    border: 2px solid #12372A;
+    height: 60px;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 5px;
+    transition: all .5s;
+    cursor: pointer;
 }
-
-.showTimes .nav-tabs .nav-link span{
-    padding: 15px 30px;
-    display: block;
+.manage__plantOverall .manage__item:hover {
+  background-color: #ADBC9F;
 }
-
-.man__row{
-    border-bottom: 1px solid #ADBC9F;
+.manage__plantOverall .manage__item i{
+   font-size: 2rem;
+   display: block;
+   text-align: center;
+   margin: 10px 0;
 }
-#myTabContent .tab-pane .man__row:last-child{
-    border-bottom: none;
-}
-
-.man__row img{
-    border-radius: 10px;
-}
-
-.man__row div p:first-of-type{
-    font-size: 14px;
-    letter-spacing: 2px;
+.manage__plantOverall .manage__item a{
+    font-size: 1.5rem;
     color: #12372A;
-    margin-bottom: 0;
-}
-
-.man__row h3{
-    font-size: 24px;
-    font-weight: 300;
-    color: #101010;
-    letter-spacing: 1px;
-}
-
-.man__row a{
-    font-size: 12px;
-    letter-spacing: 4px;
-    color: #12372A;
+    margin: 10px 0;
     text-decoration: none;
-    transition: 0.5s;
-}
-
-.man__row a:hover{
-    color: #101010;
-}
-
-.showTimes__runingTimes{
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    color: #4a4a4a;
-}
-
-.showTimes__runingTimes button{
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: #717171;
-    background-color: #d8d8d8;
-}
-
-.showTimes__mins span:last-child{
-    width:33px;
-    height: 33px;
-    display: inline-block;
-    color: white;
-    background-color: #4a4a4a;
+ }
+ .manage__plantOverall .manage__item p{
     text-align: center;
-    line-height: 33px;
-    border-radius: 50%;
-    font-weight: 700;
-}
+ }
+
+ .manage__plantOverall .manage__buy, .manage__plantOverall .manage__view {
+    border: 2px solid #12372A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 2rem;
+    margin-right: 1rem;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: all .5s;
+ }
+ .manage__plantOverall .manage__buy:hover, .manage__plantOverall .manage__view:hover {
+    background-color: #ADBC9F;
+ }
+
+ .manage__plantOverall .m__plant{
+    border-bottom: 1px solid gray;
+ }
