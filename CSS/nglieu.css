@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+    background-image: url('../IMG/feedback5.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
+}
+/* HEADER  */
+.header__top {
+    padding: 10px;
+    background-color: #12372A;
+    font-size: 1rem;
+}
+.header__top a{
+    text-decoration: none;
+    color: white;
+}
+.header__top .header__right a{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    margin-left: 0.25rem;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 10px;
+    transition: all .5s;
+}
+.header__top .header__right a:hover{
+    background-color: white;
+    color: #12372A;
+}
+
+/*SEARCH*/
+
+h1{
+    color:#12372A;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-align: center;
+    padding-top: 10rem;
+}
+
+.form-inline{
+    justify-content: center;
+}
+
+.search_icon{
+    color: white;
+    background-color: #436850;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: all .5s;
+    border: none;
+    border: 7px solid #436850;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.search_icon:hover {
+    background-color: #436850;
+    border: 7px solid
+}
