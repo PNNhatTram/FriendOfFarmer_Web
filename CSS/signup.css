@@ -1,4 +1,4 @@
-* Không được thay đổi phần này */
+/* Không được thay đổi phần này */
 /* bộ màu sử dụng: 
 12372A
 436850
@@ -46,17 +46,20 @@ body {
     margin-top: 0.5rem;
 }
 
-/* Header  */
+
+/* HEADER  */
 .header__top {
     padding: 10px;
     background-color: #12372A;
     font-size: 1rem;
 }
-.header__top a{
+
+.header__top a {
     text-decoration: none;
     color: white;
 }
-.header__top .header__right a{
+
+.header__top .header__right a {
     display: inline-block;
     width: 30px;
     height: 30px;
@@ -67,44 +70,120 @@ body {
     border-radius: 10px;
     transition: all .5s;
 }
-.header__top .header__right a:hover{
+
+.header__top .header__right a:hover {
     background-color: white;
     color: #12372A;
 }
 
-.header__menu .header__logo img{
-    display: inline-block;
-    width: 180px;
-    height: 120px;
-}
-.header__top .header__menu {
-    padding: 0;
-}
 /* Login */
 
-#wrapper{
+#wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
     margin: 1px;
+
 }
 
-h3{
+#wrapper .myicon{
     text-align: center;
     font-size: 24;
-    font-weight: 500;
-    color: #89B9AD;
+    font-weight: 900;
+    color: #12372A;
 }
-.form-floating--pass{
+
+#wrapper .user label {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+#wrapper .form-floating__pass label {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.form-floating__pass {
     padding-top: 8px;
 }
+
 form {
-    padding: 2rem;
+    position: relative;
+    margin-top: 3rem;
+    padding: 2rem 5rem;
     border: 1px solid;
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.7);
 }
-.form__button--signup{
+
+.form__button--signup {
     margin-top: 10px;
     /* margin-left: 83%; */
+}
+
+.my__btn {
+    width: 100%;
+    padding: 7px;
+    text-transform: uppercase;
+    color: white;
+    background-color: #12372A;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: all .5s;
+    border: none;
+    border: 1px solid #12372A;
+
+}
+
+.my__btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.my__btn:hover {
+    background-color: white;
+
+    border: 1px solid #12372A;
+
+}
+
+.my__btn:hover a {
+    color: #12372A;
+
+}
+
+.form-floating--pass{
+    margin-top: 15px;
+}
+
+.form_footer {
+    padding-top: 20px;
+}
+
+.form--signupfb{
+    background-color: #057ef6;
+}
+.form--signupgg{
+    background-color: #ff0303;
+}
+.form_footer--title{
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+}
+.form_footer--title::after, .form_footer--title::before{
+    content: "";
+    flex-grow: 1;
+    background-color: #01110c;
+    height: 1px;
+    margin-top: 9px;
+}
+.form_footer--title::after{
+    margin-left: 5px;
+    margin-right: 50px;
+}
+.form_footer--title::before{
+    margin-right: 5px;
+    margin-left: 50px;
 }
