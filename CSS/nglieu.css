@@ -7,12 +7,7 @@
 html, body {
     font-family: "Roboto Condensed", sans-serif;
     font-size: 16px;
-    background-image: url('../IMG/feedback5.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    background-attachment: fixed;
+   
 }
 /* HEADER  */
 .header__top {
@@ -42,13 +37,22 @@ html, body {
 
 /*SEARCH*/
 
-h1{
+.search__text {
+    margin: 5rem auto;
+    text-align: center;
+}
+
+.search__text h1{
     color:#12372A;
     font-size: 3rem;
     font-weight: 900;
     letter-spacing: 5px;
     text-align: center;
-    padding-top: 10rem;
+   
+}
+.search__text p{
+    font-size: 1rem;
+   
 }
 
 .form-inline{
@@ -56,18 +60,20 @@ h1{
 }
 
 .search_icon{
+    width: 40px;
+    height: 40px;
     color: white;
     background-color: #436850;
-    font-weight: 700;
+    
     border-radius: 10px;
     transition: all .5s;
-    border: none;
-    border: 7px solid #436850;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    
+    border: 1px solid #436850;
+    
+}
+.search_icon i{
+   text-align: center;
+   line-height: 40px;
+    
 }
 
-.search_icon:hover {
-    background-color: #436850;
-    border: 7px solid
-}
