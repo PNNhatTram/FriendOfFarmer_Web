@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend of Farmer</title>
+    <!-- TAG -->
+    <link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
+
+    <!-- font google  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- css bootstrap  -->
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
+    <!-- MAIN CSS  -->
+    <link rel="stylesheet" href="./CSS/maker2.css">
+
+	<!-- JS -->
+	<script src="./js/maker2.js"></script>
+
+    <!--Responsive-->
+    <link rel="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
+    <link rel="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js">
+
+
+	</head>
+	<style>
+		body {
+    		background-image: url(./images/backgorud.jpg);
+			}
+	</style>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center">
+					<h2 class="heading-section">THÔNG TIN</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+							<thead cowspan="2" >
+								<tr>
+									<canvas id="myChart" width="auto"></canvas>
+								</tr>
+							</thead>
+							<tbody class="table-color">	
+								 <!-- color	 -->
+								  <tr>
+									<td>Mã gạo</td>
+									<td>#25211</td>									
+								  </tr>
+								  <tr>
+									<td>Tên thương lái</td>
+									<td>Lorem ipsum </td>									
+								  </tr>
+								  <tr>
+									<td rowspan="2">Mô tả</td>
+									<td>Gạo thái nếp lài</td>									
+								  </tr>
+								  <tr>
+									<td>Dẻo, thơm</td>									
+								  </tr>
+								  <tr>
+									<td>Liên hệ</td>
+									<td>0333333</td>									
+								  </tr>
+								  <tr>
+									<td></td>
+									<td>1200</td>									
+								  </tr>
+								  <tr>
+									<td>Giá hiện tại(VND)</td>
+									<td>15000</td>									
+								  </tr>
+								  <tr>
+									<td>Giá cao/thấp nhất trong 6 tháng qua</td>
+									<td>18596/12002</td>									
+								  </tr>
+								  <tr>
+									<td>Đặt hàng</td>
+									<td>
+										
+										<a href="https://youtu.be/dQw4w9WgXcQ?si=PO27SNnG3___72ei">Link</a>
+
+									</td>									
+								  </tr>
+
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+	<!-- chartjs lib -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		
+		// chartjs form		
+							
+				function createChart(canvasId, chartData) {
+				const ctx = document.getElementById(canvasId).getContext('2d');
+				
+				return new Chart(ctx, {
+					type: 'line',
+					data: chartData,
+					options: {
+						scales: {
+							y: {
+								// price
+								min: 15000,
+                				max: 30000,
+								beginAtZero: true
+							}
+						},
+						elements: {
+							line: {
+								fill: true // Cho phép điền màu dưới đường
+							}
+							},
+							plugins: {
+							filler: {
+								propagate: true // Tính toán màu nền cho toàn bộ biểu đồ
+							}
+							},
+							fillOpacity: 1 // Điều chỉnh độ mờ cho nền của biểu đồ
+											
+					}
+				});
+			}
+
+			const data1 = {
+				labels: ['6 tháng trước', '5 tháng trước', '4 tháng trước', '3 tháng trước', '2 tháng trước', '1 tháng trước', 'Tháng này'],
+				datasets: [{
+					label: 'Biểu đồ dữ liệu 6 tháng qua',
+					data: [22200, 25600, 16400, 18444, 28343, 24325, 29310],
+					fill: false, 
+					borderColor: 'red',
+					borderAlpha: 1,
+					tension: 0.1
+				}]
+			};
+
+		// Tchart1
+		const myChart1 = createChart('myChart', data1);
+	
+		// chart2
+
+	  </script>
+	</body>
+</html>
+

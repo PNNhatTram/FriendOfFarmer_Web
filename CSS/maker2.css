@@ -1,0 +1,15 @@
+
+body {
+    background-image: url(./image/);
+}
+h2 {
+    padding: auto
+}
+
+.table-color {
+    background-color: rgb(38, 162, 98, 0.5);
+    
+}
+.table {
+    margin: 5rem 0;
+}
