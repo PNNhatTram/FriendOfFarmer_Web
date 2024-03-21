@@ -34,10 +34,9 @@ bất thường để đưa ra những đề xuất cho nông dân. (Chức năn
   
 __1. Tìm thị trường tiêu thụ nông sản:__
    
-Mô tả: web sẽ giúp nông dân tìm ra thị trường đầu ra thích hợp theo
+__Mô tả__: web sẽ giúp nông dân tìm ra thị trường đầu ra thích hợp theo
 nhu cầu của nông dân và cũng là môi trường để các thương lái cập nhật
 nhu cầu mua bán của mình.
-
 - Chọn loại nông sản muốn bán
 - Bộ lọc theo nhu cầu của nông dân --> đề xuất thị trường bán phù
 hợp.
@@ -45,7 +44,6 @@ hợp.
 - Quản lý giao dịch mua bán giữa nông dân và thương lái.
 
 __2. Tìm kiếm các nguyên vật liệu giá rẻ cho nông nghiệp:__
-
 - Chọn loại nguyên vật liệu (với các bộ lọc)
 - Đưa ra các đường link sản phẩm với mức giá rẻ (dẫn đến các trang
 TMĐT khác)
