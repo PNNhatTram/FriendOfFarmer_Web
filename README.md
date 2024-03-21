@@ -7,9 +7,9 @@ web cũng là công cụ để quản lý mùa vụ cho nông dân.
 ## **CHỨC NĂNG CHI TIẾT:**
 
 ### **A – TẠO USER**
--Đăng ký tài khoản
--Đăng nhập
--Quên mật khẩu
+- Đăng ký tài khoản
+- Đăng nhập
+- Quên mật khẩu
 
 ### **B – QUẢN LÝ MÙA VỤ**
 -Thống kê năng suất, lãi suất, chi phí sản xuất thông qua các mùa vụ.
