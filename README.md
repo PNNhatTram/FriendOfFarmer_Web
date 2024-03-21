@@ -4,6 +4,16 @@ __Nội dung__: Hướng đến đối tượng thương lái, nông dân và ng
 có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạnh đó trang
 web cũng là công cụ để quản lý mùa vụ cho nông dân.
 
+## **THÀNH VIÊN**
+ 
+|Họ và tên|MSSV|Chức vụ|
+| :------------:|:-------------:|:-----:|
+|Nguyễn Đức Tấn|22521303|nhóm trưởng|
+|Lâm Xuân Thái|22521317|thành viên|
+|Phạm Minh Tân|22521310|thành viên|
+|Phan Nguyễn Nhật Trâm|22521501|thành viên|
+|Nguyễn Kim Khánh|22520643|thành viên|
+
 ## **CHỨC NĂNG CHI TIẾT:**
 
 ### **A – TẠO USER**
