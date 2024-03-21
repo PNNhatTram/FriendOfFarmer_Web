@@ -1,17 +1,17 @@
-# h1 **TÊN ĐỀ TÀI: QUẢN LÝ NÔNG SẢN**
+# **TÊN ĐỀ TÀI: QUẢN LÝ NÔNG SẢN**
 
 __Nội dung__: Hướng đến đối tượng thương lái, nông dân và người tiêu dùng
 có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạnh đó trang
 web cũng là công cụ để quản lý mùa vụ cho nông dân.
 
-## h2 **CHỨC NĂNG CHI TIẾT:**
+## **CHỨC NĂNG CHI TIẾT:**
 
-### h3 **A – TẠO USER**
+### **A – TẠO USER**
 -Đăng ký tài khoản
 -Đăng nhập
 -Quên mật khẩu
 
-### h3 **B – QUẢN LÝ MÙA VỤ**
+### **B – QUẢN LÝ MÙA VỤ**
 -Thống kê năng suất, lãi suất, chi phí sản xuất thông qua các mùa vụ.
 -Tạo 1 mùa vụ mới:
     -Khởi tạo thời gian bắt đầu, kết thúc mùa vụ
@@ -31,7 +31,7 @@ web cũng là công cụ để quản lý mùa vụ cho nông dân.
 bất thường để đưa ra những đề xuất cho nông dân. (Chức năng thêm
 – tuỳ vào khả năng nhóm – optional)
 
-### h3 **C – TIỆN ÍCH BỔ SUNG**
+### **C – TIỆN ÍCH BỔ SUNG**
   
 __1. Tìm thị trường tiêu thụ nông sản:__
    
