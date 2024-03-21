@@ -48,6 +48,6 @@ __2. Tìm kiếm các nguyên vật liệu giá rẻ cho nông nghiệp:__
 - Đưa ra các đường link sản phẩm với mức giá rẻ (dẫn đến các trang
 TMĐT khác)
 
-### **FRAMEWORK:**
+## **FRAMEWORK:**
 - __FRONT END__: Bootstrap
 - __BACK END__: Django
