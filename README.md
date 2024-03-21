@@ -4,7 +4,7 @@ __Nội dung__: Hướng đến đối tượng thương lái, nông dân và ng
 có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạnh đó trang
 web cũng là công cụ để quản lý mùa vụ cho nông dân.
 
-## **THÀNH VIÊN**
+## **THÀNH VIÊN:**
  
 |Họ và tên|MSSV|Chức vụ|
 | :------------:|:-------------:|:-----:|
