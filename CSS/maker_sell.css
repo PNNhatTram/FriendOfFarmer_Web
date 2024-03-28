@@ -225,7 +225,7 @@ background-color: #EFF2F5;
 }
 .find__box {
   width: 100%;
-  height: 200px;
+  height: 350px;
 }
 .find__box input {
   display: block;
@@ -239,14 +239,16 @@ background-color: #EFF2F5;
   border: none;
 
 }
-.find__box input:focus {
+.find__box input:focus, .find__box textarea:focus {
  border: none;
  outline: none;
 
 }
-.find__box input::placeholder {
+.find__box input::placeholder, .find__box textarea::placeholder {
   font-size: 1rem;
   font-weight: bold;
+  padding-left: 1rem;
+  padding-top: 1rem;
   
   
 }
@@ -264,7 +266,7 @@ background-color: #EFF2F5;
   border: none;
 
   position: absolute;
-  bottom: 5%;
+  bottom: 0%;
   left: 45%;
 
   transition: all .5s;
@@ -273,6 +275,29 @@ background-color: #EFF2F5;
  background-color: white; 
  color: #609966;
  border: 1px solid #609966;
+}
+
+.find__box textarea {
+  
+    display: block;
+    width: 80%;
+    height: 150px;
+    border-radius: 5px;
+    margin: 2rem auto;
+    background-color: #EFF2F5;
+    padding: 0 20px;
+    border: none;
+    resize: none;
+}
+.result .result__box {
+  background-color: #60996674;
+  width: 60%;
+  height: 50px;
+  margin: 1rem auto;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
 }
 
 

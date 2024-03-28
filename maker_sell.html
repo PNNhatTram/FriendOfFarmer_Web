@@ -21,12 +21,11 @@
 	<!-- css bootstrap  -->
 	<link rel="stylesheet" href="./CSS/bootstrap.min.css">
 	<!-- MAIN CSS  -->
-	<link rel="stylesheet" href="./CSS/maker.css">
+	<link rel="stylesheet" href="./CSS/maker_sell.css">
 
 </head>
 
 <body>
-	<!-- HEADER  -->
 	<!-- HEADER  -->
 	<header class="container-fluid">
 		<div class="header">
@@ -118,19 +117,19 @@
 		</nav>
 
 	</header>
-
 	<!-- SEARCH BOX  -->
 	<section class="finding container section">
 		<div class="row find__row my-3">
 			<div class="col-8 f_col8">
 				<h3>TÌM KIẾM THỊ TRƯỜNG TIÊU THỤ NÔNG SẢN</h3>
 				<p>Hãy cho chúng tôi biết nông sản cùng với nơi bạn muốn bán nông sản. Chúng tôi sẽ tìm giúp bạn!</p>
+				<p style="color:#609966; font-weight: bold; margin-top: 1rem;">Bạn đang ở chế độ thương lái</p>
 			</div>
 			<div class="col-4 f_col4">
-				<div class="farm__mode f_btn">
+				<div class="seller__mode f_btn">
 					<p><i class="fa fa-user-alt"></i>&nbsp; Farm Mode</p>
 				</div>
-				<div class="seller__mode f_btn" id="sell">
+				<div class="farm__mode f_btn">
 					<p><i class="fa fa-users"></i>]&nbsp;Sell Mode</p>
 				</div>
 			</div>
@@ -138,138 +137,22 @@
 
 		<div class="find__box">
 			<form action="">
-				<input type="text" name="" id="Nongsan" placeholder="Nông sản muốn bán">
-				<input type="text" name="" id="Thitruong" placeholder="Nơi muốn bán">
-
-				<button>Tìm kiếm</button>
+				<input type="text" name="" id="Nongsan" placeholder="Nông sản muốn mua">
+				<input type="number" name="" id="Thitruong" placeholder="Mức giá đề xuất">
+				<textarea name="" id="" cols="30" rows="10" placeholder="Thông tin mô tả"></textarea>
+				
+				<button>SUBMIT</button>
 			</form>
 		</div>
 	</section>
 
 	<!-- RESULT  -->
 	<section class="result container section">
-		<div class="row my__row__header row__common">
-			<div class="col res__num common">
-				ID Market
-			</div>
-			<div class="col-2 res__name common">
-				Loại nông sản
-			</div>
-			<div class="col-2 res__place common">
-				Thị trường
-			</div>
-			<div class="col-2 res__suppli common">
-				Thương lái
-			</div>
-			<div class="col res__price common">
-				Giá cả (VNĐ/kg)
-			</div>
-			<div class="col-3 res__trend common">
-				Xu hướng giá
-			</div>
-			<div class="col res__check common">
-				Xác nhận
-			</div>
-
-		</div>
-		<div class="row my__row__res row__common align-items-center">
-			<div class="col res__num common">
-				<a href="./marker2.html"><span><i class="fa-regular fa-star"></i>&nbsp; ST125</span></a>
-				
-			</div>
-			<div class="col-2 res__name common">
-				Gạo
-			</div>
-			<div class="col-2 res__place common">
-				TP Hồ Chí Minh
-			</div>
-			<div class="col-2 res__suppli common">
-				Nguyễn Văn An
-			</div>
-			<div class="col res__price common" style="color: #16c784;">
-				24000
-			</div>
-			<div class="col-3 res__trend common">
-				<img src="./IMG/1.svg" alt="trend">
-			</div>
-			<div class="col res__check common">
-				Xác nhận
-			</div>
-
+		<div class="result__box">
+			BẠN ĐÃ CẬP NHẬT THÀNH CÔNG
 		</div>
 
-		<div class="row my__row__res row__common align-items-center">
-			<div class="col res__num common">
-				<span><i class="fa-regular fa-star"></i>&nbsp; ST125</span>
-			</div>
-			<div class="col-2 res__name common">
-				Gạo
-			</div>
-			<div class="col-2 res__place common">
-				TP Hồ Chí Minh
-			</div>
-			<div class="col-2 res__suppli common">
-				Nguyễn Văn An
-			</div>
-			<div class="col res__price common" style="color: #16c784;">
-				24000
-			</div>
-			<div class="col-3 res__trend common">
-				<img src="./IMG/825.svg" alt="trend" style="filter: hue-rotate(85deg) saturate(80%) brightness(0.85);">
-			</div>
-			<div class="col res__check common">
-				Xác nhận
-			</div>
-
-		</div>
-		<div class="row my__row__res row__common align-items-center">
-			<div class="col res__num common">
-				<span><i class="fa-regular fa-star"></i>&nbsp; ST125</span>
-			</div>
-			<div class="col-2 res__name common">
-				Gạo
-			</div>
-			<div class="col-2 res__place common">
-				TP Hồ Chí Minh
-			</div>
-			<div class="col-2 res__suppli common">
-				Nguyễn Văn An
-			</div>
-			<div class="col res__price common" style="color: #16c784;">
-				24000
-			</div>
-			<div class="col-3 res__trend common">
-				<img src="./IMG/1.svg" alt="trend">
-			</div>
-			<div class="col res__check common">
-				Xác nhận
-			</div>
-
-		</div>
-		<div class="row my__row__res row__common align-items-center">
-			<div class="col res__num common">
-				<span><i class="fa-regular fa-star"></i>&nbsp; ST125</span>
-			</div>
-			<div class="col-2 res__name common">
-				Gạo
-			</div>
-			<div class="col-2 res__place common">
-				TP Hồ Chí Minh
-			</div>
-			<div class="col-2 res__suppli common">
-				Nguyễn Văn An
-			</div>
-			<div class="col res__price common" style="color: #16c784;">
-				24000
-			</div>
-			<div class="col-3 res__trend common">
-				<img src="./IMG/1.svg" alt="trend">
-			</div>
-			<div class="col res__check common">
-				Xác nhận
-			</div>
-
-		</div>
+		
 
 	</section>
 
@@ -346,14 +229,7 @@
 		</div>
 	</footer>
 
-<script>
-	
-	document.getElementById('sell').onclick = function(){
-    window.location.href = "./maker_sell.html";
-	
-}
 
-</script>
 </body>
 
 </html>

@@ -2,166 +2,205 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friend of Farmer</title>
-    <!-- TAG -->
-    <link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Friend of Farmer | Tìm kiếm thị trường</title>
+	<!-- TAG -->
+	<link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
 
-    <!-- font google  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+	<!-- font google  -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
-    <!-- font awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- font awesome  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- css bootstrap  -->
-    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
-    <!-- MAIN CSS  -->
-    <link rel="stylesheet" href="./CSS/maker2.css">
+	<!-- css bootstrap  -->
+	<link rel="stylesheet" href="./CSS/bootstrap.min.css">
+	<!-- MAIN CSS  -->
+	<link rel="stylesheet" href="./CSS/maker2.css">
 
-	<!-- JS -->
-	<script src="./js/maker2.js"></script>
+</head>
 
-    <!--Responsive-->
-    <link rel="https://cdn.datatables.net/responsive/3.0.0/css/responsive.dataTables.css">
-    <link rel="https://cdn.datatables.net/responsive/3.0.0/js/dataTables.responsive.js">
+<body>
+	<!-- HEADER  -->
+	<header class="container-fluid">
+		<div class="header">
+			<div class="header__item">
+				<span>Lorem, ipsum dolor </span>
+				&nbsp;
+				<p> 2,4M+</p>
+			</div>
+			<div class="header__item">
+				<span>Ipsum dolor </span>
+				&nbsp;
+				<p> 2,4M+</p>
+			</div>
+			<div class="header__item">
+				<span>Lorem ipsum: </span>
+				&nbsp;
+				<p>đ19232483974</p>
+			</div>
+			<div class="header__item">
+				<span>Lorem: </span>
+				&nbsp;
+				<p>đ19232</p>
+			</div>
+
+			<div class="header__item">
+				<span>Lorem ipsum dolor sit amet: </span>
+				&nbsp;
+				<p>đ19232483974</p>
+				<i class="fa fa-moon"></i>
+			</div>
+			<div class="header__button">
+				<button>Get list <i class="fa fa-angle-down"></i></button>
+				<button style="width: 40px;">API</button>
+				<i class="fa fa-align-left fs-6"></i>
+			</div>
+			<div class="header__login">
+				<button class="my-btn-header login" id="login">Đăng nhập</button>
+				<button class="my-btn-header">Đăng ký</button>
+			</div>
+		</div>
+
+		<nav class="navbar navbar-expand-lg header__menu">
+			<div class="container-fluid">
+				<a class="navbar-brand header__logo" href="#">Friend of Farmer</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0 header__fun">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Manage</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Find</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Resource</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Contact</a>
+						</li>
+						<div class="header__other">
+							<span><i class="fa fa-fire-alt"></i>&nbsp; Hot news</span>
+							<div class="other1">
+								<span><i class="fa fa-star"></i>&nbsp; Lorem ipsum dolor</span>
+
+							</div>
+							<div class="other2">
+								<span><i class="fa-solid fa-icons"></i>&nbsp; Category</span>
+
+							</div>
+						</div>
 
 
-	</head>
-	<style>
-		body {
-    		background-image: url(./images/backgorud.jpg);
-			}
-	</style>
-	<body>
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center">
-					<h2 class="heading-section">THÔNG TIN</h2>
+
+
+					</ul>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					</form>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-wrap">
-						<table class="table">
-							<thead cowspan="2" >
-								<tr>
-									<canvas id="myChart" width="auto"></canvas>
-								</tr>
-							</thead>
-							<tbody class="table-color">	
-								 <!-- color	 -->
-								  <tr>
-									<td>Mã gạo</td>
-									<td>#25211</td>									
-								  </tr>
-								  <tr>
-									<td>Tên thương lái</td>
-									<td>Lorem ipsum </td>									
-								  </tr>
-								  <tr>
-									<td rowspan="2">Mô tả</td>
-									<td>Gạo thái nếp lài</td>									
-								  </tr>
-								  <tr>
-									<td>Dẻo, thơm</td>									
-								  </tr>
-								  <tr>
-									<td>Liên hệ</td>
-									<td>0333333</td>									
-								  </tr>
-								  <tr>
-									<td></td>
-									<td>1200</td>									
-								  </tr>
-								  <tr>
-									<td>Giá hiện tại(VND)</td>
-									<td>15000</td>									
-								  </tr>
-								  <tr>
-									<td>Giá cao/thấp nhất trong 6 tháng qua</td>
-									<td>18596/12002</td>									
-								  </tr>
-								  <tr>
-									<td>Đặt hàng</td>
-									<td>
-										
-										<a href="https://youtu.be/dQw4w9WgXcQ?si=PO27SNnG3___72ei">Link</a>
+		</nav>
 
-									</td>									
-								  </tr>
+	</header>
 
-							</tbody>
+<!-- DETAIL -->
+	<section class="detail section">
+		<div class="detail__notify">
+			<p>Thông báo đến bạn: Vui lòng đọc kỹ các yêu cầu và cách thức liên hệ.</p>
+		</div>	
 
-						</table>
-					</div>
-				</div>
+			<div class="detail__new">
+				<p>Thị trường gạo ST25</p>
+				<h2>Khu vực xuất khẩu gạo TP HCM</h2>
+				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, suscipit corrupti? Natus aliquid deserunt quae?</p>
+
+				<h3>Thông tin về Thương lái</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt beatae ipsum magnam ipsa architecto suscipit? Corrupti molestias commodi vel eligendi.
+					<br>
+					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam sed, iste officiis alias suscipit eos, cupiditate quam corporis ab accusamus ipsam voluptatum ex tempora dolore?
+				</p>
+				<h3>Thông tin về Thị trường</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quae aperiam voluptas debitis illo perferendis necessitatibus sequi quo ad unde quia est ex, similique velit animi deleniti voluptate nostrum iste nemo voluptatibus quasi! Excepturi saepe omnis necessitatibus minus eligendi dolorum perspiciatis, optio pariatur, quaerat hic natus quidem laboriosam at veniam molestiae accusamus quia quis illo voluptas, reprehenderit tenetur cum. Sit eum ab fugit? Tempore unde maiores aliquam sapiente excepturi voluptas, quam accusamus facilis ipsa perspiciatis possimus corrupti sit dicta, voluptatibus obcaecati molestiae magni fugiat dignissimos! Laborum velit in ipsa, facilis, veniam placeat, qui voluptate ad id asperiores officiis error corporis?</p>
+
+				<h3>Thông tin liên hệ</h3>
+				<p>Phone: 0821287456</p>
+				<p>Email: cyberabc@usab.com</p>
+				<p>Nếu đã đọc ký thông tin, hãy ấn xác nhận liên hệ</p>
+			</div>
+			<div class="detail__confirm my-3">				
+				<button class="my-btn"><a href="./maker.html">XÁC NHẬN</a></button>
+				<button class="my-btn block"><a href="./maker.html">TRỞ VỀ</a></button>
 			</div>
 		</div>
 	</section>
+
+
+
 	
-
-	<!-- chartjs lib -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script>
-		
-		// chartjs form		
-							
-				function createChart(canvasId, chartData) {
-				const ctx = document.getElementById(canvasId).getContext('2d');
-				
-				return new Chart(ctx, {
-					type: 'line',
-					data: chartData,
-					options: {
-						scales: {
-							y: {
-								// price
-								min: 15000,
-                				max: 30000,
-								beginAtZero: true
-							}
-						},
-						elements: {
-							line: {
-								fill: true // Cho phép điền màu dưới đường
-							}
-							},
-							plugins: {
-							filler: {
-								propagate: true // Tính toán màu nền cho toàn bộ biểu đồ
-							}
-							},
-							fillOpacity: 1 // Điều chỉnh độ mờ cho nền của biểu đồ
-											
-					}
-				});
-			}
-
-			const data1 = {
-				labels: ['6 tháng trước', '5 tháng trước', '4 tháng trước', '3 tháng trước', '2 tháng trước', '1 tháng trước', 'Tháng này'],
-				datasets: [{
-					label: 'Biểu đồ dữ liệu 6 tháng qua',
-					data: [22200, 25600, 16400, 18444, 28343, 24325, 29310],
-					fill: false, 
-					borderColor: 'red',
-					borderAlpha: 1,
-					tension: 0.1
-				}]
-			};
-
-		// Tchart1
-		const myChart1 = createChart('myChart', data1);
 	
-		// chart2
+	<!-- FOOTER  -->
+	<footer>
+		<div class="container-fluid section">
+			<div class="container">
+				<div class="row foot__row">
+					<div class="col-4 f_col4">
+						<p>Friend of Farmer</p>
+					</div>
+					<div class="col-8 f_col8 d-flex justify-content-center">
+						<div class="footer__item">
+							<h3>Dự án</h3>
+							<ul>
+								<li><a href="">About us</a></li>
+								<li><a href="">Điều khoản sử dụng</a></li>
+								<li><a href="">Chính sách</a></li>
+								<li><a href="">Sứ mệnh</a></li>
+								<li><a href="">Liên hệ</a></li>
+							</ul>
+						</div>
+						<div class="footer__item">
+							<h3>Dịch vụ</h3>
+							<ul>
+								<li><a href="">Quản lý</a></li>
+								<li><a href="">Thị trường</a></li>
+								<li><a href="">Tìm kiếm</a></li>
+								<li><a href="">Trợ lý</a></li>
+								<li><a href="">Giải đáp</a></li>
+							</ul>
+						</div>
+						<div class="footer__item">
+							<h3>Mạng xã hội</h3>
+							<ul>
+								<li><a href="">Facebook</a></li>
+								<li><a href="">X</a></li>
+								<li><a href="">Instagram</a></li>
+								<li><a href="">Pinterest</a></li>
+								<li><a href="">LinkedIn</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="foot__copy">
+					<p>&copy;2024 FriendofFarmer. All rights reserved</p>
+				</div>
+			</div>
+		</div>
+	</footer>
 
-	  </script>
-	</body>
+
+</body>
+
 </html>
-
