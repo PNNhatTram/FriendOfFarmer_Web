@@ -17,376 +17,67 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<!-- ANIMATE  -->
-	<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+	
   <!-- OWL CAROUSEL  -->
   <link rel="stylesheet" href="./CSS/owl.carousel.min.css">
   <link rel="stylesheet" href="./CSS/owl.theme.default.min.css">
 	<!-- css bootstrap  -->
 	<link rel="stylesheet" href="./CSS/bootstrap.min.css">
 	<!-- MAIN CSS  -->
-	<link rel="stylesheet" href="./CSS/index.css">
+	<link rel="stylesheet" href="./CSS/login.css">
 
 </head>
 
 <body>
 	
-	<!-- HEADER  -->
-	<header class="container-fluid">
-		<div class="header">
-			<div class="header__item">
-				<span>Giá gạo </span>
-				&nbsp;
-				<p> 663 USD/tấn</p>
-			</div>
-			<div class="header__item">
-				<span>Giá lúa </span>
-				&nbsp;
-				<p> đ6000/kg</p>
-			</div>
-			<div class="header__item">
-				<span>Thời tiết </span>
-				&nbsp;
-				<p>Nắng đẹp</p>
-			</div>
-			<div class="header__item">
-				<span>Nhiệt độ </span>
-				&nbsp;
-				<p>37 <sup>o</sup>C</p>
-			</div>
-
-			<div class="header__item">
-				<span>Biến động thị trường xuất khẩu </span>
-				&nbsp;
-				<p>đ12456543</p>
-				<i class="fa fa-moon"></i>
-			</div>
-			<div class="header__button">
-				<button>Get list <i class="fa fa-angle-down"></i></button>
-				<button style="width: 40px;">API</button>
-				<i class="fa fa-align-left fs-6"></i>
-			</div>
-			<div class="header__login">
-				<button class="my-btn-header login" id="login">Đăng nhập</button>
-				<button class="my-btn-header">Đăng ký</button>
-			</div>
-		</div>
-		
-
-		<nav class="navbar navbar-expand-lg header__menu">
-			<div class="container-fluid">
-				<a class="navbar-brand header__logo" href="#">Friend of Farmer</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0 header__fun">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="./index.html">Trang chủ</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./manage.html">Quản lý</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./maker.html">Tìm kiếm</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./resource.html">Nguyên liệu</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="./contact.html">Liên hệ</a>
-						</li>
-						<div class="header__other">
-							<span><i class="fa fa-fire-alt"></i>&nbsp; Thông báo</span>
-							<div class="other1">
-								<span><i class="fa fa-star"></i>&nbsp; Tin nóng</span>
-
-							</div>
-							<div class="other2">
-								<span><i class="fa-solid fa-icons"></i>&nbsp; Danh mục</span>
-
-							</div>
-						</div>
-
-
-
-
-					</ul>
-					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
-					</form>
-				</div>
-			</div>
-		</nav>
-	</header>
-	<!-- ChatBot  -->
-	<link rel="stylesheet" href="https://embed.pickaxeproject.com/axe/scripts/fab/styles.css">
-	<script src="https://embed.pickaxeproject.com/axe/scripts/fab/bundle.js"></script>
-	<div id="rendering-information" data-height="500px" data-width="300px" data-formid="FOFGPT_WQ7BX" data-frame-source="https://embed.pickaxeproject.com/axe?id=FOFGPT_WQ7BX&mode=embed_gold&host=beta&theme=light&opacity=100&font_header=Real+Head+Pro&size_header=12&font_body=Real+Head+Pro&size_body=12&font_labels=Real+Head+Pro&size_labels=12&font_button=Real+Head+Pro&size_button=12&c_fb=FFFFFF&c_ff=FFFFFF&c_fbd=888888&c_bb=228DD7&c_bt=FFFFFF&c_t=000000&s_ffo=100&s_bbo=100&s_f=minimalist&s_b=filled&s_t=2&s_to=1&s_r=2" data-title="FOFGPT">
-    <!-- BANNER  -->
-    <section class="banner container-fluid section">
-        <div class="banner__row row">
-           
-            <div class="col-5 ba__col5">
-                <div class="container ba__text">
-                    <h3 class="animate__animated animate__fadeInDown">FOF - HỆ SINH THÁI NÔNG NGHIỆP HIỆN ĐẠI</h3>
-                    <p class="animate__animated animate__fadeInUp">Đáp ứng các nhu cầu cần thiết của nông dân. Là người bạn tin cậy đem lại nguồn thị trường rộng mở. Cầu nối giữa nông dân và thương lái.</p>
-                    <div class="banner__sub row animate__animated animate__fadeInUp">
-                        <div class="col-4 sub__col">
-                            <span><i class="fa fa-paper-plane"></i>&nbsp; Kiến thức</span>
-                        </div>
-                        <div class="col-4 sub__col">
-                            <span><i class="fa fa-paper-plane"></i>&nbsp; Kinh nghiệm</span>
-                        </div>
-                        <div class="col-4 sub__col">
-                            <span><i class="fa fa-paper-plane"></i>&nbsp; Trải nghiệm</span>
-                        </div>
-                    </div>
-
-					<div class="banner__item d-flex">
-						<div class="banner__get">
-							<p>Get Started</p>
-						</div>
-						<div class="banner__get">
-							<p>Manage Now!</p>
-						</div>
-					</div>
+    <p id="logo">Friend of Farmer</p>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h2 class="sign__text" style="color: 12372A;">TẠO TÀI KHOẢN</h2>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-
-            </div>
-          
-                <div class="col-7 ba__col7 bg">
-                    <div class="overplay"></div>
-                </div>
-           
+                <span>hoặc dùng email của bạn để đăng kí</span>
+                <input type="text" placeholder="Username" />
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <button class="my-4">ĐĂNG KÝ</button>
+            </form>
         </div>
-    </section>
-
-	<!-- NUMBER  -->
-	<section class="number container section">
-		<h3>NHỮNG CON SỐ ẤN TƯỢNG</h3>
-		<div class="num__row row">
-			<div class="col-lg-4 num__col4 col-12">
-				<div class="row sub__row">
-					<div class="col-3 sub__col3">
-						<i class="fa fa-plane-departure"></i>
-					</div>
-					<div class="col-9 sub__col9">
-						<h3>10000+</h3>
-						<p>Lượt sử dụng trang web để quản lý nông sản.</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 num__col4 col-12">
-				<div class="row sub__row">
-					<div class="col-3 sub__col3">
-						<i class="fa fa-plane-departure"></i>
-					</div>
-					<div class="col-9 sub__col9">
-						<h3>24M+</h3>
-						<p>Lượt xác nhận đặt hàng giữa thương lái và nông dân</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 num__col4 col-12">
-				<div class="row sub__row">
-					<div class="col-3 sub__col3">
-						<i class="fa fa-plane-departure"></i>
-					</div>
-					<div class="col-9 sub__col9">
-						<h3>100+</h3>
-						<p>Nguồn cung cấp nguyên vật liệu với mức giá rẻ nhất.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	
-
-	<!-- OFFER  -->
-	<section class="offer container section">
-		<div class="offer__text">
-			<h3>DỊCH VỤ</h3>
-			<p>Chúng tôi cung cấp đến người nông dân cũng như thương lái một môi trường tuyệt vời nhất để đáp ứng nhu cầu của bạn.</p>
-		</div>
-
-		<div class="offer__content">
-			<div class="offer__row row">
-				<div class="col-7 of__col7">
-					<i class="fa fa-place-of-worship"></i>
-					<h3>Quản lý Nông sản</h3>
-					<p>Quản lý nguồn nông sản hiệu quả. Cung cấp cái nhìn tổng thể về doanh thu và năng suất cây trồng. Đồng thời, áp dụng công nghệ vào trong trồng trọt và thương mại.</p>
-
-					<button class="my-btn">Learn More</button>
-				</div>
-				<div class="col-5 of__col5">
-					<img class="img-fluid" src="./IMG/img4.jpg" alt="">
-				</div>
-			</div>
-			<div class="offer__row row">
-				<div class="col-5 of__col5">
-					<img class="img-fluid" src="./IMG/feedback.jpg" alt="">
-				</div>
-				<div class="col-7 of__col7">
-					<i class="fa fa-place-of-worship"></i>
-					<h3>Thị trường tiêu thụ</h3>
-					<p>Trở thành 1 FOF-er, bạn có cơ hội tiếp cận với hơn 100+ từ các thương lái đã kí kết với chúng tôi. Chúng tôi luôn tìm kiếm cho bạn đầu ra phù hợp với nhu cầu và niềm tin của bạn.</p>
-
-					<button class="my-btn">Learn More</button>
-				</div>
-				
-			</div>
-			<div class="offer__row row">
-				<div class="col-7 of__col7">
-					<i class="fa fa-place-of-worship"></i>
-					<h3>Lorem ipsum dolor sit</h3>
-					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat vitae tenetur est, totam nulla culpa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores commodi quae sed placeat modi cumque porro, omnis iusto eos pariatur?</p>
-
-					<button class="my-btn">Learn More</button>
-				</div>
-				<div class="col-5 of__col5">
-					<img class="img-fluid" src="./IMG/slide1.jpg" alt="">
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- CUSTOMER  -->
-	<section class="customer section container">
-		<div class="offer__text">
-			<h3>Lorem ipsum dolor sit</h3>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error incidunt consequatur tenetur deleniti quod asperiores?</p>
-		</div>
-		<div class="cus__row row">
-			<div class="cus_col3 col-lg-3 col-6">
-				<div class="card" style="width: 18rem;">
-					<img src="./IMG/feedback1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <button class="my-btn">See More!</button>
-					</div>
-				  </div>
-			</div>
-			<div class="col-lg-3 col-6 cus_col3">
-				<div class="card" style="width: 18rem;">
-					<img src="./IMG/feedback1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <button class="my-btn">See More!</button>
-					</div>
-				  </div>
-			</div>
-			<div class="col-lg-3 col-6 cus_col3">
-				<div class="card" style="width: 18rem;">
-					<img src="./IMG/feedback1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <button class="my-btn">See More!</button>
-					</div>
-				  </div>
-			</div>
-			<div class="col-lg-3 col-6 cus_col3">
-				<div class="card" style="width: 18rem;">
-					<img src="./IMG/feedback1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-					  <h5 class="card-title">Card title</h5>
-					  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					  <button class="my-btn">See More!</button>
-					</div>
-				  </div>
-			</div>
-		</div>
-	</section>
-	
-	
-    <!-- REGISTER  -->
-	<section class="feedback container-fluid section">
-		
-		
-        <div class="row feed__row">
-            <div class="col-6 fe__col6__1 ">
-                <h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
-                <p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
-                    tuyệt vời nhất từ chúng tôi.</p>
-                <div class="feed__form">
-                    <form action="">
-                        <input type="email" placeholder="Nhập địa chỉ email">
-                        <button class="my-btn my-3">Đăng ký</button>
-                    </form>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h2 style="color: 12372A;">ĐĂNG NHẬP</h2>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-            </div>
-            <div class="col-6 fe__col6 bg">
-                <div class="overplay"></div>
+                <span>hoặc sử dụng tài khoản của bạn</span>
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Mật khẩu" />
+                <a href="#">Quên mật khẩu?</a>
+                <button>Đăng nhập</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>WELCOME</h1>
+                    <p class="line-height" style="font-size: 1rem; font-weight: bold; ">Đăng nhập với tư cách là 1 FOF-er để tận hưởng những dịch vụ tuyệt vời nhất.</p>
+                    <button class="ghost" id="signIn">Đăng nhập</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>HELLO!</h1>
+                    <p class="line-height" style="font-size: 1rem; font-weight: bold; ">Hãy trở thành một mảnh ghép mới của hệ thống FOF!</p>
+                    <button class="ghost" id="signUp">Đăng kí</button>
+                </div>
             </div>
         </div>
-    
-    
-    
-</section>
-	<!-- FOOTER  -->
-	<footer>
-		<div class="container-fluid section">
-			<div class="container">
-				<div class="row foot__row">
-					<div class="col-4 f_col4">
-						<p>Friend of Farmer</p>
-					</div>
-					<div class="col-8 f_col8 d-flex justify-content-center">
-						<div class="footer__item">
-							<h3>Dự án</h3>
-							<ul>
-								<li><a href="">About us</a></li>
-								<li><a href="">Điều khoản sử dụng</a></li>
-								<li><a href="">Chính sách</a></li>
-								<li><a href="">Sứ mệnh</a></li>
-								<li><a href="">Liên hệ</a></li>
-							</ul>
-						</div>
-						<div class="footer__item">
-							<h3>Dịch vụ</h3>
-							<ul>
-								<li><a href="">Quản lý</a></li>
-								<li><a href="">Thị trường</a></li>
-								<li><a href="">Tìm kiếm</a></li>
-								<li><a href="">Trợ lý</a></li>
-								<li><a href="">Giải đáp</a></li>
-							</ul>
-						</div>
-						<div class="footer__item">
-							<h3>Mạng xã hội</h3>
-							<ul>
-								<li><a href="">Facebook</a></li>
-								<li><a href="">X</a></li>
-								<li><a href="">Instagram</a></li>
-								<li><a href="">Pinterest</a></li>
-								<li><a href="">LinkedIn</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="foot__copy">
-					<p>&copy;2024 FriendofFarmer. All rights reserved</p>
-				</div>
-			</div>
-		</div>
-
-	</footer>
-
-<script src="./JS/jquery.min.js"></script>
-<script src="./JS/bootstrap.bundle.min.js"></script>
-<script src="./JS/owl.carousel.min.js"></script>
-
-<!-- MAIN JS  -->
-<script src="./JS/index.js"></script>
+    </div>
+    <script src="./JS/login.js"></script>
 </body>
 
 </html>
