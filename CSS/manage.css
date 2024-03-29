@@ -319,6 +319,29 @@
   color: #609966;
 }
 
+.season h4{
+  color: #609966;
+  font-weight: bold;
+  padding-top: 2rem;
+}
+
+.sea__detail {
+  background-color: #EFF2F5;
+  border: none;
+  border-radius: 5px;
+  padding: 20px 10px 20px 40px;
+}
+.sea__detail p{
+  margin: 1rem 0;
+  font-weight: bold;
+  color: #5c5e5f;
+  font-size: 1.3rem;
+}
+.sea__detail span{
+  color: #609966;
+}
+
+
   /* FOOTER  */
   .foot__row .f_col4 p {
     color: #609966;
