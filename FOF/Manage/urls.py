@@ -1,13 +1,18 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name="index"),
     path('search/', views.search, name='search'),
     path('manage/', views.manage, name='manage'),
     path('manage', views.home, name="manage"),
-    path('login/', views.login, name = 'login'),
+    path('logins', views.logins, name = 'logins'),
+    path('Logout_page', views.Logout_page, name='Logout_page'),
+    path('signup', views.signup, name='signup'),
+    path('userin4', views.userin4, name='userin4'),
     path('create', views.m_form, name="create"),
     path('maker/', views.maker, name="maker"),
     path('contact/', views.contact, name="contact"),
@@ -20,3 +25,5 @@ urlpatterns = [
     path('api/get-plant-by-land/<int:land_id>/', views.get_plant_by_land, name='get-plant-by-land'),
 
 ]
+
+urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

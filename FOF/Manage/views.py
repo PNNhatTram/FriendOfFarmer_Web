@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate 
 from django.http import HttpResponse, HttpResponseBadRequest
 from .models import *
 from django.contrib import messages
@@ -8,29 +8,66 @@ from django.http import JsonResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-def login(request):
-  if request.method == 'POST_signup':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-      return 'success'
-  else:
-        form = UserCreationForm() 
-  return render(request, 'Manage/login.html', {'form':form})
+def userin4(request):  
+      if request.method=="POST":
+         name=request.POST.get('name')
+         birthdate=request.POST.get('birth')
+         type_user=request.POST.get('type')
+         phone_num=request.POST.get('phone')
+         address=request.POST.get('adr')
+         email=request.POST.get('email')
+      return render(request, 'Manage/userin4.html')
+
+
+def Logout_page(request):
+   logout(request)
+   return redirect('logins')
+
+def signup(request):
+    if request.method == 'POST':
+        uname = request.POST.get('username')
+        eml = request.POST.get('email')
+        pw = request.POST.get('password')
+        try:
+           user = User.objects.get(username=uname)
+           messages.error(request, 'Tài khoản đã tồn tại.')
+           return redirect('logins')
+        except:
+           data = User.objects.create_user(uname, eml, pw)
+           data.save()
+           messages.success(request, 'Tạo tài khoản thành công.')
+        return redirect('logins')
+    else:
+        return render(request, 'Manage/signup.html', {})
+    
+def logins(request):
+   if request.method == 'POST':
+      uname = request.POST.get('user')
+      pw = request.POST.get('password')
+      user = authenticate(request, username=uname, password=pw)
+      if user is not None:
+        login(request, user)
+        return redirect('index')
+      else:
+         messages.error(request, 'Tài khoản hoặc mật khẩu không đúng.')
+   return render(request, 'Manage/login.html', {})
+
 
 
 def index(request):
    return render(request, 'Manage/index.html')
 
 def search(request):
-    searched = ""  # Default value for searched
+    searched_name = ""  # Default value for searched
+    searched_adr = ""  # Default value for searched
     keys = []  # Default value for keys
+    keys1 = []
     if request.method == "POST":
-        searched = request.POST["searched"]
-        keys = Product.objects.filter(name__contains = searched)
-    return render(request, 'Manage/search.html', {"searched":searched , "keys":keys})
-
+        searched_name = request.POST["searched_name"]
+        searched_adr = request.POST["searched_adr"]
+        keys = Product.objects.filter(name__contains = searched_name)
+        keys1 = Product.objects.filter(adress__contains = searched_adr)
+    return render(request, 'Manage/search.html', {"searched_name":searched_name , "searched_adr":searched_adr, "keys":keys, "keys1":keys1})
 
 def manage(request):
     return render(request, 'app/manage.html')
@@ -254,7 +291,6 @@ def maker_sell(request):
 
 
 def contact(request):
-    if request.user.is_authenticated:
         if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
             hoten = request.POST.get('hoten')
@@ -269,7 +305,6 @@ def contact(request):
         else:
             # Trả về trang contact.html khi request là GET
             return render(request, 'Manage/contact.html')
-    else:
-        return HttpResponse("Bạn cần phải đăng nhập để gửi phản hồi")
+    
 
 

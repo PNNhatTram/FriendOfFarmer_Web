@@ -36,28 +36,20 @@
         <div>
             <form action="" method="POST">
                 {%csrf_token%}
-                <h2 style="color: 12372A;">ĐĂNG NHẬP</h2>
+                <h2 class="sign__text" style="color: 12372A;">TẠO TÀI KHOẢN</h2>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <span>hoặc sử dụng tài khoản của bạn</span>
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <input type="user" placeholder="user" name="user" required/>
-                <input type="password" placeholder="Mật khẩu" name="password" required/>
-                <a href="#">Quên mật khẩu?</a>
-                <button type="submit" class="block">Đăng nhập</button>
+                <span>hoặc dùng email của bạn để đăng kí</span>
+                <input type="text" placeholder="Username" name="username" id="username" required/>
+                <input type="email" placeholder="Email" name="email" id="email" required/>
+                <input type="password" placeholder="Password" name="password" ed="password" required/>
+                <button type="submit" class="my-4" style="padding-left:56px; padding-right:56px">ĐĂNG KÝ</button>
                 <br/>
-            </form>  
+            </form>
         </div>
-    
 </body>
 
 </html>
