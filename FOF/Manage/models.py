@@ -36,7 +36,7 @@ class Plant(models.Model):
         ('1', 'Cây ăn quả'),
         ('2', 'Cây rau củ'),
     ])
-    plant_ND = models.CharField(max_length=200,help_text="Nồng độ khoáng chất cần thiết")
+    plant_ND = models.DecimalField(max_digits=5, decimal_places=2, help_text="Nồng độ khoáng chất cần thiết")
     plant_bp = models.IntegerField(help_text="Chu kỳ bón phân (ngày)")
     land = models.ForeignKey(Land, on_delete=models.CASCADE)
 
@@ -70,6 +70,8 @@ class Product(models.Model):
             url = ''
         return url
     
+
+
     # Create your models here.
 class thitruong (models.Model):
     id_thitruong= models.AutoField(primary_key= True)

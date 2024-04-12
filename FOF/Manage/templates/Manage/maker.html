@@ -12,26 +12,24 @@
 				<p>Hãy cho chúng tôi biết nông sản cùng với nơi bạn muốn bán nông sản. Chúng tôi sẽ tìm giúp bạn!</p>
 			</div>
 			<div class="col-4 f_col4">
-				<div class="farm__mode f_btn">
-					<p><i class="fa fa-user-alt"></i>&nbsp; Farm Mode</p>
+				<div class="farm__mode f_btn" >
+					<i class="fa fa-user-alt"></i>&nbsp; Farm Mode
 				</div>
-				<div class="seller__mode f_btn" id="sell">
-					<p><i class="fa fa-users"></i>]&nbsp;Sell Mode</p>
+				<div class="seller__mode f_btn" onclick="location.href='{%url 'maker_sell'%}'">
+					<i class="fa fa-users"></i>&nbsp; Sell Mode
 				</div>
 			</div>
 		</div>
 
 		<div class="find__box">
-			<form method = POST action ="{% url 'search' %}" >
-				{% csrf_token %}
-				<input type="text" name="ChonNongsan" id="Nongsan" placeholder="Nông sản muốn bán">
-				<input type="text" name="ChonThiTruong" id="Thitruong" placeholder="Nơi muốn bán">
+			<form action="">
+				<input type="text" name="" id="Nongsan" placeholder="Nông sản muốn bán">
+				<input type="text" name="" id="Thitruong" placeholder="Nơi muốn bán">
 
-				<button type="submit">Tìm kiếm</button>
+				<button>Tìm kiếm</button>
 			</form>
 		</div>
 	</section>
-
 
 	<!-- RESULT  -->
 	<section class="result container section">

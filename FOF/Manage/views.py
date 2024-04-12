@@ -8,7 +8,6 @@ from django.http import JsonResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-<<<<<<< HEAD
 def userin4(request):  
       if request.method=="POST":
          name=request.POST.get('name')
@@ -53,19 +52,6 @@ def logins(request):
          messages.error(request, 'Tài khoản hoặc mật khẩu không đúng.')
    return render(request, 'Manage/login.html', {})
 
-=======
-# LOGIN 
-def login(request):
-  if request.method == 'POST_signup':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-      return 'success'
-  else:
-        form = UserCreationForm() 
-  return render(request, 'Manage/login.html', {'form':form})
->>>>>>> 83649d5c415e276eb467f4fc3808f4d13b3cf561
 
 
 def index(request):
@@ -83,7 +69,6 @@ def search(request):
         keys1 = Product.objects.filter(adress__contains = searched_adr)
     return render(request, 'Manage/search.html', {"searched_name":searched_name , "searched_adr":searched_adr, "keys":keys, "keys1":keys1})
 
-# MANAGE 
 def manage(request):
     return render(request, 'app/manage.html')
 
@@ -200,6 +185,8 @@ def land_form(request):
 
     return render(request, "Manage/land_form.html", context)
 
+
+
 def plant_form(request):
     if request.method == 'POST':
         plant_name = request.POST['plant_name']
@@ -232,6 +219,9 @@ def plant_form(request):
     context = {'land_list': land_list}
 
     return render(request, "Manage/plant_form.html", context)
+
+
+
 
 def home(request):
     season = Season.objects.all()
@@ -268,48 +258,37 @@ def m_form(request):
     else:
         return render(request, "Manage/m_form.html")
 
+
+
+
 def infor(request):
     if request.method == 'GET':
         season_id = request.GET.get('id')
 
 
-# MAKER 
 
-def get_maker(request):
-    thitruong_list= thitruong_model.objects.filter()
-    return render(request, 'maker.html', {'thitruong_list':thitruong_list})
+def maker(request):
+    thitruong_list= thitruong.objects.filter()
+    return render(request, 'Manage/maker.html', {'thitruong_list':thitruong_list})
 
-def get_maker_sell(request):
+def maker_sell(request):
     if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
         ten_caytrong = request.POST.get('ten_caytrong')
-        ten_thitruong = request.POST.get('ten_thitruong')
+        ten_thitruong = request.POST.get('mo_ta')
         gia = request.POST.get('gia')
-        thongtin = request.POST.get('thongtin')
             
             # Tạo một bản ghi mới trong bảng thitruong_ban
         thitruong_ban_obj = thitruong_ban.objects.create(
-                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia, thongtin=thongtin)
+                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia)
             
             # Lưu lại thông báo thành công
         context = {"message": "Cập nhật thành công!"}
-        return render(request, 'maker_sell.html', context)
+        return render(request, 'Manage/maker_sell.html', context)
     else:
             # Trả về trang contact.html khi request là GET
-        return render(request, 'maker_sell.html')
-    
-def search(request):
-    if request.method == 'POST':
-        ChonNongsan = request.POST["ChonNongsan"]
-        ChonThiTruong = request.POST["ChonThiTruong"]
-        keys = thitruong_ban.objects.filter(ten_caytrong__contains=ChonNongsan) & thitruong_ban.objects.filter(ten_thitruong__contains=ChonThiTruong)
-    return render(request, 'search.html', {"ChonNongsan":ChonNongsan, "ChonThiTruong":ChonThiTruong, "keys": keys})
+        return render(request, 'Manage/maker_sell.html')
 
-def marker2(request):
-    return render(request, 'marker2.html')
-
-
-# CONTACT 
 
 def contact(request):
         if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
