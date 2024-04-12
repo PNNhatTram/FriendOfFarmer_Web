@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+# LOGIN 
 def login(request):
   if request.method == 'POST_signup':
     form = UserCreationForm(request.POST)
@@ -32,6 +33,7 @@ def search(request):
     return render(request, 'Manage/search.html', {"searched":searched , "keys":keys})
 
 
+# MANAGE 
 def manage(request):
     return render(request, 'app/manage.html')
 
@@ -148,8 +150,6 @@ def land_form(request):
 
     return render(request, "Manage/land_form.html", context)
 
-
-
 def plant_form(request):
     if request.method == 'POST':
         plant_name = request.POST['plant_name']
@@ -182,9 +182,6 @@ def plant_form(request):
     context = {'land_list': land_list}
 
     return render(request, "Manage/plant_form.html", context)
-
-
-
 
 def home(request):
     season = Season.objects.all()
@@ -221,37 +218,48 @@ def m_form(request):
     else:
         return render(request, "Manage/m_form.html")
 
-
-
-
 def infor(request):
     if request.method == 'GET':
         season_id = request.GET.get('id')
 
 
+# MAKER 
 
-def maker(request):
-    thitruong_list= thitruong.objects.filter()
-    return render(request, 'Manage/maker.html', {'thitruong_list':thitruong_list})
+def get_maker(request):
+    thitruong_list= thitruong_model.objects.filter()
+    return render(request, 'maker.html', {'thitruong_list':thitruong_list})
 
-def maker_sell(request):
+def get_maker_sell(request):
     if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
         ten_caytrong = request.POST.get('ten_caytrong')
-        ten_thitruong = request.POST.get('mo_ta')
+        ten_thitruong = request.POST.get('ten_thitruong')
         gia = request.POST.get('gia')
+        thongtin = request.POST.get('thongtin')
             
             # Tạo một bản ghi mới trong bảng thitruong_ban
         thitruong_ban_obj = thitruong_ban.objects.create(
-                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia)
+                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia, thongtin=thongtin)
             
             # Lưu lại thông báo thành công
         context = {"message": "Cập nhật thành công!"}
-        return render(request, 'Manage/maker_sell.html', context)
+        return render(request, 'maker_sell.html', context)
     else:
             # Trả về trang contact.html khi request là GET
-        return render(request, 'Manage/maker_sell.html')
+        return render(request, 'maker_sell.html')
+    
+def search(request):
+    if request.method == 'POST':
+        ChonNongsan = request.POST["ChonNongsan"]
+        ChonThiTruong = request.POST["ChonThiTruong"]
+        keys = thitruong_ban.objects.filter(ten_caytrong__contains=ChonNongsan) & thitruong_ban.objects.filter(ten_thitruong__contains=ChonThiTruong)
+    return render(request, 'search.html', {"ChonNongsan":ChonNongsan, "ChonThiTruong":ChonThiTruong, "keys": keys})
 
+def marker2(request):
+    return render(request, 'marker2.html')
+
+
+# CONTACT 
 
 def contact(request):
     if request.user.is_authenticated:

@@ -35,15 +35,31 @@
               </button>
             {% endfor %}
 
-            <button class="click" style="margin-top: 2rem;" id="click1" onclick="location.href='{% url 'create' %}'">
-              THÊM VỤ MÙA
-            </button>
-            <button class="click" onclick="location.href='{% url 'land' %}'">
-              THÊM ĐẤT ĐAI
-            </button>
-            <button class="click" onclick="location.href='{% url 'plant' %}'">
-              THÊM CÂY TRỒNG
-            </button>
+
+            <div class="control">
+              <h3>MÙA VỤ</h3>
+              <div class="a-but">
+                <a href="{% url 'create' %}"><i class="fa fa-plus"></i></i></a>
+                <a href=""><i class="fa fa-trash"></i></a>
+                <a href=""><i class="fa fa-pen"></i></a>
+                </div>
+            </div>
+            <div class="control">
+              <h3>ĐẤT ĐAI</h3>
+              <div class="a-but">
+                <a href="{% url 'land' %}"><i class="fa fa-plus"></i></i></a>
+                <a href=""><i class="fa fa-trash"></i></a>
+                <a href=""><i class="fa fa-pen"></i></a>
+                </div>
+            </div>
+            <div class="control">
+              <h3>CÂY TRỒNG</h3>
+              <div class="a-but">
+                <a href="{% url 'plant' %}"><i class="fa fa-plus"></i></i></a>
+                <a href=""><i class="fa fa-trash"></i></a>
+                <a href=""><i class="fa fa-pen"></i></a>
+                </div>
+            </div>
           </div>
         </div>
       </div>
@@ -51,8 +67,8 @@
     <div class="col-11">
       <div id="season-info" class="season__info">
         <p>Tên mùa vụ: <span class="season_name"></span></p>
-        {% comment %} <p>Thời gian bắt đầu: <span class="season-start-time"></span></p>
-        <p>Thời gian kết thúc: <span class="season-end-time"></span></p> {% endcomment %}
+        <p>Thời gian bắt đầu: <span class="season-start-time"></span></p>
+        <p>Thời gian kết thúc: <span class="season-end-time"></span></p>
         <p>Lợi nhuận: <span class="season-profit"></span> USD</p>
       </div>
       <div class="row manage__land" id="land-container"> 
@@ -78,6 +94,14 @@
             <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25"
               aria-valuemin="0" aria-valuemax="100">
               <div class="progress-bar" style="width: 0%; background-color: #60996643" id="doam"></div>
+            </div>
+          </div>
+          <div class="land__plant">
+            <h4>TỔNG QUAN CÂY TRỒNG </h4>
+            <p>Số lượng loại cây: <span id="num_plant"></span></p>
+            <p>Thời gian thu hoạch dự kiến: <span id = "timeCollect"></span></p>
+            <div class="time__left" id = "time_left">
+              
             </div>
           </div>
      
