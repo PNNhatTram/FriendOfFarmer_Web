@@ -130,5 +130,10 @@ STATICFILES_DIR=[
     os.path.join(BASE_DIR, 'STATIC')
 ]
 
-MEDIA_ROOT='/IMG/'
-MEDIA_ROOT=os.path.join(BASE_DIR, 'Manage/static/Manage/IMG')
+MEDIA_URL='/IMG_PRODUCT/'
+MEDIA_ROOT=os.path.join(BASE_DIR, 'IMG_PRODUCT')
+
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]

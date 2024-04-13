@@ -25,7 +25,7 @@ urlpatterns = [
     path('api/get-plant-by-land/<int:land_id>/', views.get_plant_by_land, name='get-plant-by-land'),
     
     # RESOURCE
-    path('search', views.search, name='search'),   
+
 
     # MARKET 
     path('maker', views.maker, name="maker"),
@@ -36,5 +36,12 @@ urlpatterns = [
    
 ]
 
-# # Kết hợp static settings chỉ cho search_urlpatterns
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Tạo một danh sách mới chỉ chứa urlpatterns cho đường dẫn 'search'
+search_urlpatterns = [
+    path('search', views.search, name='search'),
+]
+
+# Kết hợp static settings chỉ cho search_urlpatterns
+search_urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns+=search_urlpatterns
+
