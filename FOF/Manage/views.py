@@ -8,6 +8,8 @@ from django.http import JsonResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+
+# LOGIN SIGN UP 
 def userin4(request):  
       if request.method=="POST":
          name=request.POST.get('name')
@@ -17,7 +19,6 @@ def userin4(request):
          address=request.POST.get('adr')
          email=request.POST.get('email')
       return render(request, 'Manage/userin4.html')
-
 
 def Logout_page(request):
    logout(request)
@@ -52,11 +53,12 @@ def logins(request):
          messages.error(request, 'Tài khoản hoặc mật khẩu không đúng.')
    return render(request, 'Manage/login.html', {})
 
-
+# INDEX 
 
 def index(request):
    return render(request, 'Manage/index.html')
 
+# RESOURCE 
 def search(request):
     searched_name = ""  # Default value for searched
     searched_adr = ""  # Default value for searched
@@ -69,8 +71,13 @@ def search(request):
         keys1 = Product.objects.filter(adress__contains = searched_adr)
     return render(request, 'Manage/search.html', {"searched_name":searched_name , "searched_adr":searched_adr, "keys":keys, "keys1":keys1})
 
+# MANAGE 
 def manage(request):
-    return render(request, 'app/manage.html')
+    season = Season.objects.all()
+    land = Land.objects.all()
+    plant = Plant.objects.all()
+    context = {'season': season, 'land':land, 'plant':plant}
+    return render(request, "Manage/manage.html", context)
 
 def get_season_info(request, season_id):
   """
@@ -185,8 +192,6 @@ def land_form(request):
 
     return render(request, "Manage/land_form.html", context)
 
-
-
 def plant_form(request):
     if request.method == 'POST':
         plant_name = request.POST['plant_name']
@@ -220,16 +225,6 @@ def plant_form(request):
 
     return render(request, "Manage/plant_form.html", context)
 
-
-
-
-def home(request):
-    season = Season.objects.all()
-    land = Land.objects.all()
-    plant = Plant.objects.all()
-    context = {'season': season, 'land':land, 'plant':plant}
-    return render(request, "Manage/manage.html", context)
-
 def m_form(request):
     if request.method == 'POST':
         # Get form data and perform validation (improved)
@@ -258,15 +253,13 @@ def m_form(request):
     else:
         return render(request, "Manage/m_form.html")
 
-
-
-
 def infor(request):
     if request.method == 'GET':
         season_id = request.GET.get('id')
 
 
 
+# MARKET 
 def maker(request):
     thitruong_list= thitruong.objects.filter()
     return render(request, 'Manage/maker.html', {'thitruong_list':thitruong_list})
@@ -290,6 +283,7 @@ def maker_sell(request):
         return render(request, 'Manage/maker_sell.html')
 
 
+# CONTACT 
 def contact(request):
         if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
