@@ -36,10 +36,5 @@ urlpatterns = [
    
 ]
 
-# Tạo một danh sách mới chỉ chứa urlpatterns cho đường dẫn 'search'
-search_urlpatterns = [
-    path('search', views.search, name='search'),
-]
-
-# Kết hợp static settings chỉ cho search_urlpatterns
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# # Kết hợp static settings chỉ cho search_urlpatterns
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
