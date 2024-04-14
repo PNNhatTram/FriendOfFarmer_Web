@@ -287,18 +287,16 @@ def maker_sell(request):
 def contact(request):
         if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
+            user = request.user
             hoten = request.POST.get('hoten')
             email = request.POST.get('email')
             loinhan = request.POST.get('loinhan')
             # Tạo một bản ghi mới trong bảng Contact
-            lienhe = Contact.objects.create(
-                hoten=hoten, email=email, loinhan=loinhan)
+            lienhe = Contact.objects.create(user=user, hoten=hoten, email=email, loinhan=loinhan)
+            lienhe.save()
             # Lưu lại thông báo thành công
-            context = {"message": "Phản hồi của bạn đã được gửi!"}
-            return render(request, 'Manage/contact.html', context)
-        else:
-            # Trả về trang contact.html khi request là GET
-            return render(request, 'Manage/contact.html')
+            messages.success(request, "Gửi phản hồi thành công")
+        return render(request, 'Manage/contact.html', {})
     
 
 

@@ -90,10 +90,9 @@ class thitruong_ban (models.Model):
 
 
 class Contact(models.Model):
-    id_user = models.AutoField(primary_key=True, blank=False)
     hoten = models.CharField(max_length=255)
-    email = models.EmailField()
+    email = models.CharField(max_length=250)
     loinhan = models.TextField()
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __int__(self):
-        return self.id_user
+        return self.hoten
