@@ -12,12 +12,30 @@ from django.contrib.auth.forms import UserCreationForm
 # LOGIN SIGN UP 
 def userin4(request):  
       if request.method=="POST":
+         user=request.user
          name=request.POST.get('name')
-         birthdate=request.POST.get('birth')
+         birthday=request.POST.get('birth')
          type_user=request.POST.get('type')
-         phone_num=request.POST.get('phone')
+         phonenum=request.POST.get('phone')
          address=request.POST.get('adr')
          email=request.POST.get('email')
+         try: 
+            custom = Customer.objects.get(user=user)
+            # Cập nhật thông tin cho khách hàng đã tồn tại
+            custom.name = name
+            custom.birthday = birthday
+            custom.type_user = type_user
+            custom.phonenum = phonenum
+            custom.address = address
+            custom.email = email
+            custom.save()
+            messages.success(request, "Thay đổi thông tin người dùng thành công")
+            return redirect('userin4')
+         except Customer.DoesNotExist:
+            custom = Customer.objects.create(user=user, name=name, birthday=birthday, type_user=type_user, phonenum=phonenum, address=address, email=email)
+            custom.save()
+            messages.success(request, "Nhập thông tin người dùng thành công")
+            return redirect('userin4')
       return render(request, 'Manage/userin4.html')
 
 def Logout_page(request):
@@ -27,22 +45,26 @@ def Logout_page(request):
 def signup(request):
     if request.method == 'POST':
         uname = request.POST.get('username')
-        eml = request.POST.get('email')
         pw = request.POST.get('password')
+        pw1 = request.POST.get('confirm_password')  # Sửa thành confirm_password
+        if pw != pw1:
+            messages.error(request, 'Mật khẩu nhập lại không khớp.')
+            return redirect('signup')
         try:
-           user = User.objects.get(username=uname)
-           messages.error(request, 'Tài khoản đã tồn tại.')
-           return redirect('logins')
-        except:
-           data = User.objects.create_user(uname, eml, pw)
-           data.save()
-           messages.success(request, 'Tạo tài khoản thành công.')
-        return redirect('logins')
+            user = User.objects.get(username=uname)
+            messages.error(request, 'Tài khoản đã tồn tại.')
+            return redirect('logins')
+        except User.DoesNotExist:
+            data = User.objects.create_user(uname, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
+            data.save()
+            messages.success(request, 'Tạo tài khoản thành công.')
+            return redirect('logins')
     else:
         return render(request, 'Manage/signup.html', {})
+
     
 def logins(request):
-   if request.method == 'POST':
+   if request.method == 'POST'and request.POST:
       uname = request.POST.get('user')
       pw = request.POST.get('password')
       user = authenticate(request, username=uname, password=pw)

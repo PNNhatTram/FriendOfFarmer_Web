@@ -48,9 +48,13 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=False)
     name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
-
+    birthday= models.CharField(max_length=50, null=True)
+    type_user = models.CharField(max_length=50, null=True)
+    phonenum = models.CharField(max_length=50, null=True)
+    address = models.CharField(max_length=250, null=True)
     def __str__(self):
-        return self.name
+        return self.name if self.name else ''
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False)
@@ -94,5 +98,5 @@ class Contact(models.Model):
     email = models.CharField(max_length=250)
     loinhan = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __int__(self):
+    def __str__(self):
         return self.hoten

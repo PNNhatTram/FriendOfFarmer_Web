@@ -15,7 +15,7 @@ urlpatterns = [
     path('userin4', views.userin4, name='userin4'),
 
     # MANAGE 
-    path('manage/', views.manage, name='manage'), 
+    path('manage', views.manage, name='manage'), 
     path('create', views.m_form, name="create"),
     path('create/land', views.land_form, name="land"),
     path('create/plant', views.plant_form, name="plant"),
