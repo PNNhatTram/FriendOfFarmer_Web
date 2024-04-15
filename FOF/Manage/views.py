@@ -30,12 +30,12 @@ def userin4(request):
             custom.email = email
             custom.save()
             messages.success(request, "Thay đổi thông tin người dùng thành công")
-            return redirect('userin4')
+            return redirect('index')
          except Customer.DoesNotExist:
             custom = Customer.objects.create(user=user, name=name, birthday=birthday, type_user=type_user, phonenum=phonenum, address=address, email=email)
             custom.save()
             messages.success(request, "Nhập thông tin người dùng thành công")
-            return redirect('userin4')
+            return redirect('index')
       return render(request, 'Manage/userin4.html')
 
 def Logout_page(request):

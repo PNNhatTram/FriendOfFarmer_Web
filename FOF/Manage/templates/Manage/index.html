@@ -8,6 +8,7 @@
 
 
 {%block content_index%}
+
 <!-- BANNER  -->
 <section class="banner container-fluid section">
 	<div class="banner__row row">
@@ -209,4 +210,7 @@
 		</div>
 	</div>
 </section>
+{% if messages %}
+    <script> alert("CẬP NHẬT THÔNG TIN THÀNH CÔNG") </script>
+{% endif %}
 {%endblock content_index%}
