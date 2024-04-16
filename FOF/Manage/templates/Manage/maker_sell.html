@@ -23,26 +23,54 @@
 			</div>
 	
 			<div class="find__box">
-				<form action="#" method="post"> <!-- Sửa action thành "#" -->
+				<form action="" method="post"> <!-- Sửa action thành "#" -->
 					{% csrf_token %} <!-- Thêm token csrf -->
-					<input type="text" name="ten_caytrong" id="Nongsan" placeholder="Nông sản muốn mua">
-					<input type="number" name="gia" id="Thitruong" placeholder="Mức giá đề xuất">
-					<textarea name="mo_ta" id="" cols="30" rows="10" placeholder="Thông tin mô tả"></textarea>
-					<button type="submit">SUBMIT</button>
+					<input type="text" name="ten_caytrong" id="Nongsan" placeholder="Nông sản muốn mua" required>
+					<input type="text" name="ten_thitruong" id="Nongsan" placeholder="Tên thị trường" required>
+					<input type="number" name="gia" id="Thitruong" placeholder="Mức giá đề xuất" required>
+					<textarea name="mota" id="" cols="30" rows="10" placeholder="Thông tin mô tả" required></textarea>
+					<button id="submitButton" type="submit">SUBMIT</button>
 				</form>
 			</div>		
 		</section>
 	
 		<!-- RESULT  -->
-		<section class="result container section">
+		<section class="result container section" style="display: none;">
 			<div class="result__box">
 				BẠN ĐÃ CẬP NHẬT THÀNH CÔNG
 			</div>
-	
-			
-	
 		</section>
-	
+		<script>
+			document.getElementById('submitButton').addEventListener('click', function() {
+				var resultSection = document.querySelector('.result');
+		
+				// Kiểm tra tính hợp lệ của các trường input trước khi hiển thị phần tử kết quả
+				if (isFormValid()) {
+					// Hiển thị phần tử kết quả
+					resultSection.style.display = 'block';
+		
+					// Sau 5 giây, ẩn phần tử kết quả lại
+					setTimeout(function() {
+						resultSection.style.display = 'none';
+					}, 5000); // 5000 milliseconds = 5 seconds
+				}
+			});
+		
+			// Hàm kiểm tra tính hợp lệ của các trường input
+			function isFormValid() {
+				var inputs = document.querySelectorAll('input[required], textarea[required]');
+				var isValid = true;
+		
+				inputs.forEach(function(input) {
+					if (!input.value.trim()) { // Kiểm tra xem trường input có giá trị không
+						isValid = false;
+						// Nếu trường input không hợp lệ, có thể thêm các xử lý bổ sung ở đây (ví dụ: đánh dấu lỗi)
+					}
+				});
+		
+				return isValid; // Trả về true nếu tất cả các trường input hợp lệ, ngược lại trả về false
+			}
+		</script>
 		<!-- REGISTER  -->
 		<section class="feedback container-fluid section">
 			
@@ -63,8 +91,5 @@
 						<div class="overplay"></div>
 					</div>
 				</div>
-			
-			
-			
 		</section>
 {% endblock content %}
