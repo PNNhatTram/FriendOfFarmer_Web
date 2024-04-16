@@ -303,13 +303,14 @@ def maker(request):
 def maker_sell(request):
     if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
+        user = request.user
         ten_caytrong = request.POST.get('ten_caytrong')
-        ten_thitruong = request.POST.get('mo_ta')
+        ten_thitruong = request.POST.get('ten_thitruong')
         gia = request.POST.get('gia')
-            
+        mota = request.POST.get('mota')    
             # Tạo một bản ghi mới trong bảng thitruong_ban
         thitruong_ban_obj = thitruong_ban.objects.create(
-                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia)
+                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia, mota=mota, user=user)
             
             # Lưu lại thông báo thành công
         context = {"message": "Cập nhật thành công!"}
@@ -317,7 +318,6 @@ def maker_sell(request):
     else:
             # Trả về trang contact.html khi request là GET
         return render(request, 'Manage/maker_sell.html')
-
 
 # CONTACT 
 def contact(request):
