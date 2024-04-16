@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-
+from django.utils.safestring import mark_safe
 
 # LOGIN SIGN UP 
 def userin4(request):  
@@ -29,12 +29,12 @@ def userin4(request):
             custom.address = address
             custom.email = email
             custom.save()
-            messages.success(request, "Thay đổi thông tin người dùng thành công")
+            messages.success(request, mark_safe('<p style="color: #008000;">Thay đổi thông tin người dùng thành công!</p><br/>'))
             return redirect('index')
          except Customer.DoesNotExist:
             custom = Customer.objects.create(user=user, name=name, birthday=birthday, type_user=type_user, phonenum=phonenum, address=address, email=email)
             custom.save()
-            messages.success(request, "Nhập thông tin người dùng thành công")
+            messages.success(request, mark_safe('<p style="color: #008000;">Nhập thông tin người dùng thành công!</p><br/>'))
             return redirect('index')
       else:
           customer = request.user
@@ -54,7 +54,7 @@ def userin4(request):
 
 def Logout_page(request):
    logout(request)
-   return redirect('logins')
+   return redirect('index')
 
 def signup(request):
     if request.method == 'POST':
@@ -62,16 +62,16 @@ def signup(request):
         pw = request.POST.get('password')
         pw1 = request.POST.get('confirm_password')  # Sửa thành confirm_password
         if pw != pw1:
-            messages.error(request, 'Mật khẩu nhập lại không khớp.')
+            messages.error(request, mark_safe('<p style="color:red;">Mật khẩu nhập lại không khớp.</p>'))
             return redirect('signup')
         try:
             user = User.objects.get(username=uname)
-            messages.error(request, 'Tài khoản đã tồn tại.')
+            messages.error(request, mark_safe('<p style="color:red;">Tài khoản đã tồn tại.</p>'))
             return redirect('logins')
         except User.DoesNotExist:
             data = User.objects.create_user(uname, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
             data.save()
-            messages.success(request, 'Tạo tài khoản thành công.')
+            messages.success(request, mark_safe('<p style="color: #008000;">Tạo tài khoản thành công.</p>'))
             return redirect('logins')
     else:
         return render(request, 'Manage/signup.html', {})
@@ -86,7 +86,7 @@ def logins(request):
         login(request, user)
         return redirect('index')
       else:
-         messages.error(request, 'Tài khoản hoặc mật khẩu không đúng.')
+         messages.error(request, mark_safe('<p style="color:red;">Tài khoản hoặc mật khẩu không đúng.</p>'))
    return render(request, 'Manage/login.html', {})
 
 # INDEX 

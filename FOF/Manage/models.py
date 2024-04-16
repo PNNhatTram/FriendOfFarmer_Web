@@ -56,6 +56,16 @@ class Customer(models.Model):
     address = models.CharField(max_length=250, null=True)
     def __str__(self):
         return self.name if self.name else ''
+#Hàm tự động thay đổi email ở User_authen sau khi nhập ở customer
+@receiver(post_save, sender=Customer)
+def update_user_email(sender, instance, created, **kwargs):
+    if instance.user:
+        if instance.email != instance.user.email:
+            instance.user.email = instance.email
+            instance.user.save()
+        elif instance.email is None:
+            instance.user.email = ""
+            instance.user.save()
 
 
 class Product(models.Model):
