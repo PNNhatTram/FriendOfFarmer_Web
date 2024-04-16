@@ -14,38 +14,39 @@
             {% if request.method == "POST" %}
                 {% include 'Manage/userin4.html' %}
             {% else %}
-                <div class="row">
-                    <div class="col-4">
+                
+                    <div >
                         <label for="name">Họ và tên:</label><br>
                         <input type="text" id="name" name="name" required><br><br>
                     </div>
-                    <div class="col-4">
+                    <div >
                         <label for="birth">Ngày sinh:</label><br>
                         <input type="date" id="birth" name="birth" required><br><br>
                     </div>
-                    <div class="col-4">
+                    <div >
                         <label for="type">Đối tượng:</label><br>
                         <select id="type" name="type">
                             <option value="0">Nông dân</option>
                             <option value="1">Thương lái</option>
                         </select><br><br>
                     </div>
-                </div>
                
-                <div class="row">
-                    <div class="col-5">
+               
+                
+                    <div >
                         <label for="phone">Số điện thoại:</label><br>
                         <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" required><br><br>
                     </div>
-                    <div class="col-4">
+                    <div >
                         <label for="adr">Địa chỉ:</label><br>
                         <input type="text" id="adr" name="adr" required><br><br>
                     </div>
-                    <div class="col-3">
+                    <div >
                         <label for="email">Email:</label><br>
                         <input type="email" id="email" name="email" required><br><br>
                     </div>    
-                </div>
+                
+                <br/>
                 {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
