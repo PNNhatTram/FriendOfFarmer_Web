@@ -36,7 +36,21 @@ def userin4(request):
             custom.save()
             messages.success(request, "Nhập thông tin người dùng thành công")
             return redirect('index')
-      return render(request, 'Manage/userin4.html')
+      else:
+          customer = request.user
+          try:
+              custom = Customer.objects.get(user=customer)
+              name = custom.name
+              birth = custom.birthday
+              type = custom.type_user
+              phone = custom.phonenum
+              adr = custom.address
+              email = custom.email
+              return render(request, 'Manage/userin4.html', {'name': name, 'birth': birth, 'type': type, 'phone': phone, 'adr': adr, 'email': email,})
+          except Customer.DoesNotExist:
+              # If the customer does not exist, render the form without pre-filled data
+              return render(request, 'Manage/userin4.html')
+              
 
 def Logout_page(request):
    logout(request)

@@ -14,45 +14,44 @@
             {% if request.method == "POST" %}
                 {% include 'Manage/userin4.html' %}
             {% else %}
-                
+                <div >
                     <div >
-                        <label for="name">Họ và tên:</label><br>
-                        <input type="text" id="name" name="name" required><br><br>
+                        <label for="name" >Họ và tên: {{name}}</label><br>
+                        <input type="text" id="name" name="name" value="{{name}}" required><br><br>
                     </div>
                     <div >
-                        <label for="birth">Ngày sinh:</label><br>
+                        <label for="birth">Ngày sinh: {{birth}}</label><br>
                         <input type="date" id="birth" name="birth" required><br><br>
                     </div>
                     <div >
-                        <label for="type">Đối tượng:</label><br>
+                        <label for="type">Đối tượng: {{type}}</label><br>
                         <select id="type" name="type">
-                            <option value="0">Nông dân</option>
-                            <option value="1">Thương lái</option>
+                            <option value="Nông dân">Nông dân</option>
+                            <option value="Thương lái">Thương lái</option>
                         </select><br><br>
                     </div>
-               
-               
-                
+                </div>
+            
+                <div >
                     <div >
-                        <label for="phone">Số điện thoại:</label><br>
-                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" required><br><br>
+                        <label for="phone">Số điện thoại: {{phone}}</label><br>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" value = "{{phone}}" required><br><br>
                     </div>
                     <div >
-                        <label for="adr">Địa chỉ:</label><br>
-                        <input type="text" id="adr" name="adr" required><br><br>
+                        <label for="adr">Địa chỉ: {{adr}}</label><br>
+                        <input type="text" id="adr" name="adr" value = "{{adr}}" required><br><br>
                     </div>
-                    <div >
-                        <label for="email">Email:</label><br>
-                        <input type="email" id="email" name="email" required><br><br>
+                    <div>
+                        <label for="email">Email: {{email}}</label><br>
+                        <input type="email" id="email" name="email" value = "{{email}}" required><br><br>
                     </div>    
-                
-                <br/>
+                </div>
                 {% if messages %}
-                <ul class="messages">
+                <div class="messages">
                     {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
                     {% endfor %}
-                </ul>
+                </div>
                 {% endif %}
                 <input type="submit" value="Gửi">
             {% endif %}
