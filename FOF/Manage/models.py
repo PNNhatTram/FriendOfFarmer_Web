@@ -90,7 +90,10 @@ class thitruong_ban (models.Model):
     ten_caytrong= models.CharField(max_length=50, null=False)
     ten_thitruong=models.CharField(max_length=50, null=False)
     gia=models.BigIntegerField(null=True)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mota= models.CharField(max_length=1000, null=False)
+    def __str__(self):
+        return f"{self.id_thitruong}"
 
 
 class Contact(models.Model):
