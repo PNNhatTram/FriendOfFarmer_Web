@@ -25,38 +25,59 @@
 	<!-- css bootstrap  -->
 	<link rel="stylesheet" href="{%static 'Manage/CSS/bootstrap.min.css'%}">
 	<!-- MAIN CSS  -->
-	<link rel="stylesheet" href="{%static 'Manage/CSS/login.css'%}">
+	<link rel="stylesheet" href="{%static 'Manage/CSS/signupV2.css'%}">
 
 </head>
 
 <body>
-    <button type="submit" class="block" onclick="location.href='{%url 'index'%}'">trang chủ</button>
-    <br/>
-    <p id="logo">Friend of Farmer</p>    
-        <div>
-            <form action="" method="POST">
-                {%csrf_token%}
-                <h2 class="sign__text" style="color: 12372A;">TẠO TÀI KHOẢN</h2>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+	
+    <!-- Sign up form -->
+    <section class="signup">
+        <div class="container">
+            <div class="box">
+                <div class="signup-content row">
+                    <div class="signup-form col-7">
+                        <h2 class="form-title">Đăng kí</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            {%csrf_token%}
+                            <div class="text">
+                                <div class="form-group line">
+                                    <label for="username"><i class="fa fa-user"></i></label>
+                                    <input type="text" name="username" id="username" placeholder="Tên tài khoản" required/>
+                                </div>
+                                {% comment %} <div class="form-group line">
+                                    <label for="email"><i class="fa fa-envelope"></i></i></label>
+                                    <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                                </div> {% endcomment %}
+                                <div class="form-group line">
+                                    <label for="password"><i class="fa fa-lock"></i></label>
+                                    <input type="password" name="password" id="password" placeholder="Mật khẩu" required/>
+                                </div>
+                                <div class="form-group line">
+                                    <label for="confirm_password"><i class="fa fa-user-lock"></i></label>
+                                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Nhập lại mật khẩu" required/>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với tất cả các điều khoản trong <a href="#" class="term-service">chính sách dịch vụ</a></label>
+                            </div>
+                            <div class="form-group form-button" style="margin: 0;">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image col-5">
+                        <figure><img src="{%static 'Manage/IMG/signup-image.jpg'%}" class="img-fluid" alt="sing up image" required></figure>
+                        <a href="#" class="signup-image-link">Tôi đã sẵn sàng trở thành một thành viên của cộng đồng</a>
+                    </div>
                 </div>
-                <span>hoặc dùng email của bạn để đăng kí</span>
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <input type="text" placeholder="Tài khoản" name="username" id="username" required/>
-                <input type="password" placeholder="Mật khẩu" name="password" id="email" required/>
-                <input type="password" placeholder="Nhập lại mật khẩu" name="confirm_password" ed="password" required/>
-                <button type="submit" class="my-4" style="padding-left:56px; padding-right:56px">ĐĂNG KÝ</button>
-                <br/>
-            </form>
+            </div>
+           
         </div>
+    </section>
+   <script src="./JS/login.js"></script>
 </body>
 
 </html>
