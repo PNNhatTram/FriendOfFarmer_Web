@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Season(models.Model):
@@ -82,8 +84,8 @@ class thitruong (models.Model):
     ten_thitruong=models.CharField(max_length=50, null=False)
     ten_nguoiban=models.CharField(max_length=50, null=False)
     gia=models.BigIntegerField(null=True)
-def __str__(self):
-    return f"{self.id_thitruong}, {self.id_caytrong}, {self.ten_caytrong}, {self.ten_thitruong}, {self.ten_nguoiban}, {self.gia}"
+    def __str__(self):
+        return f"{self.id_thitruong}, {self.id_caytrong}, {self.ten_caytrong}, {self.ten_thitruong}, {self.ten_nguoiban}, {self.gia}"
 
 class thitruong_ban (models.Model):
     id_thitruong= models.AutoField(primary_key= True)
@@ -95,6 +97,18 @@ class thitruong_ban (models.Model):
     def __str__(self):
         return f"{self.id_thitruong}"
 
+@receiver(post_save, sender=thitruong_ban)
+def create_or_update_thitruong(sender, instance, created, **kwargs):
+    if created:
+        # Nếu là bản ghi mới được tạo trong Thitruong_ban, tạo bản ghi tương ứng trong Thitruong
+        thitruong.objects.create(
+            # id_caytrong=instance.id_caytrong,
+            id_thitruong=instance.id_thitruong,
+            ten_caytrong=instance.ten_caytrong,
+            ten_thitruong=instance.ten_thitruong,
+            ten_nguoiban=instance.user.username,
+            gia=instance.gia
+        )
 
 class Contact(models.Model):
     hoten = models.CharField(max_length=255)
