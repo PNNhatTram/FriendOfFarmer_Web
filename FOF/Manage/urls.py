@@ -29,7 +29,7 @@ urlpatterns = [
 
     # MARKET 
     path('maker', views.maker, name="maker"),
-    path('maker_sell/', views.maker_sell, name="maker_sell"),
+    path('maker_sell', views.maker_sell, name="maker_sell"),
 
     # CONTACT 
     path('contact', views.contact, name="contact"),
