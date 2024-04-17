@@ -324,13 +324,21 @@ def infor(request):
 
 # MARKET 
 def maker(request):
-    customer = request.user.customer
-    thitruong_list = thitruong.objects.filter()
-    context = {'thitruong_list': thitruong_list, 'customer': customer}
-    return render(request, 'Manage/maker.html', context)
+    product = ""
+    maker = ""
+    keys1 = []
+    keys2 = []
+    keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
+    keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)  
+    if request.method == "POST":
+      product = request.POST["product"]
+      maker = request.POST["maker"]
+      keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
+      keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)
+    return render(request, 'Manage/maker.html', {'product':product,'maker':maker,'keys1' : keys1, 'keys2': keys2})
+
 
 def maker_sell(request):
-    customer = request.user.customer
     if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
         user = request.user
@@ -339,16 +347,18 @@ def maker_sell(request):
         gia = request.POST.get('gia')
         mota = request.POST.get('mota')    
             # Tạo một bản ghi mới trong bảng thitruong_ban
-        thitruong_ban_obj = thitruong_ban.objects.create(
-                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia, mota=mota, user=user)
-            
+        thitruong_ban_obj = thitruong_ban.objects.create(ten_caytrong=ten_caytrong,
+                            ten_thitruong=ten_thitruong, gia=gia, mota=mota, user=user)
+
             # Lưu lại thông báo thành công
-        context = {"message": "Cập nhật thành công!", 'customer': customer}
+        context = {"message": "Cập nhật thành công!"}
         return render(request, 'Manage/maker_sell.html', context)
     else:
-            # Trả về trang contact.html khi request là GET
-        context = {'customer': customer}
-        return render(request, 'Manage/maker_sell.html', context)
+        username=""
+        list_maker=[]
+        username = request.user
+        list_maker = thitruong_ban.objects.filter(user=username)
+        return render(request, 'Manage/maker_sell.html', {'list_maker':list_maker})
 
 # CONTACT 
 def contact(request):

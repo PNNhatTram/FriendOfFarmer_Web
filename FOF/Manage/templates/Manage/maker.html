@@ -4,9 +4,8 @@
 <link rel="stylesheet" href="{%static 'Manage/CSS/maker.css'%}"/>
 {% endblock head %}	
 {% block content %}
-{% if user.is_authenticated %}
-
 	<!-- SEARCH BOX  -->
+	{%if user.is_authenticated%}
 	<section class="finding container section">
 		<div class="row find__row my-3">
 			<div class="col-8 f_col8">
@@ -22,13 +21,14 @@
 				</div>
 			</div>
 		</div>
-		{% if customer.type_user == 'Nông dân' %}
 
 		<div class="find__box">
-			<form action="">
-				<input type="text" name="" id="Nongsan" placeholder="Nông sản muốn bán">
-				<input type="text" name="" id="Thitruong" placeholder="Nơi muốn bán">
-
+			<form action="" method = "POST">
+				{%csrf_token%}
+				<input type="text" name="product" id="Nongsan" placeholder="Nông sản muốn bán" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+				<p>Nông sản muốn bán: {{ product }}</p>
+				<input type="text" name="maker" id="Thitruong" placeholder="Nơi muốn bán" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+				<p>Nơi muốn bán: {{ maker }}</p>
 				<button>Tìm kiếm</button>
 			</form>
 		</div>
@@ -60,6 +60,38 @@
 			</div>
 
 		</div>
+		{% comment %} {%if obj in keys1%} {% endcomment %}
+		{%for obj in keys1%}
+		{%if obj in keys2%}
+		<div class="row my__row__res row__common align-items-center">
+			
+			<div class="col res__num common">
+				<a href="./marker2.html"><span><i class="fa-regular fa-star"></i>&nbsp; {{obj.id_thitruong}}</span></a>
+				
+			</div>
+			<div class="col-2 res__name common">
+				{{obj.ten_caytrong}}
+			</div>
+			<div class="col-2 res__place common">
+				{{obj.ten_thitruong}}
+			</div>
+			<div class="col-2 res__suppli common">
+				{{obj.ten_nguoiban}}
+			</div>
+			<div class="col res__price common" style="color: #16c784;">
+				{{obj.gia}}
+			</div>
+			<div class="col-3 res__trend common">
+				<img src="./IMG/1.svg" alt="trend">
+			</div>
+			<div class="col res__check common" >
+				Xác nhận
+			</div>
+			
+		</div>
+		{%endif%}
+		{%endfor%}
+		{% comment %} {%else%}
 		{%for thitruong in thitruong_list%}
 		<div class="row my__row__res row__common align-items-center">
 			
@@ -82,21 +114,16 @@
 			<div class="col-3 res__trend common">
 				<img src="./IMG/1.svg" alt="trend">
 			</div>
-			<div class="col res__check common">
+			<div class="col res__check common" >
 				Xác nhận
 			</div>
 			
 		</div>
 		{%endfor%}
-		
-		{%else%}
-		<p class="error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG CHỨC NĂNG NÀY.</p>
-		{%endif%}
+		{%endif%} {% endcomment %}
+	
 
 	</section>
-	{%else%}
-	<p class="error">Vui lòng đăng nhập.</p>
-	{%endif%}
 
 	<!-- REGISTER  -->
 	<section class="feedback container-fluid section">
@@ -131,4 +158,7 @@
 }
 
 </script>
+{%else%}
+<p>Vui lòng đăng nhập.</p>
+{%endif%}
 {% endblock content %}
