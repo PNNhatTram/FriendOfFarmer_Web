@@ -94,6 +94,9 @@ def logins(request):
 def index(request):
    return render(request, 'Manage/index.html')
 
+def notify(request): 
+   return render(request, 'Manage/notify.html')
+
 # RESOURCE 
 def search(request):
     searched_name = ""  # Default value for searched
@@ -324,6 +327,7 @@ def infor(request):
 
 # MARKET 
 def maker(request):
+    customer = request.user.customer
     product = ""
     maker = ""
     keys1 = []
@@ -335,10 +339,12 @@ def maker(request):
       maker = request.POST["maker"]
       keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
       keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)
-    return render(request, 'Manage/maker.html', {'product':product,'maker':maker,'keys1' : keys1, 'keys2': keys2})
+    context = {'product':product,'maker':maker,'keys1' : keys1, 'keys2': keys2, 'customer': customer}
+    return render(request, 'Manage/maker.html', context)
 
 
 def maker_sell(request):
+    customer = request.user.customer
     if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
         user = request.user
@@ -351,14 +357,15 @@ def maker_sell(request):
                             ten_thitruong=ten_thitruong, gia=gia, mota=mota, user=user)
 
             # Lưu lại thông báo thành công
-        context = {"message": "Cập nhật thành công!"}
+        context = {'customer': customer}
         return render(request, 'Manage/maker_sell.html', context)
     else:
         username=""
         list_maker=[]
         username = request.user
         list_maker = thitruong_ban.objects.filter(user=username)
-        return render(request, 'Manage/maker_sell.html', {'list_maker':list_maker})
+        context = {'list_maker':list_maker,'customer': customer}
+        return render(request, 'Manage/maker_sell.html', context)
 
 # CONTACT 
 def contact(request):

@@ -11,7 +11,7 @@
 			<div class="col-8 f_col8">
 				<h3>TÌM KIẾM THỊ TRƯỜNG TIÊU THỤ NÔNG SẢN</h3>
 				<p>Hãy cho chúng tôi biết nông sản cùng với nơi bạn muốn bán nông sản. Chúng tôi sẽ tìm giúp bạn!</p>
-				<p style="color:#609966; font-weight: bold; margin-top: 1rem;">Bạn đang ở chế độ thương lái</p>
+				
 			</div>
 			<div class="col-4 f_col4" >
 				<div class="farm__mode f_btn">
@@ -22,14 +22,14 @@
 				</div>
 			</div>
 		</div>
-
+		{% if customer.type_user == 'Nông dân' %}
 		<div class="find__box">
 			<form action="" method = "POST">
 				{%csrf_token%}
 				<input type="text" name="product" id="Nongsan" placeholder="Nông sản muốn bán" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
-				<p>Nông sản muốn bán: {{ product }}</p>
+				{% comment %} <p>Nông sản muốn bán: {{ product }}</p> {% endcomment %}
 				<input type="text" name="maker" id="Thitruong" placeholder="Nơi muốn bán" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
-				<p>Nơi muốn bán: {{ maker }}</p>
+				{% comment %} <p>Nơi muốn bán: {{ maker }}</p> {% endcomment %}
 				<button>Tìm kiếm</button>
 			</form>
 		</div>
@@ -150,6 +150,9 @@
 		
 		
 	</section>
+	{%else%}
+	<p class = "error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG TÍNH NĂNG NÀY.</p>
+	{%endif%}
 	
 <script>
 	
@@ -160,6 +163,6 @@
 
 </script>
 {%else%}
-<p>Vui lòng đăng nhập.</p>
+<p class = "error">Vui lòng đăng nhập.</p>
 {%endif%}
 {% endblock content %}

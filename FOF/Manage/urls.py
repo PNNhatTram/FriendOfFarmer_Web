@@ -7,6 +7,7 @@ from django.conf import settings
 urlpatterns = [
     # INDEX 
     path('', views.index, name="index"),
+    path('notify', views.notify, name="notify"),
 
     # LOGIN SIGNUP 
     path('logins', views.logins, name='logins'),

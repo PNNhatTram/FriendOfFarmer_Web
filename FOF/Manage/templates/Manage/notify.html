@@ -1,0 +1,59 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/notify.css' %}">
+{% endblock head %}
+
+
+{% block notify %}
+
+
+ <!-- NOTIFY PAGE  -->
+ <section class="notify section container">
+    <div class="noifi__header">
+        <div class="notifi__group1">
+            <h3>THÔNG BÁO</h3>
+            <div class="text">
+                3
+            </div>
+        </div>
+        <a href="">Đánh dấu tất cả đã đọc</a>
+        
+    </div>
+    <div class="notify__content">
+        <div class="row notifi__row">
+            <div class="col-2 notifi__user__img">
+                <i class="fa fa-user-alt"></i>
+            </div>
+            <div class="col-10 notifi__context">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat expedita odio iusto non quis doloribus error modi vero! Saepe quibusdam aut dolorum ullam. Minus saepe error sint provident illum modi?</p>
+            </div>
+        </div>
+        <div class="row notifi__row">
+            <div class="col-2 notifi__user__img">
+                <i class="fa fa-user-alt"></i>
+            </div>
+            <div class="col-10 notifi__context">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat expedita odio iusto non quis doloribus error modi vero! Saepe quibusdam aut dolorum ullam. Minus saepe error sint provident illum modi?</p>
+            </div>
+        </div>
+        <div class="row notifi__row">
+            <div class="col-2 notifi__user__img">
+                <i class="fa fa-user-alt"></i>
+            </div>
+            <div class="col-10 notifi__context">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat expedita odio iusto non quis doloribus error modi vero! Saepe quibusdam aut dolorum ullam. Minus saepe error sint provident illum modi?</p>
+            </div>
+        </div>
+    </div>
+
+
+    </section>
+
+
+{% endblock notify %}
+
+{% block js_LP %}
+  <script src="{% static 'Manage/JS/manage.js'%}"></script>
+{% endblock js_LP %}

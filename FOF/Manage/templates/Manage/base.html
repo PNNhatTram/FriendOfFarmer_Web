@@ -141,7 +141,7 @@
 							<a class="nav-link" href="{% url 'contact'%}">Liên hệ</a>
 						</li>
 						<div class="header__other">
-							<span><i class="fa fa-fire-alt"></i>&nbsp; Thông báo</span>
+							<span onclick="location.href='{%url 'notify'%}'"><i class="fa fa-fire-alt"></i>&nbsp; Thông báo</span>
 							<div class="other1">
 								<span><i class="fa fa-star"></i>&nbsp; Tin nóng</span>
 
@@ -167,6 +167,7 @@
     {% block form %}{% endblock form %}
 	{% block content_lp %}{% endblock content_lp%}
 	{% block landform %}{% endblock landform %}
+	{% block notify %}{% endblock notify %}
 	{% block content_index %}{% endblock content_index %}
     <!--FOOTER-->
     <footer>

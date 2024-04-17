@@ -21,7 +21,7 @@
 					</div>
 				</div>
 			</div>
-	
+			{% if customer.type_user == 'Thương lái' %}
 			<div class="find__box">
 				<form action="" method="post"> <!-- Sửa action thành "#" -->
 					{% csrf_token %} <!-- Thêm token csrf -->
@@ -29,8 +29,9 @@
 					<input type="text" name="ten_thitruong" id="Nongsan" placeholder="Tên thị trường" required style="uppercase;" oninput="this.value = this.value.toUpperCase()">
 					<input type="number" name="gia" id="Thitruong" placeholder="Mức giá đề xuất" required>
 					<textarea name="mota" id="" cols="30" rows="10" placeholder="Thông tin mô tả" required></textarea>
-					<button id="submitButton" type="submit">SUBMIT</button>
+					
 				</form>
+				<button id="submitButton" type="submit">SUBMIT</button>
 			</div>		
 		</section>
 	
@@ -40,6 +41,9 @@
 				BẠN ĐÃ CẬP NHẬT THÀNH CÔNG
 			</div>
 		</section>
+		{%else%}
+		<p class = "error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG TÍNH NĂNG NÀY.</p>
+		{%endif%}
 		<script>
 			document.getElementById('submitButton').addEventListener('click', function() {
 				var resultSection = document.querySelector('.result');
