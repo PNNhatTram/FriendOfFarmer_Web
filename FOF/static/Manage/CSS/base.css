@@ -190,7 +190,17 @@
     font-weight: 700;
     font-size: 0.8rem;
   }
-
+.error {
+  background-color: #609966;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  width: 50%;
+  margin: 2rem auto;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
   
   
   

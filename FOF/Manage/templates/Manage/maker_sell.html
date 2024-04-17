@@ -21,7 +21,7 @@
 					</div>
 				</div>
 			</div>
-	
+			{% if customer.type_user == 'Thương lái' %}
 			<div class="find__box">
 				<form action="" method="post"> <!-- Sửa action thành "#" -->
 					{% csrf_token %} <!-- Thêm token csrf -->
@@ -40,6 +40,9 @@
 				BẠN ĐÃ CẬP NHẬT THÀNH CÔNG
 			</div>
 		</section>
+		{%else%}
+		<p class="error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG CHỨC NĂNG NÀY.</p>
+		{%endif%}
 		<script>
 			document.getElementById('submitButton').addEventListener('click', function() {
 				var resultSection = document.querySelector('.result');
@@ -52,7 +55,7 @@
 					// Sau 5 giây, ẩn phần tử kết quả lại
 					setTimeout(function() {
 						resultSection.style.display = 'none';
-					}, 5000); // 5000 milliseconds = 5 seconds
+					}, 7000); // 5000 milliseconds = 5 seconds
 				}
 			});
 		

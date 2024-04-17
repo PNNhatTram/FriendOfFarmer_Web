@@ -46,13 +46,13 @@
                         <input type="email" id="email" name="email" value = "{{user.email}}" required><br><br>
                     </div>    
                 </div>
-                {% if messages %}
+                {% comment %} {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
                         <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
                     {% endfor %}
                 </div>
-                {% endif %}
+                {% endif %} {% endcomment %}
                 <input type="submit" value="Gửi">
             {% endif %}
         </form>

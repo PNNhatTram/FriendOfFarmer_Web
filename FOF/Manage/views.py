@@ -29,12 +29,12 @@ def userin4(request):
             custom.address = address
             custom.email = email
             custom.save()
-            messages.success(request, mark_safe('<p style="color: #008000;">Thay đổi thông tin người dùng thành công!</p><br/>'))
+            # messages.success(request, mark_safe('<p style="color: #008000;">Thay đổi thông tin người dùng thành công!</p><br/>'))
             return redirect('index')
          except Customer.DoesNotExist:
             custom = Customer.objects.create(user=user, name=name, birthday=birthday, type_user=type_user, phonenum=phonenum, address=address, email=email)
             custom.save()
-            messages.success(request, mark_safe('<p style="color: #008000;">Nhập thông tin người dùng thành công!</p><br/>'))
+            # messages.success(request, mark_safe('<p style="color: #008000;">Nhập thông tin người dùng thành công!</p><br/>'))
             return redirect('index')
       else:
           customer = request.user
@@ -71,7 +71,7 @@ def signup(request):
         except User.DoesNotExist:
             data = User.objects.create_user(uname, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
             data.save()
-            messages.success(request, mark_safe('<p style="color: #008000;">Tạo tài khoản thành công.</p>'))
+            messages.success(request, mark_safe('Tạo tài khoản thành công.'))
             return redirect('logins')
     else:
         return render(request, 'Manage/signup.html', {})
@@ -86,7 +86,7 @@ def logins(request):
         login(request, user)
         return redirect('index')
       else:
-         messages.error(request, mark_safe('<p style="color:red;">Tài khoản hoặc mật khẩu không đúng.</p>'))
+         messages.error(request, mark_safe('Tài khoản hoặc mật khẩu không đúng.'))
    return render(request, 'Manage/login.html', {})
 
 # INDEX 
@@ -109,11 +109,29 @@ def search(request):
 
 # MANAGE 
 def manage(request):
-    season = Season.objects.all()
-    land = Land.objects.all()
-    plant = Plant.objects.all()
-    context = {'season': season, 'land':land, 'plant':plant}
-    return render(request, "Manage/manage.html", context)
+    # Kiểm tra xem người dùng có đăng nhập hay không
+    if request.user.is_authenticated:
+        # Lấy user hiện tại
+        current_user = request.user
+
+        # Lấy các mùa vụ của người dùng hiện tại
+        seasons = Season.objects.filter(user=current_user)
+
+        # Lấy các đất đai của người dùng hiện tại dựa trên các mùa vụ
+        lands = Land.objects.filter(season__in=seasons)
+
+        # Lấy các cây trồng của người dùng hiện tại dựa trên các đất đai
+        plants = Plant.objects.filter(land__in=lands)
+
+        context = {
+            'user': current_user,
+            'season': seasons,
+            'land': lands,
+            'plant': plants,
+        }
+        return render(request, "Manage/manage.html", context)
+    else:
+        return render(request, "Manage/manage.html")
 
 def get_season_info(request, season_id):
   """
@@ -221,10 +239,11 @@ def land_form(request):
 
         messages.success(request, "Land created successfully!")
         return redirect("manage")  # Redirect to your desired page after success
-
-    # Get all seasons for the dropdown (if needed in the template)
-    season_list = Season.objects.all()
-    context = {'season_list': season_list}
+    
+    current_user = request.user
+    user_seasons = Season.objects.filter(user=current_user)
+    # Truyền danh sách vụ mùa vào context
+    context = {'season_list': user_seasons}
 
     return render(request, "Manage/land_form.html", context)
 
@@ -255,8 +274,16 @@ def plant_form(request):
         messages.success(request, "Plant created successfully!")
         return redirect("manage")  # Redirect to success page (replace with your URL)
 
-    # Get all lands for the dropdown (if needed in the template)
-    land_list = Land.objects.all()
+    # Lấy user hiện tại
+    current_user = request.user
+
+    # Lấy các mùa vụ của người dùng hiện tại
+    seasons = Season.objects.filter(user=current_user)
+
+    # Lấy các đất đai của người dùng hiện tại dựa trên các mùa vụ
+    
+   
+    land_list = Land.objects.filter(season__in=seasons)
     context = {'land_list': land_list}
 
     return render(request, "Manage/plant_form.html", context)
@@ -297,10 +324,13 @@ def infor(request):
 
 # MARKET 
 def maker(request):
-    thitruong_list= thitruong.objects.filter()
-    return render(request, 'Manage/maker.html', {'thitruong_list':thitruong_list})
+    customer = request.user.customer
+    thitruong_list = thitruong.objects.filter()
+    context = {'thitruong_list': thitruong_list, 'customer': customer}
+    return render(request, 'Manage/maker.html', context)
 
 def maker_sell(request):
+    customer = request.user.customer
     if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
         user = request.user
@@ -313,11 +343,12 @@ def maker_sell(request):
                 ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia, mota=mota, user=user)
             
             # Lưu lại thông báo thành công
-        context = {"message": "Cập nhật thành công!"}
+        context = {"message": "Cập nhật thành công!", 'customer': customer}
         return render(request, 'Manage/maker_sell.html', context)
     else:
             # Trả về trang contact.html khi request là GET
-        return render(request, 'Manage/maker_sell.html')
+        context = {'customer': customer}
+        return render(request, 'Manage/maker_sell.html', context)
 
 # CONTACT 
 def contact(request):

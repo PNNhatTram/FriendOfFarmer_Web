@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Friend of Farmer | Trang chủ</title>
+	<title>Friend of Farmer | Đăng nhập</title>
 	<!-- TAG -->
 	<link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
 
@@ -38,10 +38,10 @@
                         <a href="{%url "index"%}" class="signup-image-link">Trang chủ</a><br/><br/>
                         <figure><img src="{%static 'Manage/IMG/signin-image.jpg'%}" class="img-fluid" alt="sing up image"></figure>
                         
-                        <a href="{%url "signup"%}" class="signup-image-link">Tạo tài khoản mới</a>
+                       
                     </div> {% endcomment %}
                     <div class="signup-form ">
-                        <h2 class="form-title">Đăng nhập</h2>
+                        <h2 class="form-title">ĐĂNG NHẬP</h2>
                         <form method="POST" class="register-form" id="register-form">
                             {%csrf_token%}
                             <div class="text">
@@ -61,13 +61,13 @@
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>Nhớ tài khoản</label>
                             </div>
-                            {% if messages %}
-                            <div class="messages">
-                                {% for message in messages %}
-                                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-                                {% endfor %}
+                            <div class="messages" id="message-container">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
-                            {% endif %}
                             <br/>
                             <div class="form-group form-button" style="margin: 0;">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Đăng nhập"/>
@@ -81,6 +81,8 @@
                                 <a href="#" style="background-color: #e72734;"><i class="fab fa-google-plus-g"></i></i></a>
                             
                         </div>
+                        <a href="{%url "signup"%}" class="signup-image-link" style = "margin-bottom: 1rem; display: block;">Tạo tài khoản mới</a>
+                        <a href="#" class="forgot">QUÊN MẬT KHẨU</a>
                     </div>
                     
                 </div>
@@ -88,7 +90,24 @@
            
         </div>
     </section>
-
+    <script>
+        // Đợi DOM được tải hoàn thành
+        document.addEventListener("DOMContentLoaded", function() {
+            var messageContainer = document.getElementById("message-container");
+            var duration = 3000; // Thời gian hiển thị thông điệp (tính bằng mili giây)
+    
+            // Xác định lớp CSS để ẩn khối div
+            var hideClass = "hidden";
+    
+            // Tạo một hàm để ẩn khối div
+            function hideMessageContainer() {
+                messageContainer.classList.add(hideClass);
+            }
+    
+            // Gọi hàm ẩn khối div sau khoảng thời gian quy định
+            setTimeout(hideMessageContainer, duration);
+        });
+    </script>
 </body>
 
 </html>

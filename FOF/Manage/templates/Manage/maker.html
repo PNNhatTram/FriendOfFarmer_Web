@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{%static 'Manage/CSS/maker.css'%}"/>
 {% endblock head %}	
 {% block content %}
+{% if user.is_authenticated %}
+
 	<!-- SEARCH BOX  -->
 	<section class="finding container section">
 		<div class="row find__row my-3">
@@ -20,6 +22,7 @@
 				</div>
 			</div>
 		</div>
+		{% if customer.type_user == 'Nông dân' %}
 
 		<div class="find__box">
 			<form action="">
@@ -86,9 +89,14 @@
 		</div>
 		{%endfor%}
 		
-	
+		{%else%}
+		<p class="error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG CHỨC NĂNG NÀY.</p>
+		{%endif%}
 
 	</section>
+	{%else%}
+	<p class="error">Vui lòng đăng nhập.</p>
+	{%endif%}
 
 	<!-- REGISTER  -->
 	<section class="feedback container-fluid section">
