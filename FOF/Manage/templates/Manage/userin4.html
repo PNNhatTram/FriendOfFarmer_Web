@@ -21,8 +21,21 @@
                     </div>
                     <div >
                         <label for="birth">Ngày sinh: {{birth}}</label><br>
-                        <input type="date" id="birth" name="birth" required><br><br>
+                        <input type="date" id="birth" name="birth" value="{{birth}}"required><br><br>
                     </div>
+                    <script>
+                        // Lấy ra input ngày sinh
+                        var input = document.getElementById('birth');
+                    
+                        // Ngày hiện tại
+                        var date = new Date(input.value);
+                    
+                        // Định dạng ngày tháng
+                        var formattedDate = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+                    
+                        // Gán lại giá trị định dạng vào label
+                        document.querySelector('label[for="birth"]').textContent = "Ngày sinh: " + formattedDate;
+                    </script>
                     <div >
                         <label for="type">Đối tượng: {{type}}</label><br>
                         <select id="type" name="type">

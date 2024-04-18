@@ -59,6 +59,7 @@ def Logout_page(request):
 def signup(request):
     if request.method == 'POST':
         uname = request.POST.get('username')
+        email = request.POST.get('email')
         pw = request.POST.get('password')
         pw1 = request.POST.get('confirm_password')  # Sửa thành confirm_password
         if pw != pw1:
@@ -69,7 +70,7 @@ def signup(request):
             messages.error(request, mark_safe('<p style="color:red;">Tài khoản đã tồn tại.</p>'))
             return redirect('logins')
         except User.DoesNotExist:
-            data = User.objects.create_user(uname, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
+            data = User.objects.create_user(uname, email=email, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
             data.save()
             messages.success(request, mark_safe('Tạo tài khoản thành công.'))
             return redirect('logins')
@@ -327,20 +328,23 @@ def infor(request):
 
 # MARKET 
 def maker(request):
-    customer = request.user.customer
-    product = ""
-    maker = ""
-    keys1 = []
-    keys2 = []
-    keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
-    keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)  
-    if request.method == "POST":
-      product = request.POST["product"]
-      maker = request.POST["maker"]
-      keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
-      keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)
-    context = {'product':product,'maker':maker,'keys1' : keys1, 'keys2': keys2, 'customer': customer}
-    return render(request, 'Manage/maker.html', context)
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        product = ""
+        maker = ""
+        keys1 = []
+        keys2 = []
+        keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
+        keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)  
+        if request.method == "POST":
+            product = request.POST["product"]
+            maker = request.POST["maker"]
+            keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
+            keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)
+        context = {'product':product,'maker':maker,'keys1' : keys1, 'keys2': keys2, 'customer': customer}
+        return render(request, 'Manage/maker.html', context)
+    else:
+        return render(request, 'Manage/maker.html')
 
 
 def maker_sell(request):
@@ -383,4 +387,5 @@ def contact(request):
         return render(request, 'Manage/contact.html', {})
     
 
-
+def aboutus(request):
+            return render(request, 'Manage/aboutus.html')

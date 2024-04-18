@@ -8,7 +8,7 @@ urlpatterns = [
     # INDEX 
     path('', views.index, name="index"),
     path('notify', views.notify, name="notify"),
-
+    
     # LOGIN SIGNUP 
     path('logins', views.logins, name='logins'),
     path('Logout_page', views.Logout_page, name='Logout_page'),
@@ -34,7 +34,7 @@ urlpatterns = [
 
     # CONTACT 
     path('contact', views.contact, name="contact"),
-   
+    path('aboutus', views.aboutus, name="aboutus"),
 ]
 
 # Tạo một danh sách mới chỉ chứa urlpatterns cho đường dẫn 'search'

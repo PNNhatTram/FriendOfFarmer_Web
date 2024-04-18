@@ -141,7 +141,9 @@
 							<a class="nav-link" href="{% url 'contact'%}">Liên hệ</a>
 						</li>
 						<div class="header__other">
+							<div class="other1">
 							<span onclick="location.href='{%url 'notify'%}'"><i class="fa fa-fire-alt"></i>&nbsp; Thông báo</span>
+							</div>
 							<div class="other1">
 								<span><i class="fa fa-star"></i>&nbsp; Tin nóng</span>
 
@@ -156,8 +158,8 @@
 
 
 					</ul>
-					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+					<form id="search-form" action="https://www.google.com/search" method="get" class="d-flex" role="search">
+						<input class="form-control me-2" type="text" id="search-input" name="q" placeholder="Tìm kiếm">
 					</form>
 				</div>
 			</div>
@@ -169,6 +171,8 @@
 	{% block landform %}{% endblock landform %}
 	{% block notify %}{% endblock notify %}
 	{% block content_index %}{% endblock content_index %}
+	{% block content_aboutus %}{% endblock content_aboutus %}
+
     <!--FOOTER-->
     <footer>
 		<div class="container-fluid section">
@@ -181,31 +185,31 @@
 						<div class="footer__item">
 							<h3>Dự án</h3>
 							<ul>
-								<li><a href="">About us</a></li>
-								<li><a href="">Điều khoản sử dụng</a></li>
-								<li><a href="">Chính sách</a></li>
-								<li><a href="">Sứ mệnh</a></li>
-								<li><a href="">Liên hệ</a></li>
+								<li><a class="nav-link" href="{%url 'aboutus'%}">About us</a></li>
+								<li><a class="nav-link" href="">Điều khoản sử dụng</a></li>
+								<li><a class="nav-link" href="">Chính sách</a></li>
+								<li><a class="nav-link" href="">Sứ mệnh</a></li>
+								<li><a class="nav-link" href="{%url 'contact'%}">Liên hệ</a></li>
 							</ul>
 						</div>
 						<div class="footer__item">
 							<h3>Dịch vụ</h3>
 							<ul>
-								<li><a href="">Quản lý</a></li>
-								<li><a href="">Thị trường</a></li>
-								<li><a href="">Tìm kiếm</a></li>
-								<li><a href="">Trợ lý</a></li>
-								<li><a href="">Giải đáp</a></li>
+								<li><a class="nav-link" href="{%url 'manage'%}">Quản lý</a></li>
+								<li><a class="nav-link" href="{%url 'maker'%}">Thị trường</a></li>
+								<li><a class="nav-link" href="{%url 'search'%}">Tìm kiếm</a></li>
+								<li><a class="nav-link" href="">Trợ lý</a></li>
+								<li><a class="nav-link" href="">Giải đáp</a></li>
 							</ul>
 						</div>
 						<div class="footer__item">
 							<h3>Mạng xã hội</h3>
 							<ul>
-								<li><a href="">Facebook</a></li>
-								<li><a href="">X</a></li>
-								<li><a href="">Instagram</a></li>
-								<li><a href="">Pinterest</a></li>
-								<li><a href="">LinkedIn</a></li>
+								<li><a class="nav-link" href="">Facebook</a></li>
+								<li><a class="nav-link" href="">X</a></li>
+								<li><a class="nav-link" href="">Instagram</a></li>
+								<li><a class="nav-link" href="">Pinterest</a></li>
+								<li><a class="nav-link" href="">LinkedIn</a></li>
 							</ul>
 						</div>
 					</div>
