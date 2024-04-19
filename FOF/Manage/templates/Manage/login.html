@@ -57,14 +57,12 @@
                                
                             </div>
                            
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>Nhớ tài khoản</label>
-                            </div>
+                            
                             <div class="messages" id="message-container">
                                 {% if messages %}
                                     {% for message in messages %}
-                                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                                    <br/>    
+                                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
                                     {% endfor %}
                                 {% endif %}
                             </div>
@@ -90,24 +88,6 @@
            
         </div>
     </section>
-    <script>
-        // Đợi DOM được tải hoàn thành
-        document.addEventListener("DOMContentLoaded", function() {
-            var messageContainer = document.getElementById("message-container");
-            var duration = 3000; // Thời gian hiển thị thông điệp (tính bằng mili giây)
-    
-            // Xác định lớp CSS để ẩn khối div
-            var hideClass = "hidden";
-    
-            // Tạo một hàm để ẩn khối div
-            function hideMessageContainer() {
-                messageContainer.classList.add(hideClass);
-            }
-    
-            // Gọi hàm ẩn khối div sau khoảng thời gian quy định
-            setTimeout(hideMessageContainer, duration);
-        });
-    </script>
 </body>
 
 </html>

@@ -65,15 +65,16 @@ def signup(request):
         if pw != pw1:
             messages.error(request, mark_safe('Mật khẩu nhập lại không khớp.'))
             return redirect('signup')
-        try:
-            user = User.objects.get(username=uname)
-            messages.error(request, mark_safe('Tài khoản đã tồn tại.'))
-            return redirect('logins')
-        except User.DoesNotExist:
-            data = User.objects.create_user(uname, email=email, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
-            data.save()
-            messages.success(request, mark_safe('Tạo tài khoản thành công.'))
-            return redirect('logins')
+        else:
+            try:
+                user = User.objects.get(username=uname)
+                messages.error(request, mark_safe('Tài khoản đã tồn tại.'))
+                return redirect('logins')
+            except User.DoesNotExist:
+                data = User.objects.create_user(uname, email=email, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
+                data.save()
+                messages.success(request, mark_safe('Tạo tài khoản thành công.'))
+                return redirect('logins')
     else:
         return render(request, 'Manage/signup.html', {})
 
