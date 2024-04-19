@@ -105,7 +105,7 @@ class thitruong_ban (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     mota= models.CharField(max_length=1000, null=False)
     def __str__(self):
-        return f"{self.id_thitruong}"
+        return f"{self.ten_thitruong}"
 
 @receiver(post_save, sender=thitruong_ban)
 def create_or_update_thitruong(sender, instance, created, **kwargs):

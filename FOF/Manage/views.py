@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.safestring import mark_safe
-
+from django.urls import reverse
 # LOGIN SIGN UP 
 def userin4(request):  
       if request.method=="POST":
@@ -90,9 +90,6 @@ def logins(request):
          messages.error(request, mark_safe('Tài khoản hoặc mật khẩu không đúng.'))
    return render(request, 'Manage/login.html', {})
 
-def reset_password(request):
-   return render(request, 'Manage/reset_password.html', {})
-      
 # INDEX 
 
 def index(request):
@@ -352,26 +349,34 @@ def maker(request):
 
 def maker_sell(request):
     customer = request.user.customer
-    if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
-            # Lấy dữ liệu người dùng nhập từ form
+    
+    if request.method == 'POST':
+        # Process form submission
         user = request.user
         ten_caytrong = request.POST.get('ten_caytrong')
         ten_thitruong = request.POST.get('ten_thitruong')
         gia = request.POST.get('gia')
         mota = request.POST.get('mota')    
-            # Tạo một bản ghi mới trong bảng thitruong_ban
-        thitruong_ban_obj = thitruong_ban.objects.create(ten_caytrong=ten_caytrong,
-                            ten_thitruong=ten_thitruong, gia=gia, mota=mota, user=user)
 
-            # Lưu lại thông báo thành công
-        context = {'customer': customer}
-        return render(request, 'Manage/maker_sell.html', context)
+        # Create a new record in thitruong_ban table
+        thitruong_ban_obj = thitruong_ban.objects.create(
+            ten_caytrong=ten_caytrong,
+            ten_thitruong=ten_thitruong,
+            gia=gia,
+            mota=mota,
+            user=user
+        )
+
+        # Add a success message
+        messages.success(request, "Nhập thông tin người dùng thành công!")
+        # Redirect to the same view to prevent form resubmission
+        return redirect('maker_sell')
+
     else:
-        username=""
-        list_maker=[]
+        # Fetch existing data
         username = request.user
         list_maker = thitruong_ban.objects.filter(user=username)
-        context = {'list_maker':list_maker,'customer': customer}
+        context = {'list_maker': list_maker, 'customer': customer}
         return render(request, 'Manage/maker_sell.html', context)
 
 # CONTACT 

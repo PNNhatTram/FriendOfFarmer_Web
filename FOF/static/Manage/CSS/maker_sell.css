@@ -300,6 +300,17 @@ background-color: #EFF2F5;
   font-weight: bold;
 }
 
+.result__box {
+  background-color: #60996674;
+  width: 60%;
+  height: 50px;
+  margin: 1rem auto;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+}
+
 
 
 
