@@ -26,7 +26,6 @@
 	<link rel="stylesheet" href="{%static 'Manage/CSS/bootstrap.min.css'%}">
 	<!-- MAIN CSS  -->
 	<link rel="stylesheet" href="{%static 'Manage/CSS/signupV2.css'%}">
-    <link rel="stylesheet" href="{%static 'Manage/CSS/login.css'%}">
 
 </head>
 
@@ -52,11 +51,14 @@
                                 </div> 
                                 <div class="form-group line">
                                     <label for="password"><i class="fa fa-lock"></i></label>
-                                    <input type="password" name="password" id="password" placeholder="Mật khẩu" minlength="8" required/>
+                                    <input type="password" name="password" id="password" placeholder="Mật khẩu" required/>
                                 </div>
+                                <small id="password-message" class="password-message"></small>
+                                
+                                
                                 <div class="form-group line">
                                     <label for="confirm_password"><i class="fa fa-user-lock"></i></label>
-                                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Nhập lại mật khẩu" minlength="8" required/>
+                                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Nhập lại mật khẩu" required/>
                                 </div>
                             </div>
                            
@@ -71,11 +73,9 @@
                                     {% endfor %}
                                 {% endif %}
                             </div>
-                            <br/>
                             <div class="form-group form-button" style="margin: 0;">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" disabled/>
                             </div>
-                            
                         </form>
 
                         <a href="{%url "logins"%}" class="forgot">ĐÃ CÓ TÀI KHOẢN</a>
@@ -87,6 +87,71 @@
         </div>
     </section>
    <script src="./JS/login.js"></script>
+   <script>
+    var passwordInput = document.getElementById('password');
+    var passwordMessage = document.getElementById('password-message');
+    var signupButton = document.getElementById('signup');
+    
+    passwordInput.addEventListener('input', function() {
+        var password = passwordInput.value;
+    
+        if (password.length < 8) {
+            passwordMessage.textContent = 'Mật khẩu cần ít nhất 8 ký tự';
+            passwordMessage.style.color = 'red';
+            signupButton.disabled = true;
+            return;
+        }
+    
+        if (!containsUpperCase(password)) {
+            passwordMessage.textContent = 'Mật khẩu cần chứa ít nhất một chữ hoa';
+            passwordMessage.style.color = 'orange';
+            signupButton.disabled = true;
+            return;
+        }
+
+        if (!containsNumber(password)) {
+            passwordMessage.textContent = 'Mật khẩu cần chứa ít nhất một số';
+            passwordMessage.style.color = 'orange';
+            signupButton.disabled = true;
+            return;
+        }
+
+        if (!containsLowerCase(password)) {
+            passwordMessage.textContent = 'Mật khẩu cần chứa ít nhất một chữ thường';
+            passwordMessage.style.color = 'orange';
+            signupButton.disabled = true;
+            return;
+        }
+
+        if (!containsSpecialCharacter(password)) {
+            passwordMessage.textContent = 'Mật khẩu cần chứa ít nhất một ký tự đặc biệt';
+            passwordMessage.style.color = 'orange';
+            signupButton.disabled = true;
+            return;
+        }
+    
+        passwordMessage.textContent = 'Mật khẩu hợp lệ';
+        passwordMessage.style.color = 'green';
+        signupButton.disabled = false;
+    });
+    
+    function containsUpperCase(password) {
+        return /[A-Z]/.test(password);
+    }
+    
+    function containsLowerCase(password) {
+        return /[a-z]/.test(password);
+    }
+
+    function containsNumber(password) {
+        return /[0-9]/.test(password);
+    }
+
+    function containsSpecialCharacter(password) {
+        var specialCharacterRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]+/;
+        return specialCharacterRegex.test(password);
+    }
+    </script>
 </body>
 
 </html>
