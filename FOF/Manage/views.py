@@ -63,11 +63,11 @@ def signup(request):
         pw = request.POST.get('password')
         pw1 = request.POST.get('confirm_password')  # Sửa thành confirm_password
         if pw != pw1:
-            messages.error(request, mark_safe('<p style="color:red;">Mật khẩu nhập lại không khớp.</p>'))
+            messages.error(request, mark_safe('Mật khẩu nhập lại không khớp.'))
             return redirect('signup')
         try:
             user = User.objects.get(username=uname)
-            messages.error(request, mark_safe('<p style="color:red;">Tài khoản đã tồn tại.</p>'))
+            messages.error(request, mark_safe('Tài khoản đã tồn tại.'))
             return redirect('logins')
         except User.DoesNotExist:
             data = User.objects.create_user(uname, email=email, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
