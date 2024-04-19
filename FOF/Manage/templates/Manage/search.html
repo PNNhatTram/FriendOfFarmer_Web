@@ -18,42 +18,55 @@
 
                <form role="search" method="POST" action="{% url 'search' %}">
                   {% csrf_token %}
-                  <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_name" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+                  <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_name" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
                   <p>Sản Phẩm: {{ searched_name }}</p>
-                  <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_adr" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+                  <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_adr" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
                   <button class="my-btn" type="submit">TÌM KIẾM</button>
                   <p>Địa Chỉ: {{ searched_adr }}</p>
                </form>
                         
                            
-                           <div class="find__result d-flex justify-content-center row">
-                              {%  for product in keys %}
-                                       {% if product in keys1%}
-                                       <div class="find__item my-2 col-sm-3">
-                                       <img class="img-fluid" src="{{ product.IMG_URL }}" alt="sanpham">
-                                       <p class="name" style="text-transform: uppercase;">{{ product.name }}</p>
-                                       <p class="name" style="text-transform: uppercase;">{{ product.adress }}</p>
-                                       <p class="prices">{{ product.price }} VND</p>
-                                       <div class="find__start">
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                          <i class="fa fa-star"></i>
-                                       </div>
-                                       <button class="my-btn" style="margin-top: 2rem;" id="click1" onclick="location.href='{{ product.link }}'" target="_blank" rel="noopener noreferrer">
-                                          MUA NGAY
-                                       </button>
-                                    
-                                       </div>
-                                       {%endif%}    
-                              {% endfor %}
+               <div class="find__result d-flex justify-content-center row">
+                  {% for product in keys %}
+                     {% if product in keys1 %}
+                        <div class="find__item my-2 col-sm-3">
+                           <img class="img-fluid" src="{{ product.IMG_URL }}" alt="sanpham">
+                           <p class="name" style="text-transform: uppercase;">{{ product.name }}</p>
+                           <p class="name" style="text-transform: uppercase;">{{ product.adress }}</p>
+                           <p class="prices">{{ product.price }} VND</p>
+                           <div class="find__start">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
                            </div>
-                           
+                           <button class="my-btn" style="margin-top: 2rem;" id="click1" onclick="location.href='{{ product.link }}'" target="_blank" rel="noopener noreferrer">
+                              MUA NGAY
+                           </button>
+                        </div>
+                     {% endif %}    
+                  {% endfor %}
+               </div>
             </div>
-            </div>
-            
          </div>
       </div>
    </section>
+
+   <script>
+      // Function to sort products by price in ascending order
+      var products = document.querySelectorAll('.find__item');
+      var sortedProducts = Array.from(products).sort(function(a, b) {
+         var priceA = parseInt(a.querySelector('.prices').textContent);
+         var priceB = parseInt(b.querySelector('.prices').textContent);
+         return priceA - priceB;
+      });
+
+      // Reorder the products in the DOM
+      var resultSection = document.querySelector('.find__result');
+      sortedProducts.forEach(function(product) {
+         resultSection.appendChild(product);
+      });
+   </script>
+
 {% endblock content %}
