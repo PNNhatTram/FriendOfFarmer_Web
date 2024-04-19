@@ -90,6 +90,9 @@ def logins(request):
          messages.error(request, mark_safe('Tài khoản hoặc mật khẩu không đúng.'))
    return render(request, 'Manage/login.html', {})
 
+def reset_password(request):
+   return render(request, 'Manage/reset_password.html', {})
+      
 # INDEX 
 
 def index(request):
