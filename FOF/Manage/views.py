@@ -63,13 +63,17 @@ def signup(request):
         pw = request.POST.get('password')
         pw1 = request.POST.get('confirm_password')  # Sửa thành confirm_password
         if pw != pw1:
-            messages.error(request, mark_safe('Mật khẩu nhập lại không khớp.'))
+            messages.error(request, mark_safe('<p style="color:red;">Mật khẩu nhập lại không khớp.</p>'))
             return redirect('signup')
-        else:
+        try:
+            user = User.objects.get(username=uname)
+            messages.error(request, mark_safe('<p style="color:red;">Tài khoản đã tồn tại.</p>'))
+            return redirect('logins')
+        except User.DoesNotExist:
             try:
-                user = User.objects.get(username=uname)
-                messages.error(request, mark_safe('Tài khoản đã tồn tại.'))
-                return redirect('logins')
+                user = User.objects.get(email=email)
+                messages.error(request, mark_safe('<p style="color:red;">Email đã được sử dụng.</p>'))
+                return redirect('signup')
             except User.DoesNotExist:
                 data = User.objects.create_user(uname, email=email, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
                 data.save()
@@ -91,6 +95,15 @@ def logins(request):
          messages.error(request, mark_safe('Tài khoản hoặc mật khẩu không đúng.'))
    return render(request, 'Manage/login.html', {})
 
+def reset_password(request):
+   if request.method == 'POST':
+      email = request.POST.get('email')
+      try:
+         user = User.objects.get(email=email)
+         messages.success(request, mark_safe('Kiểm tra email của bạn để đặt lại mật khẩu.'))
+      except User.DoesNotExist:
+         messages.error(request, mark_safe('Email không tồn tại.'))
+   return render(request, 'Manage/reset_password.html', {})
 # INDEX 
 
 def index(request):
