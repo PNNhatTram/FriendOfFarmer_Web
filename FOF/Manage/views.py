@@ -48,7 +48,6 @@ def userin4(request):
               email = custom.email
               return render(request, 'Manage/userin4.html', {'name': name, 'birth': birth, 'type': type, 'phone': phone, 'adr': adr, 'email': email,})
           except Customer.DoesNotExist:
-              # If the customer does not exist, render the form without pre-filled data
               return render(request, 'Manage/userin4.html')
               
 
@@ -65,15 +64,17 @@ def signup(request):
         if pw != pw1:
             messages.error(request, mark_safe('Mật khẩu nhập lại không khớp.'))
             return redirect('signup')
-        try:
-            user = User.objects.get(username=uname)
-            messages.error(request, mark_safe('Tài khoản đã tồn tại.'))
-            return redirect('logins')
-        except User.DoesNotExist:
-            data = User.objects.create_user(uname, email=email, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
-            data.save()
-            messages.success(request, mark_safe('Tạo tài khoản thành công.'))
-            return redirect('logins')
+        else:
+            try:
+                user = User.objects.get(username=uname)
+                messages.error(request, mark_safe('Tài khoản đã tồn tại.'))
+                return redirect('logins')
+            except User.DoesNotExist:
+                data = User.objects.create_user(uname, email=email, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
+                data.save()
+                user = authenticate(request, username=uname, password=pw)
+                login(request, user)
+                return redirect('userin4')
     else:
         return render(request, 'Manage/signup.html', {})
 
@@ -90,6 +91,15 @@ def logins(request):
          messages.error(request, mark_safe('Tài khoản hoặc mật khẩu không đúng.'))
    return render(request, 'Manage/login.html', {})
 
+def reset_password(request):
+   if request.method == 'POST':
+      email = request.POST.get('email')
+      try:
+         user = User.objects.get(email=email)
+         messages.success(request, mark_safe('Kiểm tra email của bạn để đặt lại mật khẩu.'))
+      except User.DoesNotExist:
+         messages.error(request, mark_safe('Email không tồn tại.'))
+   return render(request, 'Manage/reset_password.html', {})
 # INDEX 
 
 def index(request):
