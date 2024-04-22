@@ -4,6 +4,7 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+
 urlpatterns = [
     # INDEX 
     path('', views.index, name="index"),
@@ -15,6 +16,7 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('userin4', views.userin4, name='userin4'),
     path('reset_password', views.reset_password, name='reset_password'),
+    path('social/signup/', views.signup_redirect, name='signup_redirect'),
 
     # MANAGE 
     path('manage', views.manage, name='manage'), 
@@ -36,6 +38,8 @@ urlpatterns = [
     # CONTACT 
     path('contact', views.contact, name="contact"),
     path('aboutus', views.aboutus, name="aboutus"),
+
+  
 ]
 
 # Tạo một danh sách mới chỉ chứa urlpatterns cho đường dẫn 'search'

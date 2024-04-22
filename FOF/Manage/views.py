@@ -10,6 +10,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 # LOGIN SIGN UP 
+def signup_redirect(request):
+    messages.error(request, "Something wrong here, it may be that you already have account!")
+    return redirect("index")
+
+
 def userin4(request):  
       if request.method=="POST":
          user=request.user
