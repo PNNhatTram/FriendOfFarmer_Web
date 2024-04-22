@@ -6,6 +6,11 @@
 {% block content %}
 	<!-- SEARCH BOX  -->
 	{%if user.is_authenticated%}
+	{% if customer.type_user is none %}
+		
+	<a class="error-link" href="{%url "userin4"%}" style="text-decoration: none;"><p class = "error">Bạn chưa nhập thông tin. Vui lòng nhập thông tin người dùng để sử dụng chức năng này</p></a>
+
+	{%else%}
 	<section class="finding container section">
 		<div class="row find__row my-3">
 			<div class="col-8 f_col8">
@@ -22,6 +27,7 @@
 				</div>
 			</div>
 		</div>
+		
 		{% if customer.type_user == 'Nông dân' %}
 		<div class="find__box">
 			<form action="" method = "POST">
@@ -153,7 +159,7 @@
 	{%else%}
 	<p class = "error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG TÍNH NĂNG NÀY.</p>
 	{%endif%}
-	
+	{%endif%}
 <script>
 	
 	document.getElementById('sell').onclick = function(){

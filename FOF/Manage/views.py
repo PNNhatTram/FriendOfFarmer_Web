@@ -344,6 +344,10 @@ def infor(request):
 # MARKET 
 def maker(request):
     if request.user.is_authenticated:
+      key = Customer.objects.filter(user=request.user)
+      if not key.exists():  # Check if the queryset is empty
+        return render(request, 'Manage/maker.html')  
+      else:
         customer = request.user.customer
         product = ""
         maker = ""
