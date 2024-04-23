@@ -1,0 +1,40 @@
+{% extends "Manage/base.html"%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'Manage/CSS/makerDetail.css'%}"/>
+{% endblock head %}
+{% block content %}
+		<!-- DETAIL -->
+	<section class="detail section">
+		<div class="detail__notify">
+			<p>Thông báo đến bạn: Vui lòng đọc kỹ các yêu cầu và cách thức liên hệ.</p>
+		</div>	
+
+			<div class="detail__new">
+				<p>Thị trường gạo ST25</p>
+				<h2>Khu vực xuất khẩu gạo TP HCM</h2>
+				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, suscipit corrupti? Natus aliquid deserunt quae?</p>
+
+				<h3>Thông tin về Thương lái</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt beatae ipsum magnam ipsa architecto suscipit? Corrupti molestias commodi vel eligendi.
+					<br>
+					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam sed, iste officiis alias suscipit eos, cupiditate quam corporis ab accusamus ipsam voluptatum ex tempora dolore?
+				</p>
+				<h3>Thông tin về Thị trường</h3>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quae aperiam voluptas debitis illo perferendis necessitatibus sequi quo ad unde quia est ex, similique velit animi deleniti voluptate nostrum iste nemo voluptatibus quasi! Excepturi saepe omnis necessitatibus minus eligendi dolorum perspiciatis, optio pariatur, quaerat hic natus quidem laboriosam at veniam molestiae accusamus quia quis illo voluptas, reprehenderit tenetur cum. Sit eum ab fugit? Tempore unde maiores aliquam sapiente excepturi voluptas, quam accusamus facilis ipsa perspiciatis possimus corrupti sit dicta, voluptatibus obcaecati molestiae magni fugiat dignissimos! Laborum velit in ipsa, facilis, veniam placeat, qui voluptate ad id asperiores officiis error corporis?</p>
+
+				<h3>Thông tin liên hệ</h3>
+				<p>Phone: 0821287456</p>
+				<p>Email: cyberabc@usab.com</p>
+				<p>Nếu đã đọc ký thông tin, hãy ấn xác nhận liên hệ</p>
+			</div>
+			<div class="detail__confirm my-3">				
+				<button class="my-btn"><a href="./maker.html">XÁC NHẬN</a></button>
+				<button class="my-btn block"><a href="./maker.html">TRỞ VỀ</a></button>
+			</div>
+		</div>
+	</section>
+{% endblock content %}
+{% block js_LP %}
+<script src="{% static 'Manage/JS/makerDetail.js'%}"></script>
+{% endblock js_LP %}

@@ -74,4 +74,13 @@
 					</div>
 				</div>
 		</section>
+		<script>
+			// Ẩn thông báo messages sau 5 giây
+			setTimeout(function() {
+				var messages = document.getElementsByClassName('result__box');
+				if (messages.length > 0) {
+					messages[0].style.display = 'none';
+				}
+			}, 5000);
+			</script>
 {% endblock content %}

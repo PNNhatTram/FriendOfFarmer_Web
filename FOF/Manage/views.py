@@ -34,12 +34,12 @@ def userin4(request):
             custom.address = address
             custom.email = email
             custom.save()
-            # messages.success(request, mark_safe('<p style="color: #008000;">Thay đổi thông tin người dùng thành công!</p><br/>'))
+            messages.success(request, mark_safe('Thay đổi thông tin người dùng thành công!'))
             return redirect('index')
          except Customer.DoesNotExist:
             custom = Customer.objects.create(user=user, name=name, birthday=birthday, type_user=type_user, phonenum=phonenum, address=address, email=email)
             custom.save()
-            # messages.success(request, mark_safe('<p style="color: #008000;">Nhập thông tin người dùng thành công!</p><br/>'))
+            messages.success(request, mark_safe('Nhập thông tin người dùng thành công!'))
             return redirect('index')
       else:
           customer = request.user
@@ -365,6 +365,31 @@ def maker(request):
     else:
         return render(request, 'Manage/maker.html')
 
+def makerDetail(request): 
+    return render(request, 'Manage/makerDetail.html')
+
+def get_market_by_id(request, market_id):
+    """
+    Lấy thông tin thị trường dựa trên ID.
+    """
+
+    try:
+        # Tìm thị trường dựa trên ID
+        market = thitruong.objects.get(id_thitruong=market_id)
+
+        # Chuẩn bị dữ liệu JSON
+        data = {
+            "id": market.id_thitruong,
+            "caytrong_id": market.id_caytrong,
+            "ten_caytrong": market.ten_caytrong,
+            "ten_thitruong": market.ten_thitruong,
+            "ten_nguoiban": market.ten_nguoiban,
+            "gia": market.gia
+        }
+
+        return JsonResponse(data)
+    except thitruong.DoesNotExist:
+        return JsonResponse({"error": "Thị trường không tồn tại."}, status=404)
 
 def maker_sell(request):
     customer = request.user.customer
@@ -387,7 +412,7 @@ def maker_sell(request):
         )
 
         # Add a success message
-        messages.success(request, "Nhập thông tin người dùng thành công!")
+        messages.success(request, "Nhập sản phẩm thành công")
         # Redirect to the same view to prevent form resubmission
         return redirect('maker_sell')
 
