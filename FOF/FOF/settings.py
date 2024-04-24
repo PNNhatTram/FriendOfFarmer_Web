@@ -86,7 +86,9 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -164,3 +166,10 @@ MEDIA_ROOT=os.path.join(BASE_DIR, 'IMG_PRODUCT')
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bemankda@gmail.com'
+EMAIL_HOST_PASSWORD = 'jxyqxhojugiifbvw'
