@@ -9,6 +9,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.safestring import mark_safe
 from django.urls import reverse
+from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
 # LOGIN SIGN UP 
 def signup_redirect(request):
     messages.error(request, "Something wrong here, it may be that you already have account!")
@@ -443,3 +445,19 @@ def contact(request):
 
 def aboutus(request):
             return render(request, 'Manage/aboutus.html')
+
+# SUBSCRIBE 
+def send_subscription_email(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        
+        send_mail(
+            'Chào mừng bạn đến với FOF',
+            'Bạn đã đăng ký nhận tin thành công.',
+            'from@example.com',
+            [email],
+            fail_silently=False,
+        )
+        return redirect('index')
+
+    

@@ -205,8 +205,9 @@
 			<p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
 				tuyệt vời nhất từ chúng tôi.</p>
 			<div class="feed__form">
-				<form action="">
-					<input type="email" placeholder="Nhập địa chỉ email">
+				<form method="POST" action="{% url 'subscribe' %}">
+					{% csrf_token %}
+					<input type="email" name="email" placeholder="Nhập địa chỉ email">
 					<button class="my-btn my-3">Đăng ký</button>
 				</form>
 			</div>
