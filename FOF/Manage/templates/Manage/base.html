@@ -36,6 +36,10 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+	<!--IntroJS -->
+	<link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css"/>
+	<script src="https://unpkg.com/intro.js/intro.js" ></script>
+	<link href="https://unpkg.com/themes/introjs-nazanin.css" rel="stylesheet">
     <!-- MAIN CSS  -->
     <link rel="stylesheet" href="{%static 'Manage/CSS/base.css'%}" />
     {% block head %}{% endblock head %}
@@ -80,9 +84,9 @@
 			<div class="header__login">
 				{% if user.is_authenticated %}
 				<div style="display: flex;">
-					<form action="userin4" style="margin-left:8%">
+					<form action="userin4" style="margin-left:8%" >
 						{% csrf_token %}
-						<button class="my-btn-header login" id="login" style="display: inline;" onmouseover="showFullUsername()" onmouseout="showShortenedUsername()">
+						<button class="my-btn-header login" id="login" style="display: inline;" onmouseover="showFullUsername()" onmouseout="showShortenedUsername()" data-title="Xin chào" data-intro="Hãy nhấn vào đây">
 							{{ user.username | slice:":12" }}
 						</button>
 						<script>
@@ -238,7 +242,30 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+	<script>
+		if (localStorage.getItem('doneTour') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+		} else {
+			var intro = introJs();
+			intro.setOptions({
+				showProgress: true,
+				showBullets: false,
+			});
 
+			intro.oncomplete(function() {
+				// Khi người dùng nhấn "Done", set giá trị trong localStorage
+				localStorage.setItem('doneTour', 'yes');
+			});
+
+			intro.onexit(function() {
+				// Cũng set giá trị khi người dùng thoát ra khỏi intro
+				localStorage.setItem('doneTour', 'no');
+			});
+
+			// Khởi tạo tour
+			intro.start();
+		}
+	</script>
     <!--MY JS-->
     <script src="{%static 'Manage/JS/base.js'%}"></script>
 	{% block js_LP %}{% endblock js_LP %}

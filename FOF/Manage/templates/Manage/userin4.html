@@ -7,7 +7,7 @@
 
 {% block form %}
     {% if user.is_authenticated %}
-    <div class="infor container section">
+    <div class="infor container section"  data-title="Bảng thông tin" data-intro="Hãy hoàn thành nó nhé!">
         <h2>Nhập thông tin người dùng</h2>
         <form method="POST">
             {% csrf_token %}
