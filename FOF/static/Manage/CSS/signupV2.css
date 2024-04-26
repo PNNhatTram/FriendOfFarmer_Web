@@ -96,3 +96,22 @@ a {
   text-decoration: none;
 
 }
+.error {
+  background-color: rgba(255, 0, 0, 0.296);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  width: 50%;
+  margin-bottom: 20px;
+}
+.success {
+  background-color: #60996665;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  width: 50%;
+  margin-bottom: 20px;
+}
+.hidden {
+  display: none;
+}
