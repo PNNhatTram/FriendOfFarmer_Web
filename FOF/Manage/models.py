@@ -87,38 +87,17 @@ class Product(models.Model):
         return url
     
     # Create your models here.
-class thitruong (models.Model):
-    id_thitruong= models.AutoField(primary_key= True)
-    id_caytrong = models.CharField(max_length=10, null=False)
-    ten_caytrong= models.CharField(max_length=50, null=False)
-    ten_thitruong=models.CharField(max_length=50, null=False)
-    ten_nguoiban=models.CharField(max_length=50, null=False)
-    gia=models.BigIntegerField(null=True)
-    def __str__(self):
-        return f"{self.id_thitruong}, {self.id_caytrong}, {self.ten_caytrong}, {self.ten_thitruong}, {self.ten_nguoiban}, {self.gia}"
 
-class thitruong_ban (models.Model):
-    id_thitruong= models.AutoField(primary_key= True)
-    ten_caytrong= models.CharField(max_length=50, null=False)
-    ten_thitruong=models.CharField(max_length=50, null=False)
-    gia=models.BigIntegerField(null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    mota= models.CharField(max_length=1000, null=False)
-    def __str__(self):
-        return f"{self.ten_thitruong}"
+class market(models.Model): 
+    marketName = models.CharField(max_length=200, null=False)
+    marketPlant = models.CharField(max_length=200, null=False)
+    marketUser = models.ForeignKey(User, on_delete=models.CASCADE)
+    marketFee = models.CharField(max_length=200, null=False)
+    marketDetail = models.CharField(max_length=1000, null=False)
+    
 
-@receiver(post_save, sender=thitruong_ban)
-def create_or_update_thitruong(sender, instance, created, **kwargs):
-    if created:
-        # Nếu là bản ghi mới được tạo trong Thitruong_ban, tạo bản ghi tương ứng trong Thitruong
-        thitruong.objects.create(
-            # id_caytrong=instance.id_caytrong,
-            id_thitruong=instance.id_thitruong,
-            ten_caytrong=instance.ten_caytrong,
-            ten_thitruong=instance.ten_thitruong,
-            ten_nguoiban=instance.user.username,
-            gia=instance.gia
-        )
+
+
 
 class Contact(models.Model):
     hoten = models.CharField(max_length=255)

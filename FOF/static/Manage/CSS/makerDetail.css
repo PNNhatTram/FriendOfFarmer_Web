@@ -44,4 +44,10 @@
   .detail__confirm .my-btn:hover a {
     color: #609966;
   }
-  
+  .success {
+    background-color: #60996665;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 50%;
+  }

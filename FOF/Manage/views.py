@@ -348,51 +348,58 @@ def infor(request):
 # MARKET 
 def maker(request):
     if request.user.is_authenticated:
-      key = Customer.objects.filter(user=request.user)
-      if not key.exists():  # Check if the queryset is empty
-        return render(request, 'Manage/maker.html')  
-      else:
-        customer = request.user.customer
+        customer = Customer.objects.filter(user=request.user).first()
+        if not customer:  # Kiểm tra nếu queryset rỗng
+            return render(request, 'Manage/maker.html')
+
         product = ""
         maker = ""
         keys1 = []
         keys2 = []
-        keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
-        keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)  
+
+        keys1 = market.objects.filter(marketPlant__contains=product)
+        keys2 = market.objects.filter(marketName__contains=maker)
+
         if request.method == "POST":
-            product = request.POST["product"]
-            maker = request.POST["maker"]
-            keys1 = thitruong.objects.filter(ten_caytrong__contains=product)
-            keys2 = thitruong.objects.filter(ten_thitruong__contains=maker)
-        context = {'product':product,'maker':maker,'keys1' : keys1, 'keys2': keys2, 'customer': customer}
+            product = request.POST.get("product")
+            maker = request.POST.get("maker")
+            keys1 = market.objects.filter(marketPlant__contains=product)
+            keys2 = market.objects.filter(marketName__contains=maker)
+
+        context = {
+            'product': product,
+            'maker': maker,
+            'keys1': keys1,
+            'keys2': keys2,
+            'customer': customer,
+            'market': market  # Thêm biến 'market' vào context
+        }
+
         return render(request, 'Manage/maker.html', context)
     else:
         return render(request, 'Manage/maker.html')
 
-def makerDetail(request): 
-    return render(request, 'Manage/makerDetail.html')
 
-def get_market_by_id(request, market_id):
-    """
-    Lấy thông tin thị trường dựa trên ID.
-    """
 
+
+
+def market_detail(request, market_id):
     try:
         # Tìm thị trường dựa trên ID
-        market = thitruong.objects.get(id_thitruong=market_id)
+        market_obj = market.objects.get(id=market_id)
+        user = market_obj.marketUser
+        # Lấy thông tin khách hàng
+        customer = Customer.objects.get(user=user)
 
-        # Chuẩn bị dữ liệu JSON
-        data = {
-            "id": market.id_thitruong,
-            "caytrong_id": market.id_caytrong,
-            "ten_caytrong": market.ten_caytrong,
-            "ten_thitruong": market.ten_thitruong,
-            "ten_nguoiban": market.ten_nguoiban,
-            "gia": market.gia
+        # Chuẩn bị context data
+        context = {
+            'market': market_obj, 
+            'user': user, 
+            'customer': customer
         }
 
-        return JsonResponse(data)
-    except thitruong.DoesNotExist:
+        return render(request, 'Manage/makerDetail.html', context)
+    except market.DoesNotExist:
         return JsonResponse({"error": "Thị trường không tồn tại."}, status=404)
 
 def maker_sell(request):
@@ -407,12 +414,12 @@ def maker_sell(request):
         mota = request.POST.get('mota')    
 
         # Create a new record in thitruong_ban table
-        thitruong_ban_obj = thitruong_ban.objects.create(
-            ten_caytrong=ten_caytrong,
-            ten_thitruong=ten_thitruong,
-            gia=gia,
-            mota=mota,
-            user=user
+        market_obj = market.objects.create(
+            marketPlant=ten_caytrong,
+            marketName=ten_thitruong,
+            marketFee=gia,
+            marketDetail=mota,
+            marketUser=user
         )
 
         # Add a success message
@@ -423,7 +430,7 @@ def maker_sell(request):
     else:
         # Fetch existing data
         username = request.user
-        list_maker = thitruong_ban.objects.filter(user=username)
+        list_maker = market.objects.filter(marketUser=username)
         context = {'list_maker': list_maker, 'customer': customer}
         return render(request, 'Manage/maker_sell.html', context)
 

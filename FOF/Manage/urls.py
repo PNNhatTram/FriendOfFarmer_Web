@@ -38,10 +38,9 @@ urlpatterns = [
 
     # MARKET 
     path('maker', views.maker, name="maker"),
-    path('maker/detail', views.makerDetail, name="makerDetail"),
+    path('maker/detail/<int:market_id>', views.market_detail, name="makerDetail"),
     path('maker_sell', views.maker_sell, name="maker_sell"),
-    path('api/get_market_by_id/<int:market_id>/', views.get_market_by_id, name='get_market_by_id'),
-
+   
     # CONTACT 
     path('contact', views.contact, name="contact"),
     path('aboutus', views.aboutus, name="aboutus"),
