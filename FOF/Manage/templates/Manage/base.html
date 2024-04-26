@@ -74,7 +74,7 @@
 				<span>Biến động thị trường xuất khẩu </span>
 				&nbsp;
 				<p>đ12456543</p>
-				<i class="fa fa-moon"></i>
+				<i class="fa fa-moon" onclick="myFunction()"></i>
 			</div>
 			<div class="header__button">
 				<button>Get list <i class="fa fa-angle-down"></i></button>
@@ -117,7 +117,33 @@
 				
 			</div>
 		</div>
-		
+		<!-- Dark mode -->
+		<style>
+			
+			.dark{
+				background-color: #373535;
+				color: #e6e6e6;
+			}
+		</style>
+
+		<script>
+			function myFunction() {
+			let element = document.body;
+			element.classList.toggle("dark");
+			
+			// Save dark mode state in local storage.
+			if (element.classList.contains("dark")) {
+				localStorage.setItem('dark_mode', 'true');
+			} else {
+				localStorage.setItem('dark_mode', 'false');
+			}
+			}
+			
+			// Get dark mode state from local storage.
+			if (localStorage.getItem('dark_mode') === 'true') {
+			document.body.classList.add("dark");
+			}
+		</script>
 
 		<nav class="navbar navbar-expand-lg header__menu">
 			<div class="container-fluid">
