@@ -69,64 +69,37 @@
 		</div>
 		{% comment %} {%if obj in keys1%} {% endcomment %}
 		{% for obj in keys1 %}
-  {% if obj in keys2 %}
-  <div class="row my__row__res row__common align-items-center">
-    <div class="col res__num common">
-      <a href="{% url 'makerDetail' obj.id %}">
-        <span><i class="fa-regular fa-star"></i>&nbsp; {{ obj.id }}</span>
-      </a>
-    </div>
-    <div class="col-2 res__name common">
-      {{ obj.marketPlant }}
-    </div>
-    <div class="col-2 res__place common">
-      {{ obj.marketName }}
-    </div>
-    <div class="col-2 res__suppli common">
-      {{ obj.marketUser }}
-    </div>
-    <div class="col res__price common" style="color: #16c784;">
-      {{ obj.marketFee }}
-    </div>
-    <div class="col-3 res__trend common">
-      <img src="./IMG/1.svg" alt="trend">
-    </div>
-    <div class="col res__check common">
-      Xác nhận
-    </div>
-  </div>
-  {% endif %}
-{% endfor %}
-		{% comment %} {%else%}
-		{%for thitruong in thitruong_list%}
-		<div class="row my__row__res row__common align-items-center">
-			
-			<div class="col res__num common">
-				<a href="./marker2.html"><span><i class="fa-regular fa-star"></i>&nbsp; {{thitruong.id_thitruong}}</span></a>
+ 			 {% if obj in keys2 %}
+				<div class="row my__row__res row__common align-items-center">
+					<div class="col res__num common">
+					<a href="{% url 'makerDetail' obj.id %}">
+						<span><i class="fa-regular fa-star"></i>&nbsp; {{ obj.id }}</span>
+					</a>
+					</div>
+					<div class="col-2 res__name common">
+					{{ obj.marketPlant }}
+					</div>
+					<div class="col-2 res__place common">
+					{{ obj.marketName }}
+					</div>
+					<div class="col-2 res__suppli common">
+					{{ obj.marketUser }}
+					</div>
+					<div class="col res__price common" style="color: #16c784;">
+					{{ obj.marketFee }}
+					</div>
+					<div class="col-3 res__trend common">
+					<img src="{% static 'Manage/IMG/825.svg' %}" alt="trend">
+					</div>
+					<div class="col res__check common confirm-btn">
+					Xác nhận
+					</div>
+				</div>
+
 				
-			</div>
-			<div class="col-2 res__name common">
-				{{thitruong.ten_caytrong}}
-			</div>
-			<div class="col-2 res__place common">
-				{{thitruong.ten_thitruong}}
-			</div>
-			<div class="col-2 res__suppli common">
-				{{thitruong.ten_nguoiban}}
-			</div>
-			<div class="col res__price common" style="color: #16c784;">
-				{{thitruong.gia}}
-			</div>
-			<div class="col-3 res__trend common">
-				<img src="./IMG/1.svg" alt="trend">
-			</div>
-			<div class="col res__check common" >
-				Xác nhận
-			</div>
-			
-		</div>
-		{%endfor%}
-		{%endif%} {% endcomment %}
+  			{% endif %}
+		{% endfor %}
+		
 	
 
 	</section>
@@ -155,6 +128,8 @@
 		
 		
 	</section>
+
+	
 	{%else%}
 	<p class = "error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG TÍNH NĂNG NÀY.</p>
 	{%endif%}
@@ -171,3 +146,7 @@
 <p class = "error">Vui lòng đăng nhập.</p>
 {%endif%}
 {% endblock content %}
+
+{% block js_LP %}
+  <script src="{% static 'Manage/JS/maker.js'%}"></script>
+{% endblock js_LP %}

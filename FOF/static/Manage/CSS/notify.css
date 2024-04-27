@@ -62,6 +62,11 @@
     margin-bottom: 1rem;
  }
 
+ .notifi__row .notifi__context a {
+   text-decoration: none;
+   color: #5c5e5f;
+ }
+
 
 
   
