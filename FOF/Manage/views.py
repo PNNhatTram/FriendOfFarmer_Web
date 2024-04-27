@@ -365,7 +365,7 @@ def maker(request):
             maker = request.POST.get("maker")
             keys1 = market.objects.filter(marketPlant__contains=product)
             keys2 = market.objects.filter(marketName__contains=maker)
-
+        
         context = {
             'product': product,
             'maker': maker,
