@@ -466,5 +466,8 @@ def send_subscription_email(request):
             fail_silently=False,
         )
         return redirect('index')
+#dksd
+def dksd(request):
+    return render(request, 'Manage/dksd.html')
 
     

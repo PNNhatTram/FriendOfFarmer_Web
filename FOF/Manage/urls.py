@@ -45,6 +45,8 @@ urlpatterns = [
     path('contact', views.contact, name="contact"),
     path('aboutus', views.aboutus, name="aboutus"),
     path('subscribe', views.send_subscription_email, name='subscribe'),
+    #FOOTER
+    path('dksd', views.dksd, name="dksd"),
   
 ]
 
