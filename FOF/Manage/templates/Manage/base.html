@@ -203,6 +203,7 @@
 	{% block content_index %}{% endblock content_index %}
 	{% block content_aboutus %}{% endblock content_aboutus %}
 	{%block content_dksd%}{%endblock content_dksd%}
+	{%block content_csrt%}{%endblock content_csrt%}
 
     <!--FOOTER-->
     <footer>
@@ -218,8 +219,8 @@
 							<ul>
 								<li><a class="nav-link" href="{%url 'aboutus'%}">About us</a></li>
 								<li><a class="nav-link" href="{%url 'dksd'%}">Điều khoản sử dụng</a></li>
-								<li><a class="nav-link" href="">Chính sách</a></li>
-								<li><a class="nav-link" href="">Sứ mệnh</a></li>
+								<li><a class="nav-link" href="{%url 'csrt'%}">Chính sách</a></li>
+								<li><a class="nav-link" href="{%url 'aboutus'%}">Sứ mệnh</a></li>
 								<li><a class="nav-link" href="{%url 'contact'%}">Liên hệ</a></li>
 							</ul>
 						</div>
@@ -229,18 +230,18 @@
 								<li><a class="nav-link" href="{%url 'manage'%}">Quản lý</a></li>
 								<li><a class="nav-link" href="{%url 'maker'%}">Thị trường</a></li>
 								<li><a class="nav-link" href="{%url 'search'%}">Tìm kiếm</a></li>
-								<li><a class="nav-link" href="">Trợ lý</a></li>
-								<li><a class="nav-link" href="">Giải đáp</a></li>
+								<li><a class="nav-link" href="{%url 'index'%}">Trợ lý</a></li>
+								<li><a class="nav-link" href="{%url 'contact'%}">Giải đáp</a></li>
 							</ul>
 						</div>
 						<div class="footer__item">
 							<h3>Mạng xã hội</h3>
 							<ul>
-								<li><a class="nav-link" href="">Facebook</a></li>
-								<li><a class="nav-link" href="">X</a></li>
-								<li><a class="nav-link" href="">Instagram</a></li>
-								<li><a class="nav-link" href="">Pinterest</a></li>
-								<li><a class="nav-link" href="">LinkedIn</a></li>
+								<li><a class="nav-link" href="https://www.facebook.com/">Facebook</a></li>
+								<li><a class="nav-link" href="https://twitter.com/?lang=vi">X</a></li>
+								<li><a class="nav-link" href="https://www.instagram.com/">Instagram</a></li>
+								<li><a class="nav-link" href="https://www.pinterest.com/">Pinterest</a></li>
+								<li><a class="nav-link" href="https://www.linkedin.com/">LinkedIn</a></li>
 							</ul>
 						</div>
 					</div>

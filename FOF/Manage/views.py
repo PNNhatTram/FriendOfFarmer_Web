@@ -485,16 +485,50 @@ def send_subscription_email(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         
+        message = '''
+        <html>
+            <head>
+                <style>
+                    body {
+                        font-family: 'Times New Roman', Times, serif;
+                        font-size: 14px;
+                        line-height: 1.6;
+                        color: #333333;
+                    }
+                    h1 {
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: #000000;
+                    }
+                    p {
+                        margin-bottom: 10px;
+                    }
+                </style>
+            </head>
+            <body>
+                <p style = "font-weight = bold;">Chào bạn,</p>
+                <p>Cảm ơn bạn đã quan tâm đến hệ sinh thái nông nghiệp hiện đại Friend of Farmer của chúng tôi (FOF). Nếu bạn có nhu cầu sử dụng dịch vụ của chúng tôi, hãy đăng ký cho mình một tài khoản và sử dụng tiện ích của chúng tôi ngay nào!</p>
+                <p>Dịch vụ FOF của chúng tôi hướng đến việc tạo ra môi trường nông nghiệp hiện đại, ứng dụng các thành tựu công nghệ giúp nông dân dễ dàng hơn trong việc quản lý nông sản, tìm đầu ra thị trường cũng như tìm kiếm các nguyên vật liệu nông nghiệp giá rẻ.</p>
+                <p>Nếu như bạn có bất kỳ thắc mắc nào về cách sử dụng hay có câu hỏi nào muốn đặt ra cho chúng tôi, vui lòng liên hệ:</p>
+                <p>Email: fof.nt208@gmail.com</p>
+                <p>Số điện thoại: 0123456789</p>
+                <p>Cảm ơn bạn đã quan tâm và tin tưởng sử dụng dịch vụ FOF.</p>
+            </body>
+        </html>
+        '''
+        
         send_mail(
-            'Chào mừng bạn đến với FOF',
-            'Bạn đã đăng ký nhận tin thành công.',
+            '|HỆ THỐNG FOF| GIỚI THIỆU DỊCH VỤ',
+            '',
             'from@example.com',
             [email],
+            html_message=message,
             fail_silently=False,
         )
         return redirect('index')
-#dksd
+#footer
 def dksd(request):
     return render(request, 'Manage/dksd.html')
-
+def csrt(request):
+     return render(request, 'Manage/csrt.html')
     

@@ -73,4 +73,29 @@
     {% else %}
     <p>Vui lòng đăng nhập!</p>
     {% endif %}
+
+    <script>
+        if (localStorage.getItem('doneTour') === 'yes') {
+            // Tour đã được hoàn thành trước đây; không hiện tour
+        } else {
+            var intro = introJs();
+            intro.setOptions({
+                showProgress: true,
+                showBullets: false,
+            });
+    
+            intro.oncomplete(function() {
+                // Khi người dùng nhấn "Done", set giá trị trong localStorage
+                localStorage.setItem('doneTour', 'yes');
+            });
+    
+            intro.onexit(function() {
+                // Cũng set giá trị khi người dùng thoát ra khỏi intro
+                localStorage.setItem('doneTour', 'no');
+            });
+    
+            // Khởi tạo tour
+            intro.start();
+        }
+    </script>
 {% endblock form %}

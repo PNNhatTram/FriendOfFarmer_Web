@@ -38,8 +38,10 @@ class Plant(models.Model):
         ('1', 'Cây ăn quả'),
         ('2', 'Cây rau củ'),
     ])
-    plant_ND = models.CharField(max_length=200,help_text="Nồng độ khoáng chất cần thiết")
+    plant_ND = models.CharField(max_length=200,help_text="Các khoáng chất cần thiết")
     plant_bp = models.IntegerField(help_text="Chu kỳ bón phân (ngày)")
+    # Độ ẩm cây trồng cần
+    # 
     land = models.ForeignKey(Land, on_delete=models.CASCADE)
 
     def __str__(self):
