@@ -47,15 +47,15 @@ urlpatterns = [
     path('contact', views.contact, name="contact"),
     path('aboutus', views.aboutus, name="aboutus"),
     path('subscribe', views.send_subscription_email, name='subscribe'),
-<<<<<<< HEAD
+
 
 
     path('searchname', views.searchname, name='searchname'),
     path('searchadr', views.searchadr, name='searchadr'),
-=======
+
     #FOOTER
     path('dksd', views.dksd, name="dksd"),
->>>>>>> 23dc61228b5808e0b9787b044eea945b475428d7
+
   
 ]
 
