@@ -95,7 +95,8 @@ class market(models.Model):
     marketFee = models.CharField(max_length=200, null=False)
     marketDetail = models.CharField(max_length=1000, null=False)
     
-
+# class notify(models.Model):
+#     notiflLink 
 
 
 
@@ -106,3 +107,4 @@ class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.hoten
+

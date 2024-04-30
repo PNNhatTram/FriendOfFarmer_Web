@@ -38,6 +38,8 @@ urlpatterns = [
 
     # MARKET 
     path('maker', views.maker, name="maker"),
+    path('makerplant', views.makerplant, name="makerplant"),
+    path('makeradr', views.makeradr, name="makeradr"),
     path('maker/detail/<int:market_id>', views.market_detail, name="makerDetail"),
     path('maker_sell', views.maker_sell, name="maker_sell"),
    
@@ -45,11 +47,16 @@ urlpatterns = [
     path('contact', views.contact, name="contact"),
     path('aboutus', views.aboutus, name="aboutus"),
     path('subscribe', views.send_subscription_email, name='subscribe'),
+
+
+    path('searchname', views.searchname, name='searchname'),
+    path('searchadr', views.searchadr, name='searchadr'),
   
 ]
 
 # Tạo một danh sách mới chỉ chứa urlpatterns cho đường dẫn 'search'
 search_urlpatterns = [
+    
     path('search', views.search, name='search'),
 ]
 

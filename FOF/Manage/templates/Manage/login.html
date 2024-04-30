@@ -75,7 +75,7 @@
                         <div class="social-login" >
                             <span class="social-label">Hoặc đăng nhập với</span>
                                 <a href="{% provider_login_url 'google'%}?next=/" style="background-color: #e72734;"><i class="fab fa-google-plus-g"></i></i></a>
-                               <a href="" style="background-color: #3b5998;"><i class="fab fa-facebook-f"></i></a>
+                               <a href="{%provider_login_url 'facebook'%}?next=/" style="background-color: #3b5998;"><i class="fab fa-facebook-f"></i></a>
                                <a href="#" style="background-color: #1da0f2;"><i class="fab fa-twitter"></i></a>
                                {% comment %} {%provider_login_url 'facebook'%}?next=/ {% endcomment %}
                             

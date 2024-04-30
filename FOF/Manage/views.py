@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
+from Manage.models import Product
 # LOGIN SIGN UP 
 def signup_redirect(request):
     messages.error(request, "Something wrong here, it may be that you already have account!")
@@ -119,6 +120,11 @@ def notify(request):
 
 # RESOURCE 
 def search(request):
+    
+    if 'termadr' in request.GET:
+        term = request.GET.get('termadr')
+        products = Product.objects.filter(adress__istartswith=term)
+        return JsonResponse(list(products.values_list('adress', flat=True)), safe=False)
     searched_name = ""  # Default value for searched
     searched_adr = ""  # Default value for searched
     keys = []  # Default value for keys
@@ -129,7 +135,18 @@ def search(request):
         keys = Product.objects.filter(name__contains = searched_name)
         keys1 = Product.objects.filter(adress__contains = searched_adr)
     return render(request, 'Manage/search.html', {"searched_name":searched_name , "searched_adr":searched_adr, "keys":keys, "keys1":keys1})
-
+#autocomplete
+def searchname(request):
+    if 'term' in request.GET:
+        term = request.GET.get('term')
+        products = Product.objects.filter(name__istartswith=term)
+        return JsonResponse(list(products.values_list('name', flat=True)), safe=False)
+#autocomplete
+def searchadr(request):
+    if 'term' in request.GET:
+        term = request.GET.get('term')
+        products = Product.objects.filter(adress__istartswith=term)
+        return JsonResponse(list(products.values_list('adress', flat=True)), safe=False)
 # MANAGE 
 def manage(request):
     # Kiểm tra xem người dùng có đăng nhập hay không
@@ -378,8 +395,18 @@ def maker(request):
         return render(request, 'Manage/maker.html', context)
     else:
         return render(request, 'Manage/maker.html')
-
-
+#autocomplete for maker 
+def makeradr(request):
+    if 'term' in request.GET:
+        term = request.GET.get('term')
+        products = market.objects.filter(marketName__istartswith=term)
+        return JsonResponse(list(products.values_list('marketName', flat=True)), safe=False)
+#autocomplete for maker
+def makerplant(request):
+    if 'term' in request.GET:
+        term = request.GET.get('term')
+        products = market.objects.filter(marketPlant__istartswith=term)
+        return JsonResponse(list(products.values_list('marketPlant', flat=True)), safe=False)
 
 
 
