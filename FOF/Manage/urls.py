@@ -63,7 +63,6 @@ urlpatterns = [
 
 # Tạo một danh sách mới chỉ chứa urlpatterns cho đường dẫn 'search'
 search_urlpatterns = [
-    
     path('search', views.search, name='search'),
 ]
 
