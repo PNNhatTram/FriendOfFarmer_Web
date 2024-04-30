@@ -202,6 +202,7 @@
 	{% block notify %}{% endblock notify %}
 	{% block content_index %}{% endblock content_index %}
 	{% block content_aboutus %}{% endblock content_aboutus %}
+	{%block content_dksd%}{%endblock content_dksd%}
 
     <!--FOOTER-->
     <footer>
@@ -216,7 +217,7 @@
 							<h3>Dự án</h3>
 							<ul>
 								<li><a class="nav-link" href="{%url 'aboutus'%}">About us</a></li>
-								<li><a class="nav-link" href="">Điều khoản sử dụng</a></li>
+								<li><a class="nav-link" href="{%url 'dksd'%}">Điều khoản sử dụng</a></li>
 								<li><a class="nav-link" href="">Chính sách</a></li>
 								<li><a class="nav-link" href="">Sứ mệnh</a></li>
 								<li><a class="nav-link" href="{%url 'contact'%}">Liên hệ</a></li>
