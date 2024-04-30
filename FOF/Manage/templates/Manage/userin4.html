@@ -15,14 +15,17 @@
                 {% include 'Manage/userin4.html' %}
             {% else %}
                 <div >
-                    <div >
-                        <label for="name" >Họ và tên: {{name}}</label><br>
-                        <input type="text" id="name" name="name" value="{{name}}" required><br><br>
-                    </div>
-                    <div >
-                        <label for="birth">Ngày sinh: {{birth}}</label><br>
-                        <input type="date" id="birth" name="birth" value="{{birth}}"required><br><br>
-                    </div>
+                    <div class="row input1"> 
+                        <div class="col-7 in__col">
+                            <label for="name" >Họ và tên: {{name}}</label><br>
+                            <input type="text" id="name" name="name" value="{{name}}" required><br><br>
+                        </div>
+                        <div class="col-5 in__col">
+                            <label for="birth">Ngày sinh: {{birth}}</label><br>
+                            <input type="date" id="birth" name="birth" value="{{birth}}"required><br><br>
+                        </div>
+                    </div> 
+                    
                     <script>
                         // Lấy ra input ngày sinh
                         var input = document.getElementById('birth');
@@ -45,20 +48,24 @@
                     </div>
                 </div>
             
-                <div >
-                    <div >
+                <div class="row input2"> 
+                    <div class="col-4 in__col">
                         <label for="phone">Số điện thoại: {{phone}}</label><br>
                         <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" value = "{{phone}}" required><br><br>
                     </div>
+
+                    <div class="in__col col-8">
+                        <label for="email">Email: {{user.email}}</label><br>
+                        <input type="email" id="email" name="email" value = "{{user.email}}" required><br><br>
+                    </div>    
+                </div> 
+                    
                     <div >
                         <label for="adr">Địa chỉ: {{adr}}</label><br>
                         <input type="text" id="adr" name="adr" value = "{{adr}}" required><br><br>
                     </div>
-                    <div>
-                        <label for="email">Email: {{user.email}}</label><br>
-                        <input type="email" id="email" name="email" value = "{{user.email}}" required><br><br>
-                    </div>    
-                </div>
+                   
+           
                 {% comment %} {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
@@ -66,7 +73,18 @@
                     {% endfor %}
                 </div>
                 {% endif %} {% endcomment %}
-                <input type="submit" value="Gửi">
+                <div class="submit__group row">
+                    <div class="col-3"> 
+                        <input type="submit" value="Xác nhận">
+                    </div>
+
+                    <div class="col-3"> 
+                        <input class= "hahaha" type="button" id="editBtn" value="Sửa thông tin">
+                    </div>
+                    
+                   
+                </div>
+                
             {% endif %}
         </form>
     </div>
@@ -75,6 +93,37 @@
     {% endif %}
 
     <script>
+
+        // Lấy ra nút "Sửa thông tin"
+        var editBtn = document.getElementById('editBtn');
+
+        // Lấy ra các trường input cần thay đổi thuộc tính "disabled"
+        var nameInput = document.getElementById('name');
+        var birthInput = document.getElementById('birth');
+        var typeInput = document.getElementById('type');
+        var phoneInput = document.getElementById('phone');
+        var emailInput = document.getElementById('email');
+        var adrInput = document.getElementById('adr');
+
+        // Mặc định: disable tất cả các trường input
+        nameInput.disabled = true;
+        birthInput.disabled = true;
+        typeInput.disabled = true;
+        phoneInput.disabled = true;
+        emailInput.disabled = true;
+        adrInput.disabled = true;
+
+        // Xử lý sự kiện khi người dùng nhấn vào nút "Sửa thông tin"
+        editBtn.addEventListener('click', function() {
+            // Enable tất cả các trường input
+            nameInput.disabled = false;
+            birthInput.disabled = false;
+            typeInput.disabled = false;
+            phoneInput.disabled = false;
+            emailInput.disabled = false;
+            adrInput.disabled = false;
+        });
+
         if (localStorage.getItem('doneTour') === 'yes') {
             // Tour đã được hoàn thành trước đây; không hiện tour
         } else {

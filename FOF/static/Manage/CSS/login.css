@@ -137,3 +137,6 @@ a {
 .hidden {
   display: none;
 }
+.forgot__title {
+  font-weight: bold;
+}
