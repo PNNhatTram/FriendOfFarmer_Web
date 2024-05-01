@@ -1,3 +1,4 @@
+
 function myFunction() {
   window.location.href = "{% url 'create' %}";
 }

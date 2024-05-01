@@ -1,30 +1,76 @@
+function ClickSeason(event) {
+  // Lấy ID nút
+  const buttonId = event.target.dataset.seasonId;
+  // Gửi yêu cầu đến server
+  const url = `/api/get-season-info/${buttonId}`;
   
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
 
+      // Cập nhật nội dung HTML
+      const seasonInfoElement = document.querySelector("#season-info");
+      seasonInfoElement.querySelector(".season_name").textContent = data.season_name;
+      // seasonInfoElement.querySelector(".season-start-time").textContent = data.time_start;
+      // seasonInfoElement.querySelector(".season-end-time").textContent = data.time_end;
+      seasonInfoElement.querySelector(".season-profit").textContent = data.profit;
+      
+      /* tạo button xoá mùa */
+      // tạo ptu button mới
+      const delSeasonB = document.createElement("button");
+      // Thêm nội dung cho button
+      delSeasonB.textContent = "XOÁ MÙA VỤ"; 
+      // Thêm class "mybtn" vào button
+      delSeasonB.classList.add("my-btn");
+      // Thêm ID cho button
+      delSeasonB.id = "delSeasonB";
+      //tìm 1 ptu hiện có
+      const element1 = document.getElementById("divSeasonInfo");
+      // Nối nút vào phần tử, đặt nút phía trên nội dung
+      element1.insertAdjacentElement('afterbegin', delSeasonB);
+      // sự kiện click
+      document.getElementById("delSeasonB").addEventListener("click", deleteSeason);
 
-  function ClickSeason(event) {
-    // Lấy ID nút
-    const buttonId = event.target.dataset.seasonId;
-    // Gửi yêu cầu đến server
-    const url = `/api/get-season-info/${buttonId}`;
-    
+      /* tạo button chỉnh sửa mùa */
+      // tạo ptu button mới
+      const changeSeasonB = document.createElement("button");
+      // Thêm nội dung cho button
+      changeSeasonB.textContent = "CHỈNH SỬA"; 
+      // Thêm class "mybtn" vào button
+      changeSeasonB.classList.add("my-btn");
+      // Thêm ID cho button
+      changeSeasonB.id = "changeSeasonB";
+      // Nối nút vào phần tử, đặt nút phía trên nội dung
+      element1.insertAdjacentElement('afterbegin', changeSeasonB);
+      // sự kiện click
+      document.getElementById("changeSeasonB").addEventListener("click", changeSeason);
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+    });
+}
 
-        // Cập nhật nội dung HTML
-        const seasonInfoElement = document.querySelector("#season-info");
-        seasonInfoElement.querySelector(".season_name").textContent = data.season_name;
-        // seasonInfoElement.querySelector(".season-start-time").textContent = data.time_start;
-        // seasonInfoElement.querySelector(".season-end-time").textContent = data.time_end;
-        seasonInfoElement.querySelector(".season-profit").textContent = data.profit;
+function deleteSeason()
+{
+  location.reload();
+}
 
-
+function changeSeason(event) {
+  // Lấy ID của mùa vụ từ nút được nhấn
+  const seasonId = event.target.dataset.seasonId;
+  // Gửi yêu cầu đến server để lấy thông tin của mùa vụ
+  const url = `/api/get-season-info/${seasonId}`;
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          // Điền thông tin của mùa vụ vào form chỉnh sửa
+          document.getElementById("season_name").value = data.season_name;
+          document.getElementById("time_start").value = data.time_start;
+          document.getElementById("time_end").value = data.time_end;
+          document.getElementById("profit").value = data.profit;
       });
-  }
+}
 
 
-  function showLandInfo(landId) {
+function showLandInfo(landId) {
     // Gọi API hoặc thực hiện các thao tác khác để lấy dữ liệu cho landId cụ thể
     fetch(`/api/get-land-info/${landId}`)
       .then((response) => response.json())
@@ -41,9 +87,9 @@
         pH_num.style.width = ph_dec + '%';
         doAm.style.width = landInfo.moisture + '%';
       });
-  }
+}
 
-  function ClickLand(event) {
+function ClickLand(event) {
     // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
     const seasonId = event.target.dataset.seasonId;
 
@@ -111,7 +157,7 @@ function ClickLandShowPlant(event){
   // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
   const landId = event.target.dataset.landId;
 
-  // Kiểm tra seasonId có tồn tại và hợp lệ
+  // Kiểm tra landId có tồn tại và hợp lệ
   if (landId) {
     // Construct the URL to fetch land data for the provided season ID
     const plantURL = `/api/get-plant-by-land/${landId}`;
@@ -139,15 +185,46 @@ function ClickLandShowPlant(event){
 
         var col3 = document.createElement('div');
         col3.className = 'col-3 plant__detail';
-        col3.textContent = 'Thông tin chi tiết';
+        
 
+
+        // Tạo phần tử ul
+        var ul = document.createElement('ul');
+
+        // Tạo các phần tử li và gán nội dung
+        var loaiCayTrong = document.createElement('li');
+        loaiCayTrong.textContent = 'Loại cây trồng: ' + typePlant(item.type);
+
+        var thoiGianPhatTrien = document.createElement('li');
+        thoiGianPhatTrien.textContent = 'Thời gian phát triển: ' + item.timeDev + ' tháng';
+
+        var chuKyBonPhan = document.createElement('li');
+        chuKyBonPhan.textContent = 'Chu kỳ bón phân: ' + item.bp + ' tháng';
+
+        var nongDoKhoang = document.createElement('li');
+        nongDoKhoang.textContent = 'Nồng độ khoáng cần thiết: ' + item.nd;
+
+        // Gắn các phần tử li vào phần tử ul
+        ul.appendChild(loaiCayTrong);
+        ul.appendChild(thoiGianPhatTrien);
+        ul.appendChild(chuKyBonPhan);
+        ul.appendChild(nongDoKhoang);
+
+        // Gắn phần tử ul vào phần tử col3
+        col3.appendChild(ul);
+
+
+
+
+
+        
         var col4 = document.createElement('div');
         col4.className = 'col-2 plant__status';
-        col4.textContent = 'Tình trạng';
+        col4.textContent = 'Tốt';
 
         var col5 = document.createElement('div');
         col5.className = 'col-2 plant__time';
-        col5.textContent = 'Thời gian thu hoạch';
+        col5.textContent = '25 ngày';
 
         // Gắn các phần tử con vào phần tử cha
         rowDiv.appendChild(col1);
@@ -225,6 +302,19 @@ function ClickLandShowPlant(event){
         rowDiv.appendChild(col4);
         rowDiv.appendChild(col5);
 
+        // Tạo button xoá land
+        var deleteLandBtn = document.createElement('button');
+        deleteLandBtn.textContent = 'Xoá Land';
+        deleteLandBtn.setAttribute('data-land-id', item.id);
+        deleteLandBtn.classList.add('delete-land-button'); // Thêm class để dễ xác định
+        deleteLandBtn.addEventListener('click', function(event) {
+          // Ngăn chặn sự kiện click lan ra ngoài để không gọi tới ClickLandShowPlant
+          event.stopPropagation();
+          const landId = this.getAttribute('data-land-id');
+          deleteLand(landId);
+        });
+        rowDiv.appendChild(deleteLandBtn);
+
         plantdiv.appendChild(rowDiv); 
  
           
@@ -244,4 +334,4 @@ function  typePlant(t){
   else 
     return "Cây rau củ";
 }
-  
+

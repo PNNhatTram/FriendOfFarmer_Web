@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="col-11">
+    <div class="col-11" id="divSeasonInfo">
       <div id="season-info" class="season__info">
         <p>Tên mùa vụ: <span class="season_name"></span></p>
         {% comment %} <p>Thời gian bắt đầu: <span class="season-start-time"></span></p>
@@ -60,9 +60,9 @@
       </div>
       <div class="land__row row my-3">
         <div class="map col-7">
-        
+          
         </div>
-        <div class="land__overall col-5">
+        <div class="land__overall col-5" id="divLandInfo">
           <h3>DIỆN TÍCH: <span id="dientich"></span> ha</h3>
           <h3>NỒNG ĐỘ</h3>
 
@@ -80,11 +80,7 @@
               <div class="progress-bar" style="width: 0%; background-color: #60996643" id="doam"></div>
             </div>
           </div>
-     
-   
-
     </div>
-
     <div class="plant" id="plant">
       {% comment %}  {% endcomment %}
     </div> 

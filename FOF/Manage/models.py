@@ -99,3 +99,8 @@ class Contact(models.Model):
 
     def __int__(self):
         return self.id_user
+    
+class pH_am(models.Model):
+    ten_cay = models.CharField(max_length=50, null=False)
+    ph_can = models.CharField(max_length=10, null=False)
+    doam_can = models.CharField(max_length=10, null=False)

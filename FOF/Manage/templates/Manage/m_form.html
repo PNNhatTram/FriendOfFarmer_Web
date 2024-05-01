@@ -8,7 +8,7 @@
 {% block form %}
 
 <section class="manage section container">
-  <form action="" method="post">  
+  <form action="" method="post" id="season-form">  
     {% csrf_token %} 
     <p>THÔNG TIN MÙA VỤ</p>
     <label for="name">Nhập tên mùa vụ:</label>
@@ -23,11 +23,23 @@
     <label for="num">Lợi nhuận mong muốn: </label>
     <input type="number" name="num" id="num">
 
-    <button class="my-btn">
+    <button class="my-btn" type="submit">
       TẠO MÙA VỤ
     </button>
   </form>
 </section>
 
+<script>
+  document.getElementById('season-form').addEventListener('submit', function(event) {
+    var startTime = new Date(document.getElementById('time_s').value);
+    var endTime = new Date(document.getElementById('time_e').value);
+    var currentTime = new Date();
+
+    if (startTime <= currentTime || endTime <= currentTime || startTime >= endTime) {
+      alert("Thời gian không hợp lệ! Vui lòng chọn thời gian bắt đầu và kết thúc lớn hơn hôm nay");
+      event.preventDefault(); // Ngăn chặn việc gửi form nếu thời gian không hợp lệ
+    }
+  });
+</script>
 
 {% endblock form %}

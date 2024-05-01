@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -8,121 +8,143 @@ from django.http import JsonResponse
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+
+def edit_season(request, seasonId):
+    # Truy xuất đối tượng cần chỉnh sửa
+    season = get_object_or_404(Season, pk=seasonId)
+    if request.method == 'POST':
+        season.season_name = request.POST['season_name']
+        season.time_start = request.POST['time_start']
+        season.time_end = request.POST['time_end']
+        season.profit = request.POST['profit']
+        season.save()
+    return render(request, 'm_form.html', {'season': season})
+
+
 def login(request):
-  if request.method == 'POST_signup':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-      return 'success'
-  else:
-        form = UserCreationForm() 
-  return render(request, 'Manage/login.html', {'form':form})
+    if request.method == 'POST_signup':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return 'success'
+    else:
+        form = UserCreationForm()
+    return render(request, 'Manage/login.html', {'form': form})
 
 
 def index(request):
-   return render(request, 'Manage/index.html')
+    return render(request, 'Manage/index.html')
+
 
 def search(request):
     searched = ""  # Default value for searched
     keys = []  # Default value for keys
     if request.method == "POST":
         searched = request.POST["searched"]
-        keys = Product.objects.filter(name__contains = searched)
-    return render(request, 'Manage/search.html', {"searched":searched , "keys":keys})
+        keys = Product.objects.filter(name__contains=searched)
+    return render(request, 'Manage/search.html', {"searched": searched, "keys": keys})
 
 
 def manage(request):
     return render(request, 'app/manage.html')
 
+
 def get_season_info(request, season_id):
-  """
-  API endpoint to retrieve information for a specific season.
-  """
-  try:
-    season = Season.objects.get(pk=season_id)
-  except Season.DoesNotExist:
-    return JsonResponse({'error': 'Season not found'}, status=404)
+    """
+    API endpoint to retrieve information for a specific season.
+    """
+    try:
+        season = Season.objects.get(pk=season_id)
+    except Season.DoesNotExist:
+        return JsonResponse({'error': 'Season not found'}, status=404)
 
-  data = {
-    "season_name": season.season_name,
-    "start_time": season.time_start,
-    "end_time": season.time_end,
-    "profit": season.profit,
-  }
+    data = {
+        "season_name": season.season_name,
+        "start_time": season.time_start,
+        "end_time": season.time_end,
+        "profit": season.profit,
+    }
 
-  return JsonResponse(data)
+    return JsonResponse(data)
+
 
 def get_land_info(request, land_id):
 
-  try:
-    land = Land.objects.get(pk=land_id)
-  except Season.DoesNotExist:
-    return JsonResponse({'error': 'Land not found'}, status=404)
+    try:
+        land = Land.objects.get(pk=land_id)
+    except Season.DoesNotExist:
+        return JsonResponse({'error': 'Land not found'}, status=404)
 
-  data = {
-    "id": land.id,
-      "name": land.land_name,
-      "area": land.land_area,  
-      "ph": land.land_pH,
-      "moisture": land.land_doAm,  
-      "position": land.land_pos
-  }
+    data = {
+        "id": land.id,
+        "name": land.land_name,
+        "area": land.land_area,
+        "ph": land.land_pH,
+        "moisture": land.land_doAm,
+        "position": land.land_pos
+    }
 
-  return JsonResponse(data)
+    return JsonResponse(data)
+
 
 def get_land_by_season(request, season_id):
-  """
-  Lấy danh sách mảnh đất theo mùa vụ.
-  """
+    """
+    Lấy danh sách mảnh đất theo mùa vụ.
+    """
 
-  # Lấy dữ liệu mảnh đất
-  lands = Land.objects.filter(season=season_id)  # Access season using double underscore
+    # Lấy dữ liệu mảnh đất
+    # Access season using double underscore
+    lands = Land.objects.filter(season=season_id)
 
-  # Chuẩn bị dữ liệu JSON
-  data = []
-  for land in lands:
-    data.append({
-      "id": land.id,
-      "name": land.land_name,
-      "area": land.land_area,  # Add additional properties as needed
-      "ph": land.land_pH,
-      "moisture": land.land_doAm,  # Assuming doAm represents moisture
-      "position": land.land_pos
-    })
+    # Chuẩn bị dữ liệu JSON
+    data = []
+    for land in lands:
+        data.append({
+            "id": land.id,
+            "name": land.land_name,
+            "area": land.land_area,  # Add additional properties as needed
+            "ph": land.land_pH,
+            "moisture": land.land_doAm,  # Assuming doAm represents moisture
+            "position": land.land_pos
+        })
 
-  return JsonResponse(data, safe=False)
+    return JsonResponse(data, safe=False)
+
 
 def get_plant_by_land(request, land_id):
-  """
-  Lấy danh sách cây trồng theo mảnh đất.
-  """
+    """
+    Lấy danh sách cây trồng theo mảnh đất.
+    """
 
-  # Lấy dữ liệu mảnh đất
-  plants = Plant.objects.filter(land=land_id)
-  
+    # Lấy dữ liệu mảnh đất
+    plants = Plant.objects.filter(land=land_id)
 
-  # Chuẩn bị dữ liệu JSON
-  data = []
-  for plant in plants:
-    data.append({
-      "id": plant.id,
-      "name": plant.plant_name,
-      "timeDev": plant.plant_dev,  # Add additional properties as needed
-      "type": plant.plant_type,
-      "nd": plant.plant_ND,  # Assuming doAm represents moisture
-      "bp": plant.plant_bp
-    })
+    # Chuẩn bị dữ liệu JSON
+    data = []
+    for plant in plants:
+        data.append({
+            "id": plant.id,
+            "name": plant.plant_name,
+            "timeDev": plant.plant_dev,  # Add additional properties as needed
+            "type": plant.plant_type,
+            "nd": plant.plant_ND,  # Assuming doAm represents moisture
+            "bp": plant.plant_bp
+        })
 
-  return JsonResponse(data, safe=False)
+    return JsonResponse(data, safe=False)
+
 
 def land_form(request):
     if request.method == 'POST':
         land_name = request.POST['land_name']
         land_pos = request.POST['land_pos']
-        land_area = request.POST.get('land_area', 0)  # Default value if not provided
-        land_pH = request.POST.get('land_pH', 7)  # Default value if not provided
-        land_doAm = request.POST.get('land_doAm', 50.00)  # Default value if not provided
+        # Default value if not provided
+        land_area = request.POST.get('land_area', 0)
+        # Default value if not provided
+        land_pH = request.POST.get('land_pH', 7)
+        # Default value if not provided
+        land_doAm = request.POST.get('land_doAm', 50.00)
         selected_season_id = request.POST['id_mv']
 
         try:
@@ -140,14 +162,14 @@ def land_form(request):
         )
 
         messages.success(request, "Land created successfully!")
-        return redirect("manage")  # Redirect to your desired page after success
+        # Redirect to your desired page after success
+        return redirect("manage")
 
     # Get all seasons for the dropdown (if needed in the template)
     season_list = Season.objects.all()
     context = {'season_list': season_list}
 
     return render(request, "Manage/land_form.html", context)
-
 
 
 def plant_form(request):
@@ -159,10 +181,9 @@ def plant_form(request):
         plant_bp = request.POST.get('plant_bp', 0)
         selected_land_id = request.POST.get('land_id', None)
         try:
-          land = Land.objects.get(pk=selected_land_id)
+            land = Land.objects.get(pk=selected_land_id)
         except Land.DoesNotExist:
-          return HttpResponseBadRequest('Invalid season ID')
-       
+            return HttpResponseBadRequest('Invalid season ID')
 
         # Create new Plant object
         plant = Plant.objects.create(
@@ -170,12 +191,13 @@ def plant_form(request):
             plant_dev=plant_dev,
             plant_type=plant_type,
             plant_ND=plant_ND,
-            plant_bp=plant_bp, 
+            plant_bp=plant_bp,
             land=land
         )
 
         messages.success(request, "Plant created successfully!")
-        return redirect("manage")  # Redirect to success page (replace with your URL)
+        # Redirect to success page (replace with your URL)
+        return redirect("manage")
 
     # Get all lands for the dropdown (if needed in the template)
     land_list = Land.objects.all()
@@ -184,14 +206,13 @@ def plant_form(request):
     return render(request, "Manage/plant_form.html", context)
 
 
-
-
 def home(request):
     season = Season.objects.all()
     land = Land.objects.all()
     plant = Plant.objects.all()
-    context = {'season': season, 'land':land, 'plant':plant}
+    context = {'season': season, 'land': land, 'plant': plant}
     return render(request, "Manage/manage.html", context)
+
 
 def m_form(request):
     if request.method == 'POST':
@@ -215,13 +236,12 @@ def m_form(request):
             user=request.user  # Assuming User model is linked
         )
 
-        messages.success(request, "Season created successfully!")  # Success message
+        # Success message
+        messages.success(request, "Season created successfully!")
         return redirect("manage")  # Redirect to manage page
 
     else:
         return render(request, "Manage/m_form.html")
-
-
 
 
 def infor(request):
@@ -229,27 +249,27 @@ def infor(request):
         season_id = request.GET.get('id')
 
 
-
 def maker(request):
-    thitruong_list= thitruong.objects.filter()
-    return render(request, 'Manage/maker.html', {'thitruong_list':thitruong_list})
+    thitruong_list = thitruong.objects.filter()
+    return render(request, 'Manage/maker.html', {'thitruong_list': thitruong_list})
+
 
 def maker_sell(request):
     if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
-            # Lấy dữ liệu người dùng nhập từ form
+        # Lấy dữ liệu người dùng nhập từ form
         ten_caytrong = request.POST.get('ten_caytrong')
         ten_thitruong = request.POST.get('mo_ta')
         gia = request.POST.get('gia')
-            
-            # Tạo một bản ghi mới trong bảng thitruong_ban
+
+        # Tạo một bản ghi mới trong bảng thitruong_ban
         thitruong_ban_obj = thitruong_ban.objects.create(
-                ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia)
-            
-            # Lưu lại thông báo thành công
+            ten_caytrong=ten_caytrong, ten_thitruong=ten_thitruong, gia=gia)
+
+        # Lưu lại thông báo thành công
         context = {"message": "Cập nhật thành công!"}
         return render(request, 'Manage/maker_sell.html', context)
     else:
-            # Trả về trang contact.html khi request là GET
+        # Trả về trang contact.html khi request là GET
         return render(request, 'Manage/maker_sell.html')
 
 
@@ -271,5 +291,3 @@ def contact(request):
             return render(request, 'Manage/contact.html')
     else:
         return HttpResponse("Bạn cần phải đăng nhập để gửi phản hồi")
-
-
