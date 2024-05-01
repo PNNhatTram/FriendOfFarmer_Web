@@ -56,6 +56,8 @@ urlpatterns = [
     #FOOTER
     path('dksd', views.dksd, name="dksd"),
     path('csrt', views.csrt, name="csrt"),
+    path('feedback', views.feedback, name="feedback"),
+
 
 
   

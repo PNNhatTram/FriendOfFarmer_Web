@@ -1,6 +1,8 @@
 {% extends "Manage/base.html" %}
 {%load static%}
-
+{%block title%}
+<title>Friend of Farmer | Trang chủ</title>
+{% endblock title%}
 {% block head %}
   <link rel="stylesheet" href="{% static 'Manage/CSS/index.css' %}">
 {% endblock head %}
@@ -147,8 +149,8 @@
 <!-- CUSTOMER  -->
 <section class="customer section container">
 	<div class="offer__text">
-		<h3>Phản ánh của người dùng</h3>
-		<p>Dưới đây là một số phản ánh của người dùng về những lợi ích mà FOF đã mang lại cho người nông dân.</p>
+		<h3>FEEDBACK TỪ NGƯỜI DÙNG</h3>
+		<p>FOF tin rằng dịch vụ mà chúng tôi mang lại là sự hài lòng hoàn hảo mà nhà nông cũng như thương lái để lại những feedback tuyệt vời cho chúng tôi.</p>
 	</div>
 	<div class="cus__row row">
 		<div class="cus_col3 col-lg-3 col-6">
@@ -157,7 +159,7 @@
 				<div class="card-body">
 				  <h5 class="card-title">Ông Năm</h5>
 				  <p class="card-text">Trang web này thật sự hữu ích! Tôi có thể dễ dàng quản lí mùa vụ và tìm kiếm thị trường mới cho sản phẩm của mình. Cảm ơn bạn đã tạo ra một nền tảng tốt như vậy!</p>
-				  <button class="my-btn">See More!</button>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
 				</div>
 			  </div>
 		</div>
@@ -167,7 +169,7 @@
 				<div class="card-body">
 				  <h5 class="card-title">Bà Lan</h5>
 				  <p class="card-text">Tìm khách hàng trước đây luôn là một vấn đề lớn, nhưng giờ đây với trang web này, tôi không còn phải lo lắng nữa. Tìm kiếm khách hàng và kết nối với họ chưa bao giờ dễ dàng đến thế</p>
-				  <button class="my-btn">See More!</button>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
 				</div>
 			  </div>
 		</div>
@@ -177,7 +179,7 @@
 				<div class="card-body">
 				  <h5 class="card-title">Bà Hai</h5>
 				  <p class="card-text">Tôi rất ấn tượng với tính năng tìm kiếm nguyên vật liệu cho mùa vụ trên trang web này. Nó giúp tôi tiết kiệm thời gian và công sức trong việc tìm nguồn nguyên liệu chất lượng cho nông trại của mình.</p>
-				  <button class="my-btn">See More!</button>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
 				</div>
 			  </div>
 		</div>
@@ -187,7 +189,7 @@
 				<div class="card-body">
 				  <h5 class="card-title">Ông Sang</h5>
 				  <p class="card-text">Trang web này thực sự là một công cụ quan trọng cho ngành nông nghiệp. Tôi đã có cơ hội mở rộng thị trường và tìm được các đối tác kinh doanh mới, từ đó giúp tăng doanh thu và hiệu suất sản xuất. Rất cảm kích những gì bạn đã làm!</p>
-				  <button class="my-btn">See More!</button>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
 				</div>
 			  </div>
 		</div>

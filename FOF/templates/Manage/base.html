@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Friend of Farmer | Quản lý</title>
+   
 
     <!-- font google  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,6 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
+	<link rel="icon" type="image/png" href="{%static 'Manage/IMG/logo.png'%}">
 
 	
     <!-- font awesome  -->
@@ -46,6 +47,7 @@
     <link rel="stylesheet" href="{%static 'Manage/CSS/base.css'%}" />
     {% block head %}{% endblock head %}
     {% block head1 %}{% endblock head1 %}
+	{%block title%}{% endblock title%}
   </head>
   <body>
     <!--HEADER-->
@@ -177,7 +179,7 @@
 							<span onclick="location.href='{%url 'notify'%}'"><i class="fa fa-fire-alt"></i>&nbsp; Thông báo</span>
 							</div>
 							<div class="other1">
-								<span><i class="fa fa-star"></i>&nbsp; Tin nóng</span>
+								<span onclick="location.href='https://nongnghiep.vn/'"><i class="fa fa-star"></i>&nbsp; Tin nóng</span>
 
 							</div>
 							<div class="other2">

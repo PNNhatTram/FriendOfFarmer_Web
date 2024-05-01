@@ -531,4 +531,9 @@ def dksd(request):
     return render(request, 'Manage/dksd.html')
 def csrt(request):
      return render(request, 'Manage/csrt.html')
-    
+
+def feedback(request): 
+    contact = Contact.objects.all()
+
+    context = {'contact': contact}
+    return render(request, 'Manage/feedback.html', context)
