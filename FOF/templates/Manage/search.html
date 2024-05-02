@@ -26,7 +26,7 @@
                   <p>Sản Phẩm: {{ searched_name }}</p>
                   <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" id="searched_adr" name="searched_adr" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
                   <button class="my-btn" type="submit">TÌM KIẾM</button>
-                  <p>Địa Chỉ: {{ searched_adr }}</p>
+                  {% comment %} <p>Địa Chỉ: {{ searched_adr }}</p> {% endcomment %}
                </form>
                         
                            

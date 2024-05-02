@@ -70,12 +70,17 @@ def update_user_email(sender, instance, created, **kwargs):
             instance.user.save()
 
 
+class Adress(models.Model):
+    adress = models.CharField(max_length=50)
+    def __str__(self):
+        return self.adress
+
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False)
     price = models.CharField(max_length=200, null=True)
     link = models.CharField(max_length=200, null=True)
     image = models.ImageField(null=True, blank=True)
-    adress = models.CharField(max_length=200, null=True)
+    adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
     
@@ -89,6 +94,7 @@ class Product(models.Model):
         return url
     
     # Create your models here.
+
 
 class market(models.Model): 
     marketName = models.CharField(max_length=200, null=False)
