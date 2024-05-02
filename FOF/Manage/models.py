@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from django.core.exceptions import ValidationError
 
 class Season(models.Model):
     season_name = models.CharField(max_length=200)
@@ -81,6 +81,10 @@ class Product(models.Model):
     link = models.CharField(max_length=200, null=True)
     image = models.ImageField(null=True, blank=True)
     adress = models.ForeignKey(Adress, on_delete=models.CASCADE)
+    def clean(self):
+        super().clean()
+        if self.name and not self.name.isupper():
+            raise ValidationError("Tên sản phẩm phải viết hoa.")
     def __str__(self):
         return self.name
     
@@ -102,6 +106,14 @@ class market(models.Model):
     marketUser = models.ForeignKey(User, on_delete=models.CASCADE)
     marketFee = models.CharField(max_length=200, null=False)
     marketDetail = models.CharField(max_length=1000, null=False)
+    def clean(self):
+        super().clean()
+        if self.marketName and not self.marketName.isupper():
+            raise ValidationError("Tên thị trường phải viết hoa.")
+        if self.marketPlant and not self.marketPlant.isupper():
+            raise ValidationError("Tên cây trồng phải viết hoa.")
+    def __str__(self):
+        return self.marketName
     
 # class notify(models.Model):
 #     notiflLink 

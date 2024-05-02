@@ -126,7 +126,7 @@ def search(request):
     keys = []  # Default value for keys
     if request.method == "POST":
         searched_name = request.POST["searched_name"]
-        keys = Product.objects.filter(Q(name__icontains=searched_name) | Q(name__icontains=searched_name.capitalize()) | Q(name__icontains=searched_name.upper()) | Q(name__icontains=searched_name.lower()) | Q(name__icontains=searched_name.title()))
+        keys = Product.objects.filter(name__icontains=searched_name)
     return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys})
 
 #autocomplete
@@ -141,6 +141,8 @@ def searchadr(request):
         term = request.GET.get('term')
         products = Product.objects.filter(adress__istartswith=term)
         return JsonResponse(list(products.values_list('adress', flat=True)), safe=False)
+
+
 # MANAGE 
 def manage(request):
     # Kiểm tra xem người dùng có đăng nhập hay không
