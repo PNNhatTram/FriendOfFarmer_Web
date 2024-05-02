@@ -133,7 +133,7 @@ def search(request):
         searched_name = request.POST["searched_name"]
         searched_adr = request.POST["searched_adr"]
         keys = Product.objects.filter(name__contains = searched_name)
-        keys1 = Product.objects.filter(adress__contains = searched_adr)
+        
     return render(request, 'Manage/search.html', {"searched_name":searched_name , "searched_adr":searched_adr, "keys":keys, "keys1":keys1})
 #autocomplete
 def searchname(request):
