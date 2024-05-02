@@ -174,3 +174,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'fof.nt208@gmail.com'
 EMAIL_HOST_PASSWORD = 'ljzjokxdoluzzwyg'
+
+PASSWORD_RESET_EMAIL_TEMPLATE = 'FOF/Manage/templates/Manage/password_reset_email.html'
