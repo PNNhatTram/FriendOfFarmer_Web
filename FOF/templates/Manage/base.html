@@ -295,8 +295,16 @@
     .then(data => {
       // Hiển thị thông tin thời tiết tại đây
       document.getElementById('weather-info').innerHTML = `
-        <p class="header__item">Nhiệt độ: ${data.temperature}°C</p>
-        <p class="header__item">Thời tiết: ${data.condition}</p>
+	  	<div class="header__item">
+				<span>Nhiệt độ: </span>
+				&nbsp;
+				<p> ${data.temperature}°C</p>
+		</div>
+		<div class="header__item">
+				<span>Thời tiết: </span>
+				&nbsp;
+				<p> ${data.condition}</p>
+		</div>
       `;
     })
     .catch(error => console.error('Error:', error));
