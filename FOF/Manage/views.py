@@ -14,6 +14,25 @@ from django.views.decorators.csrf import csrf_exempt
 from Manage.models import Product
 from django.db.models import Q
 from django.db.models.functions import Lower
+import requests
+
+def get_weather(request):
+    API_KEY = '2dd0a40c823f466c8b711504240305'  # Thay thế bằng API key thực của bạn.
+    latitude = request.GET.get('latitude')
+    longitude = request.GET.get('longitude')
+
+    # Thêm lang='vi' để nhận thông tin bằng tiếng Việt
+    weather_url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={latitude},{longitude}&aqi=no&lang=vi"
+    
+    response = requests.get(weather_url)
+    data = response.json()
+    
+    weather_data = {
+        'temperature': data['current']['temp_c'],
+        'condition': data['current']['condition']['text']
+    }
+    
+    return JsonResponse(weather_data, safe=False, json_dumps_params={'ensure_ascii': False})
 # LOGIN SIGN UP 
 def signup_redirect(request):
     messages.error(request, "Something wrong here, it may be that you already have account!")

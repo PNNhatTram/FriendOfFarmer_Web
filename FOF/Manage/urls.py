@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    path('get-weather/', views.get_weather, name='get_weather'),
     # INDEX 
     path('', views.index, name="index"),
     path('notify', views.notify, name="notify"),

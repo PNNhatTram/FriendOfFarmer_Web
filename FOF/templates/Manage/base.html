@@ -61,16 +61,11 @@
 				&nbsp;
 				<p> đ6000/kg</p>
 			</div>
-			<div class="header__item">
-				<span>Thời tiết </span>
-				&nbsp;
-				<p>Nắng đẹp</p>
+			<div class="header__item" id="weather-info">
+				
 			</div>
-			<div class="header__item">
-				<span>Nhiệt độ </span>
-				&nbsp;
-				<p>37 <sup>o</sup>C</p>
-			</div>
+			
+			
 
 			<div class="header__item">
 				<span>Biến động thị trường xuất khẩu </span>
@@ -280,7 +275,35 @@
 	
     <!--MY JS-->
     <script src="{%static 'Manage/JS/base.js'%}"></script>
-	
+	<script>
+        function getLocation() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        fetchWeatherData(position.coords.latitude, position.coords.longitude);
+      }, error => {
+        console.error(error);
+      });
+    } else {
+      alert("Geolocation is not available.");
+    }
+  }
+  
+  function fetchWeatherData(latitude, longitude) {
+  const endpoint = `/get-weather/?latitude=${latitude}&longitude=${longitude}`;
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+      // Hiển thị thông tin thời tiết tại đây
+      document.getElementById('weather-info').innerHTML = `
+        <p class="header__item">Nhiệt độ: ${data.temperature}°C</p>
+        <p class="header__item">Thời tiết: ${data.condition}</p>
+      `;
+    })
+    .catch(error => console.error('Error:', error));
+}
+getLocation();
+    </script>
+
 	{% block js_LP %}{% endblock js_LP %}
   </body>
 </html>
