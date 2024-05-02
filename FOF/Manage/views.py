@@ -121,13 +121,25 @@ def notify(request):
    return render(request, 'Manage/notify.html')
 
 # RESOURCE 
+# RESOURCE 
 def search(request):
     searched_name = ""  # Default value for searched
     keys = []  # Default value for keys
+    searched_adr = ""
+    keysadr = []
+    address = ""
     if request.method == "POST":
         searched_name = request.POST["searched_name"]
+        searched_adr = request.POST["searched_adr"]
         keys = Product.objects.filter(name__icontains=searched_name)
-    return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys})
+        
+        if searched_adr != "":
+            address = Adress.objects.filter(adress__icontains=searched_adr).first()
+            if address:
+                keysadr = Product.objects.filter(adress=address)  # Corrected line here
+        else:
+            keysadr = Product.objects.all()
+    return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys, "keys1":keysadr, "searched_adr":searched_adr})
 
 #autocomplete
 def searchname(request):
@@ -139,7 +151,7 @@ def searchname(request):
 def searchadr(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
-        products = Product.objects.filter(adress__istartswith=term)
+        products = Adress.objects.filter(adress__icontains=term)
         return JsonResponse(list(products.values_list('adress', flat=True)), safe=False)
 
 

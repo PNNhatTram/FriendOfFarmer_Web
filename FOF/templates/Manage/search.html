@@ -26,13 +26,13 @@
                   <p>Sản Phẩm: {{ searched_name }}</p>
                   <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" id="searched_adr" name="searched_adr" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
                   <button class="my-btn" type="submit">TÌM KIẾM</button>
-                  {% comment %} <p>Địa Chỉ: {{ searched_adr }}</p> {% endcomment %}
+                  <p>Địa Chỉ: {{ searched_adr }}</p>
                </form>
                         
                            
                <div class="find__result d-flex justify-content-center row">
                   {% for product in keys %}
-                  
+                     {% if product in keys1 %}
                         <div class="find__item my-2 col-sm-3">
                            <img class="img-fluid" src="{{ product.IMG_URL }}" alt="sanpham">
                            <p class="name" style="text-transform: uppercase;">{{ product.name }}</p>
@@ -49,7 +49,7 @@
                               MUA NGAY
                            </button>
                         </div>
-                    
+                    {% endif %}
                   {% endfor %}
                </div>
             </div>
