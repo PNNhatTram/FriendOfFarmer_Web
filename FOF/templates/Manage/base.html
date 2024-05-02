@@ -100,6 +100,10 @@
 							  var btn = document.getElementById('login');
 							  btn.innerHTML = '{{ user.username | slice:":12" }}';
 							}
+						
+	
+							introJs().setOption("dontShowAgain", true).start();
+
 						  </script>
 					</form>
 					
@@ -276,10 +280,7 @@
 	
     <!--MY JS-->
     <script src="{%static 'Manage/JS/base.js'%}"></script>
-	<!--IntroJS -->
-	<script>
-		introJs().setOption("dontShowAgain", true).start();
-	</script>
+	
 	{% block js_LP %}{% endblock js_LP %}
   </body>
 </html>
