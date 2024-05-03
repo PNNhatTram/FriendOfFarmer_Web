@@ -83,7 +83,7 @@
 				<div style="display: flex;">
 					<form action="userin4" style="margin-left:8%" >
 						{% csrf_token %}
-						<button class="my-btn-header login" id="login" style="display: inline;" onmouseover="showFullUsername()" onmouseout="showShortenedUsername()" data-title="Xin chào" data-intro="Hãy nhấn vào đây">
+						<button class="my-btn-header login" id="login" style="display: inline;" onmouseover="showFullUsername()" onmouseout="showShortenedUsername()">
 							{{ user.username | slice:":12" }}
 						</button>
 						<script>
@@ -97,7 +97,7 @@
 							}
 						
 	
-							introJs().setOption("dontShowAgain", true).start();
+				
 
 						  </script>
 					</form>
