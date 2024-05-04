@@ -118,9 +118,9 @@
     .detail {
         display: none;
     }
-    .left-side {
-        display: none;
-    }
+    .contact_container .content .left-side {
+        display: none; /* Ẩn phần tử "left-side" */
+      }
     .right-side {
         width: 200%;
     }

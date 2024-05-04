@@ -140,3 +140,10 @@ a {
 .forgot__title {
   font-weight: bold;
 }
+
+@media screen and (max-width: 575.9px) {
+  /* SEARCH BOX  */
+  .social-label {
+    display: none;
+  }
+}

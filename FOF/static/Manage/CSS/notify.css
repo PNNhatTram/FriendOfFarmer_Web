@@ -67,7 +67,24 @@
    color: #5c5e5f;
  }
 
-
+ @media screen and (max-width: 1146px) {
+   .notifi__user__img {
+      display: none;
+   }
+   
+ }
+ @media screen and (max-width: 991.9px) {
+   .mark-all-read {
+      display: none;
+   }
+   
+ }
+ @media screen and (max-width: 442px) {
+   .text {
+      display: none;
+   }
+   
+ }
 
   
 
