@@ -17,6 +17,7 @@ from django.db.models.functions import Lower
 import requests
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from datetime import datetime
 
 def get_weather(request):
     API_KEY = '2dd0a40c823f466c8b711504240305'  # Thay thế bằng API key thực của bạn.
@@ -140,12 +141,14 @@ def index(request):
 
 #
 def notify(request):
-    user = request.user
-    customer = Customer.objects.filter(user=user).first()
-    notify = notify_market.objects.filter(makerAuth=customer)
-    
-    return render(request, 'Manage/notify.html',{'notify':notify})
-
+    if request.user.is_authenticated:
+        user = request.user
+        customer = Customer.objects.filter(user=user).first()
+        notify = notify_market.objects.filter(Q(makerAuth=customer) | Q(customer=customer)).order_by('-timejoin')
+        # customer=customer
+        return render(request, 'Manage/notify.html',{'notify':notify,'customer':customer})
+    else:
+        return render(request, 'Manage/notify.html')
 # RESOURCE 
 # RESOURCE 
 def search(request):
@@ -461,11 +464,11 @@ def market_detail(request, market_id):
             # Lấy thông tin khách hàng tham gia thị trường
             customer_join = Customer.objects.get(user=userjoin)
             url = reverse('makerDetail', args=[market_id])
-            
+            time = timezone.now()
             # Check if notification already exists
             existing_notify = notify_market.objects.filter(maker=market_obj, makerAuth=trader, customer=customer_join).exists()
-            if not existing_notify:
-                notify = notify_market.objects.create(maker=market_obj, makerAuth=trader, customer=customer_join, link=url)
+            if  not existing_notify:
+                notify = notify_market.objects.create(maker=market_obj, makerAuth=trader, customer=customer_join, link=url, timejoin = time)
                 notify.save()
                 #Thông báo nếu đã tham gia
                 return redirect('maker')  

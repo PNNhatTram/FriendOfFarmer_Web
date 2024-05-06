@@ -1,8 +1,10 @@
+import pytz
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 class Season(models.Model):
     season_name = models.CharField(max_length=200)
@@ -124,9 +126,13 @@ class notify_market(models.Model):
     maker = models.ForeignKey(market, on_delete=models.CASCADE, related_name="maker")
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer")
     makerAuth = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="makerAuth")
-    timejoin = models.DateTimeField(auto_now_add=True)
+    timejoin = models.DateTimeField()
     is_read = models.BooleanField(default=0)
     link = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.maker.marketName
+    
     
 
 
