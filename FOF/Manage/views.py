@@ -15,6 +15,8 @@ from Manage.models import Product
 from django.db.models import Q
 from django.db.models.functions import Lower
 import requests
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 def get_weather(request):
     API_KEY = '2dd0a40c823f466c8b711504240305'  # Thay thế bằng API key thực của bạn.
@@ -136,8 +138,13 @@ def password_reset(request):
 def index(request):
    return render(request, 'Manage/index.html')
 
-def notify(request): 
-   return render(request, 'Manage/notify.html')
+#
+def notify(request):
+    user = request.user
+    customer = Customer.objects.filter(user=user).first()
+    notify = notify_market.objects.filter(makerAuth=customer)
+    
+    return render(request, 'Manage/notify.html',{'notify':notify})
 
 # RESOURCE 
 # RESOURCE 
@@ -422,12 +429,18 @@ def maker(request):
         return render(request, 'Manage/maker.html', context)
     else:
         return render(request, 'Manage/maker.html')
+    
+
+            
 #autocomplete for maker 
 def makeradr(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
         products = market.objects.filter(marketName__icontains=term)
         return JsonResponse(list(products.values_list('marketName', flat=True)), safe=False)
+    
+
+    
 #autocomplete for maker
 def makerplant(request):
     if 'term' in request.GET:
@@ -438,23 +451,48 @@ def makerplant(request):
 
 
 def market_detail(request, market_id):
-    try:
-        # Tìm thị trường dựa trên ID
-        market_obj = market.objects.get(id=market_id)
-        user = market_obj.marketUser
-        # Lấy thông tin khách hàng
-        customer = Customer.objects.get(user=user)
+    if request.method == "POST":
+        try:
+            market_obj = market.objects.get(id=market_id)
+            user = market_obj.marketUser
+            userjoin = request.user
+            # Lấy thông tin thương lái
+            trader = Customer.objects.get(user=user)
+            # Lấy thông tin khách hàng tham gia thị trường
+            customer_join = Customer.objects.get(user=userjoin)
+            url = reverse('makerDetail', args=[market_id])
+            
+            # Check if notification already exists
+            existing_notify = notify_market.objects.filter(maker=market_obj, makerAuth=trader, customer=customer_join).exists()
+            if not existing_notify:
+                notify = notify_market.objects.create(maker=market_obj, makerAuth=trader, customer=customer_join, link=url)
+                notify.save()
+                #Thông báo nếu đã tham gia
+                return redirect('maker')  
+            
+            return redirect('maker')    
+        except:
+            return redirect('maker')
+        
+        
+    else:
+        try:
+            # Tìm thị trường dựa trên ID
+            market_obj = market.objects.get(id=market_id)
+            user = market_obj.marketUser
+            # Lấy thông tin khách hàng
+            customer = Customer.objects.get(user=user)
 
-        # Chuẩn bị context data
-        context = {
-            'market': market_obj, 
-            'user': user, 
-            'customer': customer
-        }
+            # Chuẩn bị context data
+            context = {
+                'market': market_obj, 
+                'user': user, 
+                'customer': customer
+            }
 
-        return render(request, 'Manage/makerDetail.html', context)
-    except market.DoesNotExist:
-        return JsonResponse({"error": "Thị trường không tồn tại."}, status=404)
+            return render(request, 'Manage/makerDetail.html', context)
+        except market.DoesNotExist:
+            return JsonResponse({"error": "Thị trường không tồn tại."}, status=404)
 
 def maker_sell(request):
     customer = request.user.customer
@@ -487,6 +525,8 @@ def maker_sell(request):
         list_maker = market.objects.filter(marketUser=username)
         context = {'list_maker': list_maker, 'customer': customer}
         return render(request, 'Manage/maker_sell.html', context)
+
+
 
 # CONTACT 
 def contact(request):

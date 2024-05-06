@@ -114,9 +114,20 @@ class market(models.Model):
             raise ValidationError("Tên cây trồng phải viết hoa.")
     def __str__(self):
         return self.marketName
+
+
+# class notifyCusjoin(models.Model):
+     
+
+
+class notify_market(models.Model):
+    maker = models.ForeignKey(market, on_delete=models.CASCADE, related_name="maker")
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="customer")
+    makerAuth = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="makerAuth")
+    timejoin = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=0)
+    link = models.CharField(max_length=250)
     
-# class notify(models.Model):
-#     notiflLink 
 
 
 

@@ -6,6 +6,11 @@
 {% block head %}
 <link rel="stylesheet" href="{%static 'Manage/CSS/maker.css'%}"/>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous">
+</script>
 {% endblock head %}	
 {% block content %}
 	<!-- SEARCH BOX  -->
@@ -67,7 +72,7 @@
 				Xu hướng giá
 			</div>
 			<div class="col res__check common">
-				Xác nhận
+				Chi tiết thị trường
 			</div>
 
 		</div>
@@ -95,8 +100,8 @@
 					<div class="col-3 res__trend common">
 					<img src="{% static 'Manage/IMG/825.svg' %}" alt="trend">
 					</div>
-					<div class="col res__check common confirm-btn">
-					Xác nhận
+					<div class="col res__check common confirm-btn" onclick="location.href='{%url 'makerDetail' obj.id%}'">
+					Chi Tiết
 					</div>
 				</div>
 
@@ -149,6 +154,7 @@
 {% endblock content %}
 
 {% block js_LP %}
+
 <!--autocomplete code for Nongsan and Thitruong-->
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
@@ -169,5 +175,5 @@
 					});
 				  } );
 			</script>
-  <script src="{% static 'Manage/JS/maker.js'%}"></script>
+  {% comment %} <script src="{% static 'Manage/JS/maker.js'%}"></script> {% endcomment %}
 {% endblock js_LP %}

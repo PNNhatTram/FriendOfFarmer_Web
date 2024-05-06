@@ -43,6 +43,7 @@ urlpatterns = [
     path('makeradr', views.makeradr, name="makeradr"),
     path('maker/detail/<int:market_id>', views.market_detail, name="makerDetail"),
     path('maker_sell', views.maker_sell, name="maker_sell"),
+    
    
     # CONTACT 
     path('contact', views.contact, name="contact"),
