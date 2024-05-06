@@ -43,10 +43,10 @@
                     <i class="fa fa-user-alt"></i>
                 </div>
                 <div class="col-10 notifi__context">
-                    <a href="#"><p>Bạn đã tham gia vào thị trường của {{ NOTIFY.makerAuth }}<br/>Thời gian tham gia: {{ NOTIFY.timejoin }}</p></a>
+                    <a href="{{NOTIFY.link}}"><p style="color: #609966;">Bạn đã tham gia vào thị trường {{NOTIFY.maker}} của {{ NOTIFY.makerAuth }}<br/>Thời gian tham gia: {{ NOTIFY.timejoin }}</p></a>
                 </div>
             </div>
-        {% endif %}
+        {% endif %} 
     {% endfor %}
     </div>
     

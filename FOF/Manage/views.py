@@ -139,17 +139,18 @@ def password_reset(request):
 def index(request):
    return render(request, 'Manage/index.html')
 
-#
+#NOTIFY
 def notify(request):
     if request.user.is_authenticated:
         user = request.user
         customer = Customer.objects.filter(user=user).first()
+        #lọc cả tin nhắn tham gia thị trường hoặc các người đã tham gia thị trường của bạn
         notify = notify_market.objects.filter(Q(makerAuth=customer) | Q(customer=customer)).order_by('-timejoin')
-        # customer=customer
+
         return render(request, 'Manage/notify.html',{'notify':notify,'customer':customer})
     else:
         return render(request, 'Manage/notify.html')
-# RESOURCE 
+
 # RESOURCE 
 def search(request):
     searched_name = ""  # Default value for searched
