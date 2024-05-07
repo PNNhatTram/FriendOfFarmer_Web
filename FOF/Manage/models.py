@@ -59,7 +59,7 @@ class Customer(models.Model):
     phonenum = models.CharField(max_length=50, null=True)
     address = models.CharField(max_length=250, null=True)
     def count_unread_notifications(self):
-        return notify_market.objects.filter(Q(makerAuth=self) | Q(customer=self), is_read=False).count()
+        return notify_market.objects.filter(makerAuth=self, is_read_trader=False).count() + notify_market.objects.filter(customer=self, is_read=False).count()
     def __str__(self):
         return self.name if self.name else ''
     
@@ -131,6 +131,7 @@ class notify_market(models.Model):
     makerAuth = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="makerAuth")
     timejoin = models.DateTimeField()
     is_read = models.BooleanField(default=0)
+    is_read_trader = models.BooleanField(default=0)
     link = models.CharField(max_length=250)
 
     def __str__(self):

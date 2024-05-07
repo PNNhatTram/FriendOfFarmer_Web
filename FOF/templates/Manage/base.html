@@ -102,11 +102,10 @@
 						  </script>
 					</form>
 					
-					<form action="Logout_page" method="post" style="margin-left:5%">
-						{% csrf_token %}
-						<button type="submit" class="my-btn-header login" style="margin-left:5%">ĐĂNG XUẤT</button>
+					
+						<button type="submit" class="my-btn-header login" style="" onclick="location.href='{%url 'Logout_page'%}'">ĐĂNG XUẤT</button>
 						
-					</form>
+					
 				</div>
 
 				{% else %}
@@ -174,7 +173,7 @@
 						<div class="header__other">
 							{% if user.is_authenticated %}
 							<div class="other1">
-							<span onclick="location.href='{%url 'notify'%}'"><i class="fa fa-fire-alt"></i>&nbsp;{{ request.user.customer.count_unread_notifications }} Thông báo</span>
+							<span onclick="location.href='{%url 'notify'%}'"><i class="fa fa-fire-alt"></i>&nbsp; {{ request.user.customer.count_unread_notifications }} Thông báo</span>
 							</div>
 							{%endif%}
 							<div class="other1">
