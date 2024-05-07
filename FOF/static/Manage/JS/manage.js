@@ -362,7 +362,7 @@ function modifyInfor(event) {
 function DeleteSeason(event) {
   if (!selectedSeasonId) {
     // Nếu không có ID mùa vụ được chọn, không thực hiện xóa
-    console.log('Vui lòng chọn mùa vụ trước khi xóa');
+    alert('Vui lòng chọn mùa vụ trước khi xóa');
     return;
   }
 
@@ -397,4 +397,62 @@ function DeleteSeason(event) {
     selectedSeasonId = null;
   }
 }
+
+
+function UpdateSeason(event) {
+  event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+
+  if (!selectedSeasonId) {
+    // Nếu không có ID mùa vụ được chọn, không thực hiện cập nhật
+    alert('Vui lòng chọn mùa vụ trước khi cập nhật!');
+    return;
+  }
+
+  // Lấy giá trị từ các trường input
+  const seasonName = document.getElementById('name').value;
+  const timeStart = document.getElementById('time_s').value;
+  const timeEnd = document.getElementById('time_e').value;
+  const profit = document.getElementById('num').value;
+
+  // Tạo một đối tượng chứa dữ liệu cập nhật
+  const data = {
+    season_name: seasonName,
+    time_start: timeStart,
+    time_end: timeEnd,
+    profit: profit
+  };
+
+  // Xác nhận trước khi gửi yêu cầu cập nhật
+  if (confirm('Bạn có chắc chắn muốn cập nhật thông tin mùa vụ không?')) {
+    // Gửi yêu cầu cập nhật mùa vụ đến API
+    const url = `/api/update-season/${selectedSeasonId}/`;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Cập nhật thành công, thực hiện các hành động khác (nếu cần)
+          alert('Thay đổi thông tin thành công');
+
+          // Load lại trang sau khi cập nhật thành công
+          location.reload();
+        } else {
+          // Xử lý lỗi nếu cập nhật không thành công
+          alert('Lỗi khi cập nhật thông tin');
+        }
+      })
+      .catch((error) => {
+        // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu cập nhật
+        alert('Lỗi khi gửi yêu cầu cập nhật mùa vụ');
+      });
+
+    // Đặt lại giá trị của selectedSeasonId sau khi cập nhật
+    selectedSeasonId = null;
+  }
+}
+
 

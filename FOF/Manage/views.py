@@ -15,6 +15,7 @@ from Manage.models import Product
 from django.db.models import Q
 from django.db.models.functions import Lower
 import requests
+import json
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from datetime import datetime
@@ -234,6 +235,46 @@ def delete_season(request, season_id):
         return JsonResponse({'error': 'Mùa vụ không tồn tại'}, status=404)
     except Exception as e:
         # Xử lý lỗi chung nếu có lỗi xảy ra trong quá trình xóa
+        return JsonResponse({'error': str(e)}, status=500)
+
+@csrf_exempt
+def update_season_info(request, season_id):
+    try:
+        if request.method == 'POST':
+            # Lấy đối tượng mùa vụ dựa trên season_id và user hiện tại
+            season = Season.objects.get(pk=season_id, user=request.user)
+
+            if request.content_type == 'application/json':
+                # Đọc dữ liệu từ yêu cầu JSON
+                data = json.loads(request.body)
+
+                # Cập nhật thông tin mùa vụ từ dữ liệu JSON
+                season.season_name = data.get('season_name', '')
+                season.time_start = data.get('time_start', '')
+                season.time_end = data.get('time_end', '')
+                season.profit = data.get('profit', '')
+                # Cập nhật các trường thông tin khác tương ứng
+            else:
+                # Cập nhật thông tin mùa vụ từ request.POST
+                season.season_name = request.POST.get('season_name', '')
+                season.time_start = request.POST.get('time_start', '')
+                season.time_end = request.POST.get('time_end', '')
+                season.profit = request.POST.get('profit', '')
+                # Cập nhật các trường thông tin khác tương ứng
+
+            # Lưu lại mùa vụ đã được cập nhật
+            season.save()
+
+            # Trả về phản hồi thành công
+            return JsonResponse({'message': 'Cập nhật thông tin mùa vụ thành công'})
+        else:
+            # Xử lý lỗi nếu phương thức yêu cầu không phải là POST
+            return JsonResponse({'error': 'Phương thức không hợp lệ'}, status=405)
+    except Season.DoesNotExist:
+        # Xử lý lỗi nếu mùa vụ không tồn tại hoặc không thuộc về user hiện tại
+        return JsonResponse({'error': 'Mùa vụ không tồn tại hoặc không thuộc về bạn'}, status=404)
+    except Exception as e:
+        # Xử lý lỗi chung nếu có lỗi xảy ra trong quá trình cập nhật
         return JsonResponse({'error': str(e)}, status=500)
 
 def get_season_info(request, season_id):
