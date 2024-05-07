@@ -34,6 +34,7 @@ urlpatterns = [
     path('api/get-land-by-season/<int:season_id>/', views.get_land_by_season, name='get-land-by-season'),
     path('api/get-land-info/<int:land_id>/', views.get_land_info, name='get-land-info'),
     path('api/get-plant-by-land/<int:land_id>/', views.get_plant_by_land, name='get-plant-by-land'),
+    path('api/delete-season/<int:season_id>/', views.delete_season, name='delete_season'),
     
     # RESOURCE
 

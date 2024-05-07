@@ -167,3 +167,23 @@ padding: 10px;
 font-size: 1rem;
 font-weight: bold;
 }
+
+.formModal{
+    margin: 10px 5px;
+}
+.formModal input{
+  width: 50%;
+  
+
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 2px;
+}
+.formModal input:focus{
+  outline: none;
+}
+.formItem {
+  padding: 0;
+}

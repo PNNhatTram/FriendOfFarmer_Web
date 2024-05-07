@@ -223,6 +223,24 @@ def manage(request):
     else:
         return render(request, "Manage/manage.html")
 
+@csrf_exempt
+def delete_season(request, season_id):
+    try:
+        # Lấy đối tượng mùa vụ dựa trên season_id
+        season = Season.objects.get(id=season_id)
+
+        # Thực hiện xóa mùa vụ
+        season.delete()
+
+        # Trả về phản hồi thành công
+        return JsonResponse({'message': 'Xóa mùa vụ thành công'})
+    except Season.DoesNotExist:
+        # Xử lý lỗi nếu mùa vụ không tồn tại
+        return JsonResponse({'error': 'Mùa vụ không tồn tại'}, status=404)
+    except Exception as e:
+        # Xử lý lỗi chung nếu có lỗi xảy ra trong quá trình xóa
+        return JsonResponse({'error': str(e)}, status=500)
+
 def get_season_info(request, season_id):
   """
   API endpoint to retrieve information for a specific season.

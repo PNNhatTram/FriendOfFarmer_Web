@@ -23,6 +23,9 @@
     
     <label for="land_pos">Vị trí đất:</label>
     <input type="text" name="land_pos" id="land_pos" placeholder="Nhập địa chỉ hoặc tọa độ GPS">
+
+    <!-- Gợi ý địa chỉ -->
+    <div id="suggestions"></div>
   
    
     <label for="land_area">Diện tích (ha):</label>
@@ -57,5 +60,5 @@
 
 
   {% endblock content_lp %} {% block js_LP %}
-<script src="{% static 'Manage/JS/m_input_lp.js'%}"></script>
+<script src="{% static 'Manage/JS/landform.js'%}"></script>
 {% endblock js_LP %}

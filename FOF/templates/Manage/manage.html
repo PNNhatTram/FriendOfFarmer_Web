@@ -48,6 +48,9 @@
             <button class="click" onclick="location.href='{% url 'plant' %}'">
               THÊM CÂY TRỒNG
             </button>
+            <button type="button" class="click" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+              SỬA THÔNG TIN
+            </button>
           </div>
         </div>
       </div>
@@ -104,6 +107,49 @@
   
   </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:150%;">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">SỬA THÔNG TIN MÙA VỤ</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body my__form" id="myForm">
+        <div class="formModal">
+        <label for="name">Nhập tên mùa vụ:</label>
+        <input type="text" name="name" id="name">
+        </div>
+        <div class="formModal row">
+        <div class="col-6 formItem">
+        <label for="time_s">Thời gian bắt đầu: </label>
+        <input type="date" name="time_s" id="time_s">
+        </div>
+        <div class="col-6 formItem">
+        <label for="time_e">Thời gian kết thúc: </label>
+        <input type="date" name="time_e" id="time_e">
+        </div>
+        </div>
+        <div class="formModal">
+        <label for="num">Lợi nhuận mong muốn: </label>
+        <input type="number" name="num" id="num">
+         </div>
+      </div>
+      <div class="modal-footer plus">
+        {% for item in season %}
+          <button class="btn" data-season-id="{{ item.id }}" onclick="modifyInfor(event)">
+            {{ item.season_name }}
+          </button>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Cập nhật</button>
+        <button type="button" class="btn btn-danger" onclick="DeleteSeason(event)">Xoá</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% else %}
   <section class="manage section container" id="hide">
     <div class="notify">

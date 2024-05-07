@@ -331,3 +331,70 @@ function  typePlant(t){
     return "Cây rau củ";
 }
   
+
+
+
+// code trang sua xoa
+
+
+
+// Gọi hàm để tạo form tự động
+let selectedSeasonId; // Biến để lưu ID mùa vụ được chọn
+
+function modifyInfor(event) {
+  // Lấy ID mùa vụ từ nút được nhấp vào
+  const buttonId = event.target.dataset.seasonId;
+  selectedSeasonId = event.target.dataset.seasonId;
+  
+  // Gửi yêu cầu đến API để lấy thông tin mùa vụ
+  const url = `/api/get-season-info/${buttonId}`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      // Cập nhật giá trị vào form
+      document.getElementById("name").value = data.season_name;
+      document.getElementById("time_s").value = data.start_time;
+      document.getElementById("time_e").value = data.end_time;
+      document.getElementById("num").value = data.profit;
+    });
+}
+
+function DeleteSeason(event) {
+  if (!selectedSeasonId) {
+    // Nếu không có ID mùa vụ được chọn, không thực hiện xóa
+    console.log('Vui lòng chọn mùa vụ trước khi xóa');
+    return;
+  }
+
+  // Hiển thị hộp thoại xác nhận
+  const confirmation = confirm("Bạn có chắc chắn muốn xóa mùa vụ?");
+
+  // Nếu người dùng xác nhận xóa
+  if (confirmation) {
+    // Gửi yêu cầu xóa mùa vụ đến API
+    const url = `/api/delete-season/${selectedSeasonId}`;
+    fetch(url, {
+      method: 'DELETE'
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Xóa thành công, thực hiện các hành động khác (nếu cần)
+          alert('Mùa vụ đã được xóa thành công');
+
+          // Load lại trang sau khi xóa thành công
+          location.reload();
+        } else {
+          // Xử lý lỗi nếu xóa không thành công
+          alert('Lỗi khi xóa mùa vụ');
+        }
+      })
+      .catch((error) => {
+        // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu xóa
+        alert('Lỗi khi gửi yêu cầu xóa mùa vụ');
+      });
+
+    // Đặt lại giá trị của selectedSeasonId sau khi xóa
+    selectedSeasonId = null;
+  }
+}
+
