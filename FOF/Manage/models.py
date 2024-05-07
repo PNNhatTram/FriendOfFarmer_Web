@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-
+from django.db.models import Q
 class Season(models.Model):
     season_name = models.CharField(max_length=200)
     time_start = models.DateField()
@@ -58,8 +58,11 @@ class Customer(models.Model):
     type_user = models.CharField(max_length=50, null=True)
     phonenum = models.CharField(max_length=50, null=True)
     address = models.CharField(max_length=250, null=True)
+    def count_unread_notifications(self):
+        return notify_market.objects.filter(Q(makerAuth=self) | Q(customer=self), is_read=False).count()
     def __str__(self):
         return self.name if self.name else ''
+    
 #Hàm tự động thay đổi email ở User_authen sau khi nhập ở customer
 @receiver(post_save, sender=Customer)
 def update_user_email(sender, instance, created, **kwargs):

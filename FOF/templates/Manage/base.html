@@ -172,9 +172,11 @@
 							<a class="nav-link" href="{% url 'contact'%}">Liên hệ</a>
 						</li>
 						<div class="header__other">
+							{% if user.is_authenticated %}
 							<div class="other1">
-							<span onclick="location.href='{%url 'notify'%}'"><i class="fa fa-fire-alt"></i>&nbsp; Thông báo</span>
+							<span onclick="location.href='{%url 'notify'%}'"><i class="fa fa-fire-alt"></i>&nbsp;{{ request.user.customer.count_unread_notifications }} Thông báo</span>
 							</div>
+							{%endif%}
 							<div class="other1">
 								<span><i class="fa fa-star"></i>&nbsp; Tin nóng</span>
 

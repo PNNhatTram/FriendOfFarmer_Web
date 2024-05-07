@@ -23,18 +23,53 @@ notificationRows.forEach((row) => {
     }
 });
 
-// JavaScript
-const markAllReadLink = document.querySelector('.mark-all-read');
+// // JavaScript
+// const markAllReadLink = document.querySelector('.mark-all-read');
 
-markAllReadLink.addEventListener('click', function(event) {
-    event.preventDefault();
+// markAllReadLink.addEventListener('click', function(event) {
+//     event.preventDefault();
 
-    notificationRows.forEach((row) => {
-        const context = row.querySelector('.notifi__context');
-        context.style.fontWeight = 'normal'; // Đặt kiểu chữ bình thường cho tất cả thông báo
-        row.classList.add('read'); // Thêm lớp 'read' để đánh dấu đã đọc
+//     notificationRows.forEach((row) => {
+//         const context = row.querySelector('.notifi__context');
+//         context.style.fontWeight = 'normal'; // Đặt kiểu chữ bình thường cho tất cả thông báo
+//         row.classList.add('read'); // Thêm lớp 'read' để đánh dấu đã đọc
 
-        // Lưu trạng thái đã đọc vào localStorage
-        localStorage.setItem('notificationRead-' + row.dataset.id, true);
+//         // Lưu trạng thái đã đọc vào localStorage
+//         localStorage.setItem('notificationRead-' + row.dataset.id, true);
+//     });
+// });
+
+
+
+
+////////////////
+
+
+const confirmButtons = document.querySelectorAll('.mark-all-read');
+
+confirmButtons.forEach((button) => {
+    button.addEventListener('click', function() {
+        alert('Đánh dấu đã đọc thành công.');
     });
 });
+
+document.getElementById('sell').onclick = function(){
+    window.location.href = "/notify/";
+    
+}
+
+function showConfirmation() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/confirm/", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                var notificationDiv = window.parent.document.getElementById("notification");
+                notificationDiv.innerHTML = "Bạn đã xác nhận thành công.";
+                notificationDiv.parentElement.parentElement.style.display = "block";
+            }
+        }
+    };
+    xhr.send();
+}

@@ -19,6 +19,14 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from datetime import datetime
 
+def notify_count(request):
+    if request.user.is_authenticated:
+        user = request.user
+        customer = Customer.objects.filter(user=user).first()
+        notify_count = notify_market.objects.filter(Q(makerAuth=customer) | Q(customer=customer)).count()
+        return {'notify_count': notify_count}
+    return {}
+
 def get_weather(request):
     API_KEY = '2dd0a40c823f466c8b711504240305'  # Thay thế bằng API key thực của bạn.
     latitude = request.GET.get('latitude')
@@ -146,10 +154,14 @@ def notify(request):
         customer = Customer.objects.filter(user=user).first()
         #lọc cả tin nhắn tham gia thị trường hoặc các người đã tham gia thị trường của bạn
         notify = notify_market.objects.filter(Q(makerAuth=customer) | Q(customer=customer)).order_by('-timejoin')
-
+        if request.method=="POST":
+            # Đặt tất cả các trạng thái is_read thành True
+            notify.update(is_read=True)
+            
         return render(request, 'Manage/notify.html',{'notify':notify,'customer':customer})
     else:
         return render(request, 'Manage/notify.html')
+
 
 # RESOURCE 
 def search(request):
