@@ -1,4 +1,4 @@
-import pytz
+# import pytz
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -48,8 +48,19 @@ class Plant(models.Model):
 
     def __str__(self):
         return self.plant_name
+
+class Plant_Mode (models.Model):
+    plant_name = models.CharField(max_length=200)
+    plant_pH_min = models.DecimalField(max_digits=2, decimal_places=1, help_text= "Độ pH tối thiểu")
+    plant_pH_max = models.DecimalField(max_digits=2, decimal_places=1, help_text= "Độ pH tối đa")
+    plant_DoAm_min = models.IntegerField(help_text= "Độ ẩm tối thiểu")
+    plant_DoAm_max = models.IntegerField( help_text= "Độ ẩm tối thiểu")
+
+    def __str__(self):
+        return self.plant_name
     
-    
+        
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=False)
     name = models.CharField(max_length=200, null=True)
