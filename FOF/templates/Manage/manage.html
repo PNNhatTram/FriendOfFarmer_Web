@@ -117,7 +117,7 @@
       </div>
       <div class="modal-body my__form" id="myForm">
         <div class="formModal">
-        <label for="name">Nhập tên mùa vụ:</label>
+        <label for="name">Tên mùa vụ:</label>
         <input type="text" name="name" id="name">
         </div>
         <div class="formModal row">
@@ -135,9 +135,17 @@
         <input type="number" name="num" id="num">
          </div>
       </div>
+      
+      <div id="landContainer" class="modal-body"> 
+       
+      </div>
+      
+
+
+
       <div class="modal-footer plus">
         {% for item in season %}
-          <button class="btn" data-season-id="{{ item.id }}" onclick="modifyInfor(event)">
+          <button class="btn" data-season-id="{{ item.id }}" onclick="modifyInfor(event); ClickLandInfor(event)">
             {{ item.season_name }}
           </button>
         {% endfor %}

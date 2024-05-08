@@ -168,10 +168,10 @@ font-size: 1rem;
 font-weight: bold;
 }
 
-.formModal{
+.formModal, .landItem{
     margin: 10px 5px;
 }
-.formModal input{
+.formModal input, .landItem input{
   width: 50%;
   
 
@@ -180,10 +180,25 @@ font-weight: bold;
   border-left: none;
   border-right: none;
   padding: 2px;
+  background-color: transparent;
 }
-.formModal input:focus{
+.formModal input:focus, .landItem input:focus{
   outline: none;
 }
 .formItem {
   padding: 0;
+}
+
+.special {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #EFF2F5;
+  margin-bottom: 20px;
+}
+
+.plantContainer {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #60996633;
+  border-radius: 5px;
 }

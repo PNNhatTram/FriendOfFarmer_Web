@@ -455,4 +455,266 @@ function UpdateSeason(event) {
   }
 }
 
+// cap nhat land 
+
+function ClickLandInfor(event) {
+  // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
+  const seasonId = event.target.dataset.seasonId;
+
+  // Kiểm tra seasonId có tồn tại và hợp lệ
+  if (seasonId) {
+    // Construct the URL to fetch land data for the provided season ID
+    const landUrl = `/api/get-land-by-season/${seasonId}`;
+
+    // Fetch land data
+    fetch(landUrl)
+      .then((response) => response.json())
+      .then((landData) => {
+        // Lấy số lượng mảnh đất từ landData
+        const numberOfLands = landData.length;
+
+        const landContainer = document.getElementById('landContainer');
+        landContainer.innerHTML = ''; // Xóa nội dung hiện tại của landContainer
+      
+        for (let i = 0; i < numberOfLands; i++) {
+          const landDiv = document.createElement('div');
+          landDiv.classList.add('formModal', 'special');
+      
+          const nameLabel = document.createElement('label');
+          nameLabel.textContent = `Tên mảnh đất:`;
+      
+          const nameInput = document.createElement('input');
+          nameInput.type = 'text';
+          nameInput.name = `nameLand${i}`;
+          nameInput.id = `nameLand${i}`;
+          nameInput.value = landData[i].name;
+      
+          const rowDiv = document.createElement('div');
+          rowDiv.classList.add('formModal', 'row');
+      
+          const col1Div = document.createElement('div');
+          col1Div.classList.add('col-4', 'formItem');
+      
+          const doamLabel = document.createElement('label');
+          doamLabel.textContent = 'Độ ẩm:';
+      
+          const doamInput = document.createElement('input');
+          doamInput.type = 'number';
+          doamInput.name = `landDoam${i}`;
+          doamInput.id = `landDoam${i}`;
+          doamInput.value = landData[i].moisture;
+      
+          col1Div.appendChild(doamLabel);
+          col1Div.appendChild(doamInput);
+      
+          const col2Div = document.createElement('div');
+          col2Div.classList.add('col-4', 'formItem');
+      
+          const pHLabel = document.createElement('label');
+          pHLabel.textContent = 'Độ pH:';
+      
+          const pHInput = document.createElement('input');
+          pHInput.type = 'number';
+          pHInput.name = `landpH${i}`;
+          pHInput.id = `landpH${i}`;
+          pHInput.value = landData[i].ph;
+      
+          col2Div.appendChild(pHLabel);
+          col2Div.appendChild(pHInput);
+      
+          const col3Div = document.createElement('div');
+          col3Div.classList.add('col-4', 'formItem');
+      
+          const areaLabel = document.createElement('label');
+          areaLabel.textContent = 'Diện tích:';
+      
+          const areaInput = document.createElement('input');
+          areaInput.type = 'number';
+          areaInput.name = `landArea${i}`;
+          areaInput.id = `landArea${i}`;
+          areaInput.value = landData[i].area;
+      
+          col3Div.appendChild(areaLabel);
+          col3Div.appendChild(areaInput);
+      
+          rowDiv.appendChild(col1Div);
+          rowDiv.appendChild(col2Div);
+          rowDiv.appendChild(col3Div);
+      
+          const posDiv = document.createElement('div');
+          posDiv.classList.add('formModal');
+      
+          const posLabel = document.createElement('label');
+          posLabel.textContent = 'Vị trí:';
+      
+          const posInput = document.createElement('input');
+          posInput.type = 'text';
+          posInput.name = `landPos${i}`;
+          posInput.id = `landPos${i}`;
+          posInput.value = landData[i].position;
+      
+          posDiv.appendChild(posLabel);
+          posDiv.appendChild(posInput);
+          posDiv.style.marginBottom = '30px';
+      
+          landDiv.appendChild(nameLabel);
+          landDiv.appendChild(nameInput);
+          landDiv.appendChild(rowDiv);
+          landDiv.appendChild(posDiv);
+      
+          landContainer.appendChild(landDiv);
+          
+         
+          const headerPlant = document.createElement('h6');
+          headerPlant.textContent = 'Tổng quan về cây trồng: ';
+          headerPlant.style.fontWeight = '900';
+          landDiv.appendChild(headerPlant);
+
+          const plantContainer = document.createElement('div');
+          plantContainer.classList.add('formModal', 'plantContainerHehe');
+          landDiv.appendChild(plantContainer);
+          CreatePlant(landData[i].id, plantContainer);
+          
+        }
+      
+      });
+  }
+}
+
+function CreatePlant(id, container) {
+  const url = `/api/get-plant-by-land/${id}`;
+
+  // Gửi yêu cầu GET đến API để lấy danh sách cây trồng theo mảnh đất
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      // Tạo form
+      // Lấy số lượng mảnh đất từ landData
+      const numberOfplant = data.length;
+
+      container.innerHTML = ''; // Xóa nội dung hiện tại của landContainer
+    
+      for (let i = 0; i < numberOfplant; i++) {
+      const plantContainer = document.createElement('div');
+      plantContainer.classList.add('plantContainer');
+
+      const formModal = document.createElement('div');
+      formModal.classList.add('formModal');
+
+      const nameLabel = document.createElement('label');
+      nameLabel.setAttribute('for', 'plantName');
+      nameLabel.textContent = 'Tên cây trồng: ';
+
+      const nameInput = document.createElement('input');
+      nameInput.setAttribute('type', 'text');
+      nameInput.setAttribute('name', 'plantName');
+      nameInput.setAttribute('id', 'plantName');
+      nameInput.value = data[i].name;
+
+      formModal.appendChild(nameLabel);
+      formModal.appendChild(nameInput);
+      plantContainer.appendChild(formModal);
+
+      const plantRow = document.createElement('div');
+      plantRow.classList.add('row', 'plantRow');
+
+      const devFormModal = document.createElement('div');
+      devFormModal.classList.add('formModal', 'col-7');
+
+      const devLabel = document.createElement('label');
+      devLabel.setAttribute('for', 'plantDev');
+      devLabel.textContent = 'Thời gian phát triển: ';
+
+      const devInput = document.createElement('input');
+      devInput.setAttribute('type', 'number');
+      devInput.setAttribute('name', 'plantDev');
+      devInput.setAttribute('id', 'plantDev');
+      devInput.value = data[i].timeDev;
+
+      devFormModal.appendChild(devLabel);
+      devFormModal.appendChild(devInput);
+      plantRow.appendChild(devFormModal);
+
+      const typeFormModal = document.createElement('div');
+      typeFormModal.classList.add('formModal', 'col-4');
+
+      const typeLabel = document.createElement('label');
+      typeLabel.setAttribute('for', 'plantType');
+      typeLabel.textContent = 'Loại cây: ';
+
+      const typeInput = document.createElement('input');
+      typeInput.setAttribute('type', 'number');
+      typeInput.setAttribute('name', 'plantType');
+      typeInput.setAttribute('id', 'plantType');
+      typeInput.value = data[i].type; 
+
+      typeFormModal.appendChild(typeLabel);
+      typeFormModal.appendChild(typeInput);
+      plantRow.appendChild(typeFormModal);
+
+      plantContainer.appendChild(plantRow);
+
+      const ndModal = document.createElement('div');
+      ndModal.classList.add('formModal');
+      
+      const ndLabel = document.createElement('label');
+      ndLabel.setAttribute('for', 'plantND');
+      ndLabel.textContent = 'Khoáng chất: ';
+      
+      const ndInput = document.createElement('input');
+      ndInput.setAttribute('type', 'text');
+      ndInput.setAttribute('name', 'plantND');
+      ndInput.setAttribute('id', 'plantND');
+      ndInput.value = data[i].nd;
+      
+      ndModal.appendChild(ndLabel);
+      ndModal.appendChild(ndInput);
+      plantContainer.appendChild(ndModal);
+      
+      const bpModal = document.createElement('div');
+      bpModal.classList.add('formModal');
+      
+      const bpLabel = document.createElement('label');
+      bpLabel.setAttribute('for', 'plantBP');
+      bpLabel.textContent = 'Chu kỳ: ';
+      
+      const bpInput = document.createElement('input');
+      bpInput.setAttribute('type', 'number');
+      bpInput.setAttribute('name', 'plantBP');
+      bpInput.setAttribute('id', 'plantBP');
+      bpInput.value = data[i].bp;
+      
+      bpModal.appendChild(bpLabel);
+      bpModal.appendChild(bpInput);
+      plantContainer.appendChild(bpModal);
+      
+      // Tạo row và các cột
+      const row = document.createElement('div');
+      row.classList.add('row');
+      
+      const ndCol = document.createElement('div');
+      ndCol.classList.add('col-7');
+      ndCol.appendChild(ndModal);
+      
+      const bpCol = document.createElement('div');
+      bpCol.classList.add('col-4');
+      bpCol.appendChild(bpModal);
+      
+      row.appendChild(ndCol);
+      row.appendChild(bpCol);
+      
+      plantContainer.appendChild(row);
+
+
+
+      // Hiển thị form trong container được chỉ định
+      container.appendChild(plantContainer);
+      }
+    })
+    .catch(error => {
+      alert("Không thể lấy danh sách cây trồng:", error);
+    });
+}
+
+
 
