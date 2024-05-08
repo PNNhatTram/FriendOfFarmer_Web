@@ -21,29 +21,11 @@ from django.template.loader import render_to_string
 from datetime import datetime
 
 
-def get_weather(request):
-    API_KEY = '2dd0a40c823f466c8b711504240305'  # Thay thế bằng API key thực của bạn.
-    latitude = request.GET.get('latitude')
-    longitude = request.GET.get('longitude')
+# INDEX
+def index(request):
+   return render(request, 'Manage/index.html')
 
-    # Thêm lang='vi' để nhận thông tin bằng tiếng Việt
-    weather_url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={latitude},{longitude}&aqi=no&lang=vi"
-    
-    response = requests.get(weather_url)
-    data = response.json()
-    
-    weather_data = {
-        'temperature': data['current']['temp_c'],
-        'condition': data['current']['condition']['text']
-    }
-    
-    return JsonResponse(weather_data, safe=False, json_dumps_params={'ensure_ascii': False})
-# LOGIN SIGN UP 
-def signup_redirect(request):
-    messages.error(request, "Something wrong here, it may be that you already have account!")
-    return redirect("index")
-
-
+# USERIN4
 def userin4(request):  
       if request.method=="POST":
          user=request.user
@@ -83,7 +65,47 @@ def userin4(request):
               return render(request, 'Manage/userin4.html', {'name': name, 'birth': birth, 'type': type, 'phone': phone, 'adr': adr, 'email': email,})
           except Customer.DoesNotExist:
               return render(request, 'Manage/userin4.html')
-              
+
+# NOTIFY
+def notify(request):
+    if request.user.is_authenticated:
+        user = request.user
+        customer = Customer.objects.filter(user=user).first()
+        #lọc cả tin nhắn tham gia thị trường hoặc các người đã tham gia thị trường của bạn
+        notify = notify_market.objects.filter(Q(makerAuth=customer) | Q(customer=customer)).order_by('-timejoin')
+        if request.method=="POST":
+            notify1 = notify_market.objects.filter(customer=customer)
+            notify2 = notify_market.objects.filter(makerAuth=customer)
+            # Đặt tất cả các trạng thái is_read thành True
+            notify1.update(is_read=True)
+            notify2.update(is_read_trader=True)
+        return render(request, 'Manage/notify.html',{'notify':notify,'customer':customer})
+    else:
+        return render(request, 'Manage/notify.html')
+
+# API WEATHER
+def get_weather(request):
+    API_KEY = '2dd0a40c823f466c8b711504240305'  # Thay thế bằng API key thực của bạn.
+    latitude = request.GET.get('latitude')
+    longitude = request.GET.get('longitude')
+
+    # Thêm lang='vi' để nhận thông tin bằng tiếng Việt
+    weather_url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={latitude},{longitude}&aqi=no&lang=vi"
+    
+    response = requests.get(weather_url)
+    data = response.json()
+    
+    weather_data = {
+        'temperature': data['current']['temp_c'],
+        'condition': data['current']['condition']['text']
+    }
+    
+    return JsonResponse(weather_data, safe=False, json_dumps_params={'ensure_ascii': False})
+
+# LOGIN SIGN UP 
+def signup_redirect(request):
+    messages.error(request, "Something wrong here, it may be that you already have account!")
+    return redirect("index")           
 
 def Logout_page(request):
    logout(request)
@@ -136,30 +158,9 @@ def password_reset(request):
       except User.DoesNotExist:
          messages.error(request, mark_safe('Email không tồn tại.'))
    return render(request, 'Manage/password_reset_conflirm.html', {})
-# INDEX 
-
-def index(request):
-   return render(request, 'Manage/index.html')
-
-#NOTIFY
-def notify(request):
-    if request.user.is_authenticated:
-        user = request.user
-        customer = Customer.objects.filter(user=user).first()
-        #lọc cả tin nhắn tham gia thị trường hoặc các người đã tham gia thị trường của bạn
-        notify = notify_market.objects.filter(Q(makerAuth=customer) | Q(customer=customer)).order_by('-timejoin')
-        if request.method=="POST":
-            notify1 = notify_market.objects.filter(customer=customer)
-            notify2 = notify_market.objects.filter(makerAuth=customer)
-            # Đặt tất cả các trạng thái is_read thành True
-            notify1.update(is_read=True)
-            notify2.update(is_read_trader=True)
-        return render(request, 'Manage/notify.html',{'notify':notify,'customer':customer})
-    else:
-        return render(request, 'Manage/notify.html')
 
 
-# RESOURCE 
+# RESOURCE - FIND CHEAP ITEM
 def search(request):
     searched_name = ""  # Default value for searched
     keys = []  # Default value for keys
@@ -179,13 +180,12 @@ def search(request):
             keysadr = Product.objects.all()
     return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys, "keys1":keysadr, "searched_adr":searched_adr})
 
-#autocomplete
 def searchname(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
         products = Product.objects.filter(name__icontains=term)
         return JsonResponse(list(products.values_list('name', flat=True)), safe=False)
-#autocomplete
+
 def searchadr(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
@@ -193,7 +193,7 @@ def searchadr(request):
         return JsonResponse(list(products.values_list('adress', flat=True)), safe=False)
 
 
-# MANAGE 
+# MANAGE SEASON, LAND, PLANT
 def manage(request):
     # Kiểm tra xem người dùng có đăng nhập hay không
     if request.user.is_authenticated:
@@ -218,6 +218,36 @@ def manage(request):
         return render(request, "Manage/manage.html", context)
     else:
         return render(request, "Manage/manage.html")
+
+## CREATE/ DELETE/ UPDATE
+### SEASON
+def m_form(request):
+    if request.method == 'POST':
+        # Get form data and perform validation (improved)
+        season_name = request.POST['name']
+        time_start = request.POST['time_s']
+        time_end = request.POST['time_e']
+        profit = request.POST.get('num', 0)  # Get profit, default to 0
+
+        # Validate data (example)
+        if not season_name:
+            messages.error(request, "Please enter a season name.")
+            return render(request, "Manage/m_form.html")
+
+        # Create and save Season
+        season = Season.objects.create(
+            season_name=season_name,
+            time_start=time_start,
+            time_end=time_end,
+            profit=profit,
+            user=request.user  # Assuming User model is linked
+        )
+
+        messages.success(request, "Season created successfully!")  # Success message
+        return redirect("manage")  # Redirect to manage page
+
+    else:
+        return render(request, "Manage/m_form.html")
 
 @csrf_exempt
 def delete_season(request, season_id):
@@ -276,6 +306,125 @@ def update_season_info(request, season_id):
     except Exception as e:
         # Xử lý lỗi chung nếu có lỗi xảy ra trong quá trình cập nhật
         return JsonResponse({'error': str(e)}, status=500)
+    
+
+### LAND
+def land_form(request):
+    if request.method == 'POST':
+        land_name = request.POST['land_name']
+        land_pos = request.POST['land_pos']
+        land_area = request.POST.get('land_area', 0)  # Default value if not provided
+        land_pH = request.POST.get('land_pH', 7)  # Default value if not provided
+        land_doAm = request.POST.get('land_doAm', 50.00)  # Default value if not provided
+        selected_season_id = request.POST['id_mv']
+
+        try:
+            season = Season.objects.get(pk=selected_season_id)
+        except Season.DoesNotExist:
+            return HttpResponseBadRequest('Invalid season ID')
+
+        land = Land.objects.create(
+            land_name=land_name,
+            land_pos=land_pos,
+            land_area=land_area,
+            land_pH=land_pH,
+            land_doAm=land_doAm,
+            season=season
+        )
+
+        messages.success(request, "Land created successfully!")
+        return redirect("manage")  # Redirect to your desired page after success
+    
+    current_user = request.user
+    user_seasons = Season.objects.filter(user=current_user)
+    # Truyền danh sách vụ mùa vào context
+    context = {'season_list': user_seasons}
+
+    return render(request, "Manage/land_form.html", context)
+
+@csrf_exempt
+def delete_land(request, land_id):
+    try:
+        # Lấy đối tượng land dựa trên land_id
+        land = Land.objects.get(id=land_id)
+
+        # Thực hiện xóa land
+        land.delete()
+
+        # Trả về phản hồi thành công
+        return JsonResponse({'message': 'Xóa thành công'})
+    except Land.DoesNotExist:
+        # Xử lý lỗi nếu land không tồn tại
+        return JsonResponse({'error': 'Không tồn tại'}, status=404)
+    except Exception as e:
+        # Xử lý lỗi chung nếu có lỗi xảy ra trong quá trình xóa
+        return JsonResponse({'error': str(e)}, status=500)
+    
+#### UPDATE LAND -- DONT HAVE
+
+### PLANT
+def plant_form(request):
+    if request.method == 'POST':
+        plant_name = request.POST['plant_name']
+        plant_dev = request.POST.get('plant_dev', 0)  # Default 0 months
+        plant_type = request.POST['plant_type']  # Assuming ID for plant type
+        plant_ND = request.POST.get('plant_ND', 0)
+        plant_bp = request.POST.get('plant_bp', 0)
+        selected_land_id = request.POST.get('land_id', None)
+        try:
+          land = Land.objects.get(pk=selected_land_id)
+        except Land.DoesNotExist:
+          return HttpResponseBadRequest('Invalid season ID')
+       
+
+        # Create new Plant object
+        plant = Plant.objects.create(
+            plant_name=plant_name,
+            plant_dev=plant_dev,
+            plant_type=plant_type,
+            plant_ND=plant_ND,
+            plant_bp=plant_bp, 
+            land=land
+        )
+
+        messages.success(request, "Plant created successfully!")
+        return redirect("manage")  # Redirect to success page (replace with your URL)
+
+    # Lấy user hiện tại
+    current_user = request.user
+
+    # Lấy các mùa vụ của người dùng hiện tại
+    seasons = Season.objects.filter(user=current_user)
+
+    # Lấy các đất đai của người dùng hiện tại dựa trên các mùa vụ
+    
+   
+    land_list = Land.objects.filter(season__in=seasons)
+    context = {'land_list': land_list}
+
+    return render(request, "Manage/plant_form.html", context)
+
+@csrf_exempt
+def delete_plant(request, plant_id):
+    try:
+        # Lấy đối tượng land dựa trên land_id
+        plant = Plant.objects.get(id=plant_id)
+
+        # Thực hiện xóa land
+        plant.delete()
+
+        # Trả về phản hồi thành công
+        return JsonResponse({'message': 'Xóa thành công'})
+    except Land.DoesNotExist:
+        # Xử lý lỗi nếu land không tồn tại
+        return JsonResponse({'error': 'Không tồn tại'}, status=404)
+    except Exception as e:
+        # Xử lý lỗi chung nếu có lỗi xảy ra trong quá trình xóa
+        return JsonResponse({'error': str(e)}, status=500)
+
+#### UPDATE PLANT -- DONT HAVE
+
+## API TO GET DATA
 
 def get_season_info(request, season_id):
   """
@@ -358,108 +507,6 @@ def get_plant_by_land(request, land_id):
 
   return JsonResponse(data, safe=False)
 
-def land_form(request):
-    if request.method == 'POST':
-        land_name = request.POST['land_name']
-        land_pos = request.POST['land_pos']
-        land_area = request.POST.get('land_area', 0)  # Default value if not provided
-        land_pH = request.POST.get('land_pH', 7)  # Default value if not provided
-        land_doAm = request.POST.get('land_doAm', 50.00)  # Default value if not provided
-        selected_season_id = request.POST['id_mv']
-
-        try:
-            season = Season.objects.get(pk=selected_season_id)
-        except Season.DoesNotExist:
-            return HttpResponseBadRequest('Invalid season ID')
-
-        land = Land.objects.create(
-            land_name=land_name,
-            land_pos=land_pos,
-            land_area=land_area,
-            land_pH=land_pH,
-            land_doAm=land_doAm,
-            season=season
-        )
-
-        messages.success(request, "Land created successfully!")
-        return redirect("manage")  # Redirect to your desired page after success
-    
-    current_user = request.user
-    user_seasons = Season.objects.filter(user=current_user)
-    # Truyền danh sách vụ mùa vào context
-    context = {'season_list': user_seasons}
-
-    return render(request, "Manage/land_form.html", context)
-
-def plant_form(request):
-    if request.method == 'POST':
-        plant_name = request.POST['plant_name']
-        plant_dev = request.POST.get('plant_dev', 0)  # Default 0 months
-        plant_type = request.POST['plant_type']  # Assuming ID for plant type
-        plant_ND = request.POST.get('plant_ND', 0)
-        plant_bp = request.POST.get('plant_bp', 0)
-        selected_land_id = request.POST.get('land_id', None)
-        try:
-          land = Land.objects.get(pk=selected_land_id)
-        except Land.DoesNotExist:
-          return HttpResponseBadRequest('Invalid season ID')
-       
-
-        # Create new Plant object
-        plant = Plant.objects.create(
-            plant_name=plant_name,
-            plant_dev=plant_dev,
-            plant_type=plant_type,
-            plant_ND=plant_ND,
-            plant_bp=plant_bp, 
-            land=land
-        )
-
-        messages.success(request, "Plant created successfully!")
-        return redirect("manage")  # Redirect to success page (replace with your URL)
-
-    # Lấy user hiện tại
-    current_user = request.user
-
-    # Lấy các mùa vụ của người dùng hiện tại
-    seasons = Season.objects.filter(user=current_user)
-
-    # Lấy các đất đai của người dùng hiện tại dựa trên các mùa vụ
-    
-   
-    land_list = Land.objects.filter(season__in=seasons)
-    context = {'land_list': land_list}
-
-    return render(request, "Manage/plant_form.html", context)
-
-def m_form(request):
-    if request.method == 'POST':
-        # Get form data and perform validation (improved)
-        season_name = request.POST['name']
-        time_start = request.POST['time_s']
-        time_end = request.POST['time_e']
-        profit = request.POST.get('num', 0)  # Get profit, default to 0
-
-        # Validate data (example)
-        if not season_name:
-            messages.error(request, "Please enter a season name.")
-            return render(request, "Manage/m_form.html")
-
-        # Create and save Season
-        season = Season.objects.create(
-            season_name=season_name,
-            time_start=time_start,
-            time_end=time_end,
-            profit=profit,
-            user=request.user  # Assuming User model is linked
-        )
-
-        messages.success(request, "Season created successfully!")  # Success message
-        return redirect("manage")  # Redirect to manage page
-
-    else:
-        return render(request, "Manage/m_form.html")
-
 def infor(request):
     if request.method == 'GET':
         season_id = request.GET.get('id')
@@ -498,10 +545,8 @@ def maker(request):
 
         return render(request, 'Manage/maker.html', context)
     else:
-        return render(request, 'Manage/maker.html')
-    
+        return render(request, 'Manage/maker.html')           
 
-            
 #autocomplete for maker 
 def makeradr(request):
     if 'term' in request.GET:
@@ -517,8 +562,6 @@ def makerplant(request):
         term = request.GET.get('term')
         products = market.objects.filter(marketPlant__icontains=term)
         return JsonResponse(list(products.values_list('marketPlant', flat=True)), safe=False)
-
-
 
 def market_detail(request, market_id):
     if request.method == "POST":
@@ -613,11 +656,10 @@ def contact(request):
             messages.success(request, "Gửi phản hồi thành công")
         return render(request, 'Manage/contact.html', {})
     
-
 def aboutus(request):
             return render(request, 'Manage/aboutus.html')
 
-# SUBSCRIBE 
+# SUBSCRIBE EMAIL
 def send_subscription_email(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -663,7 +705,7 @@ def send_subscription_email(request):
             fail_silently=False,
         )
         return redirect('index')
-#footer
+# FOOTER
 def dksd(request):
     return render(request, 'Manage/dksd.html')
 def csrt(request):

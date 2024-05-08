@@ -202,3 +202,10 @@ font-weight: bold;
   background-color: #60996633;
   border-radius: 5px;
 }
+.myButton button{
+  margin-right: 15px;
+}
+.myButton {
+  width: 17%;
+  margin-left: auto;
+}

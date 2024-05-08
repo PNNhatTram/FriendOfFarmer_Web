@@ -1,6 +1,6 @@
   
-
-
+// HÀM ĐỂ QUẢN LÝ, TÍNH TOÁN
+// Lấy thông tin mùa vụ từ server --------------------------------------
   function ClickSeason(event) {
     // Lấy ID nút
     const buttonId = event.target.dataset.seasonId;
@@ -37,7 +37,7 @@ function formatDate(date) {
 }
   }
 
-
+  // Lấy thoong tin đất --------------------------------------
   function showLandInfo(landId) {
     // Gọi API hoặc thực hiện các thao tác khác để lấy dữ liệu cho landId cụ thể
     fetch(`/api/get-land-info/${landId}`)
@@ -57,6 +57,7 @@ function formatDate(date) {
       });
   }
 
+  // Lấy thông tin chi tiết đất đai ---------------------------------
   function ClickLand(event) {
     // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
     const seasonId = event.target.dataset.seasonId;
@@ -123,48 +124,7 @@ function formatDate(date) {
       });
     }
 }
-
-function Earse(event){
-  var p = document.getElementById('plant');
-  p.innerHTML = ' ';
-}
-function calculateEndDate(startDate, timeDev) {
-  function parseDateString(dateString) {
-    var parts = dateString.split('-');
-    var day = parseInt(parts[0], 10);
-    var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
-    var year = parseInt(parts[2], 10);
-    return new Date(year, month, day);
-  }
-
-  var seasonStartDate = parseDateString(startDate);
-  var endDate = new Date(seasonStartDate.getFullYear(), seasonStartDate.getMonth() + parseInt(timeDev), seasonStartDate.getDate());
-  
-  var day = String(endDate.getDate()).padStart(2, '0');
-  var month = String(endDate.getMonth() + 1).padStart(2, '0'); // Tháng trong JavaScript tính từ 0 đến 11
-  var year = endDate.getFullYear();
-
-  var timeCollectValue = day + '-' + month + '-' + year;
-  return timeCollectValue;
-}
-
-function calculateDaysLeft(endDateString) {
-  // Chuyển đổi chuỗi ngày kết thúc thành đối tượng Date
-  var day = parseInt(endDateString.substring(0, 2), 10);
-  var month = parseInt(endDateString.substring(3, 5), 10) - 1;
-  var year = parseInt(endDateString.substring(6, 10), 10);
-  var endDate = new Date(year, month, day);
-
-  var currentTime = new Date();
-  var timeDiff = endDate - currentTime;
-  var daysLeft = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-  return daysLeft;
-}
-
-// Ví dụ sử dụng hàm calculateDaysLeft với đầu vào là chuỗi "10042024"
-var daysLeft = calculateDaysLeft("10042024");
-console.log(daysLeft); // Kết quả được in ra trong Console
+// Lấy thông tin cây trồng
 function ClickLandShowPlant(event){
   // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
   const landId = event.target.dataset.landId;
@@ -321,7 +281,47 @@ function ClickLandShowPlant(event){
     });
   }
 }
+// hàm zô tri
+function Earse(event){
+  var p = document.getElementById('plant');
+  p.innerHTML = ' ';
+}
+// hàm tính toán ngày kết thúc - thu hoạch -------------------
+function calculateEndDate(startDate, timeDev) {
+  function parseDateString(dateString) {
+    var parts = dateString.split('-');
+    var day = parseInt(parts[0], 10);
+    var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
+    var year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  }
 
+  var seasonStartDate = parseDateString(startDate);
+  var endDate = new Date(seasonStartDate.getFullYear(), seasonStartDate.getMonth() + parseInt(timeDev), seasonStartDate.getDate());
+  
+  var day = String(endDate.getDate()).padStart(2, '0');
+  var month = String(endDate.getMonth() + 1).padStart(2, '0'); // Tháng trong JavaScript tính từ 0 đến 11
+  var year = endDate.getFullYear();
+
+  var timeCollectValue = day + '-' + month + '-' + year;
+  return timeCollectValue;
+}
+// hàm tính toán số ngày còn lại ----------------------------
+function calculateDaysLeft(endDateString) {
+  // Chuyển đổi chuỗi ngày kết thúc thành đối tượng Date
+  var day = parseInt(endDateString.substring(0, 2), 10);
+  var month = parseInt(endDateString.substring(3, 5), 10) - 1;
+  var year = parseInt(endDateString.substring(6, 10), 10);
+  var endDate = new Date(year, month, day);
+
+  var currentTime = new Date();
+  var timeDiff = endDate - currentTime;
+  var daysLeft = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+  return daysLeft;
+}
+
+// xác định loại cây trồng
 function  typePlant(t){
   if (t == 0)
     return "Cây lương thực"; 
@@ -332,15 +332,10 @@ function  typePlant(t){
 }
   
 
-
-
-// code trang sua xoa
-
-
-
+// THÊM XOÁ SỬA SEASON, LAND, PLANT
+// HÀM TẠO FORM 
 // Gọi hàm để tạo form tự động
 let selectedSeasonId; // Biến để lưu ID mùa vụ được chọn
-
 function modifyInfor(event) {
   // Lấy ID mùa vụ từ nút được nhấp vào
   const buttonId = event.target.dataset.seasonId;
@@ -358,105 +353,6 @@ function modifyInfor(event) {
       document.getElementById("num").value = data.profit;
     });
 }
-
-function DeleteSeason(event) {
-  if (!selectedSeasonId) {
-    // Nếu không có ID mùa vụ được chọn, không thực hiện xóa
-    alert('Vui lòng chọn mùa vụ trước khi xóa');
-    return;
-  }
-
-  // Hiển thị hộp thoại xác nhận
-  const confirmation = confirm("Bạn có chắc chắn muốn xóa mùa vụ?");
-
-  // Nếu người dùng xác nhận xóa
-  if (confirmation) {
-    // Gửi yêu cầu xóa mùa vụ đến API
-    const url = `/api/delete-season/${selectedSeasonId}`;
-    fetch(url, {
-      method: 'DELETE'
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Xóa thành công, thực hiện các hành động khác (nếu cần)
-          alert('Mùa vụ đã được xóa thành công');
-
-          // Load lại trang sau khi xóa thành công
-          location.reload();
-        } else {
-          // Xử lý lỗi nếu xóa không thành công
-          alert('Lỗi khi xóa mùa vụ');
-        }
-      })
-      .catch((error) => {
-        // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu xóa
-        alert('Lỗi khi gửi yêu cầu xóa mùa vụ');
-      });
-
-    // Đặt lại giá trị của selectedSeasonId sau khi xóa
-    selectedSeasonId = null;
-  }
-}
-
-
-function UpdateSeason(event) {
-  event.preventDefault(); // Ngăn chặn hành vi mặc định của form
-
-  if (!selectedSeasonId) {
-    // Nếu không có ID mùa vụ được chọn, không thực hiện cập nhật
-    alert('Vui lòng chọn mùa vụ trước khi cập nhật!');
-    return;
-  }
-
-  // Lấy giá trị từ các trường input
-  const seasonName = document.getElementById('name').value;
-  const timeStart = document.getElementById('time_s').value;
-  const timeEnd = document.getElementById('time_e').value;
-  const profit = document.getElementById('num').value;
-
-  // Tạo một đối tượng chứa dữ liệu cập nhật
-  const data = {
-    season_name: seasonName,
-    time_start: timeStart,
-    time_end: timeEnd,
-    profit: profit
-  };
-
-  // Xác nhận trước khi gửi yêu cầu cập nhật
-  if (confirm('Bạn có chắc chắn muốn cập nhật thông tin mùa vụ không?')) {
-    // Gửi yêu cầu cập nhật mùa vụ đến API
-    const url = `/api/update-season/${selectedSeasonId}/`;
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Cập nhật thành công, thực hiện các hành động khác (nếu cần)
-          alert('Thay đổi thông tin thành công');
-
-          // Load lại trang sau khi cập nhật thành công
-          location.reload();
-        } else {
-          // Xử lý lỗi nếu cập nhật không thành công
-          alert('Lỗi khi cập nhật thông tin');
-        }
-      })
-      .catch((error) => {
-        // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu cập nhật
-        alert('Lỗi khi gửi yêu cầu cập nhật mùa vụ');
-      });
-
-    // Đặt lại giá trị của selectedSeasonId sau khi cập nhật
-    selectedSeasonId = null;
-  }
-}
-
-// cap nhat land 
-
 function ClickLandInfor(event) {
   // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
   const seasonId = event.target.dataset.seasonId;
@@ -485,8 +381,8 @@ function ClickLandInfor(event) {
       
           const nameInput = document.createElement('input');
           nameInput.type = 'text';
-          nameInput.name = `nameLand${i}`;
-          nameInput.id = `nameLand${i}`;
+          nameInput.name = `nameLand${landData[i]}`;
+          nameInput.id = `nameLand${landData[i]}`;
           nameInput.value = landData[i].name;
       
           const rowDiv = document.createElement('div');
@@ -500,8 +396,8 @@ function ClickLandInfor(event) {
       
           const doamInput = document.createElement('input');
           doamInput.type = 'number';
-          doamInput.name = `landDoam${i}`;
-          doamInput.id = `landDoam${i}`;
+          doamInput.name = `landDoam${landData[i]}`;
+          doamInput.id = `landDoam${landData[i]}`;
           doamInput.value = landData[i].moisture;
       
           col1Div.appendChild(doamLabel);
@@ -515,8 +411,8 @@ function ClickLandInfor(event) {
       
           const pHInput = document.createElement('input');
           pHInput.type = 'number';
-          pHInput.name = `landpH${i}`;
-          pHInput.id = `landpH${i}`;
+          pHInput.name = `landpH${landData[i]}`;
+          pHInput.id = `landpH${landData[i]}`;
           pHInput.value = landData[i].ph;
       
           col2Div.appendChild(pHLabel);
@@ -530,8 +426,8 @@ function ClickLandInfor(event) {
       
           const areaInput = document.createElement('input');
           areaInput.type = 'number';
-          areaInput.name = `landArea${i}`;
-          areaInput.id = `landArea${i}`;
+          areaInput.name = `landArea${landData[i]}`;
+          areaInput.id = `landArea${landData[i]}`;
           areaInput.value = landData[i].area;
       
           col3Div.appendChild(areaLabel);
@@ -549,8 +445,8 @@ function ClickLandInfor(event) {
       
           const posInput = document.createElement('input');
           posInput.type = 'text';
-          posInput.name = `landPos${i}`;
-          posInput.id = `landPos${i}`;
+          posInput.name = `landPos${landData[i]}`;
+          posInput.id = `landPos${landData[i]}`;
           posInput.value = landData[i].position;
       
           posDiv.appendChild(posLabel);
@@ -564,6 +460,34 @@ function ClickLandInfor(event) {
       
           landContainer.appendChild(landDiv);
           
+          const buttonDel = document.createElement('button');
+        buttonDel.classList.add('btn', 'btn-danger');
+        buttonDel.innerHTML = '<i class="fa fa-trash-alt"></i>';
+
+        const landId = landData[i].id; // Định nghĩa land_id
+
+        // Gắn thuộc tính tùy chỉnh "data-land-id" cho buttonDel
+        buttonDel.setAttribute('data-land-id', landId);
+
+        // Gắn sự kiện onclick vào buttonDel
+        buttonDel.addEventListener('click', function(event) {
+          const clickedButton = event.target; // Truy cập button được click
+          const storedLandId = clickedButton.getAttribute('data-land-id'); // Lấy giá trị land_id từ thuộc tính tùy chỉnh
+
+          DeleteLand(event, storedLandId); // Gọi hàm DeleteLand với land_id tương ứng
+        });
+
+        const buttonUp = document.createElement('button');
+        buttonUp.classList.add('btn', 'btn-success');
+        buttonUp.innerHTML = '<i class="fa fa-pencil-alt"></i>';
+
+        const divBut = document.createElement('div');
+        divBut.classList.add('myButton');
+        divBut.appendChild(buttonDel);
+        divBut.appendChild(buttonUp);
+
+        landDiv.appendChild(divBut);
+
          
           const headerPlant = document.createElement('h6');
           headerPlant.textContent = 'Tổng quan về cây trồng: ';
@@ -702,8 +626,37 @@ function CreatePlant(id, container) {
       
       row.appendChild(ndCol);
       row.appendChild(bpCol);
+      row.style.marginBottom = '20px';
       
       plantContainer.appendChild(row);
+
+      const buttonDel = document.createElement('button');
+      buttonDel.classList.add('btn', 'btn-danger');
+      buttonDel.innerHTML = '<i class="fa fa-trash-alt"></i>'
+
+      const plantId = data[i].id; // Định nghĩa plant_id
+
+      // Gắn thuộc tính tùy chỉnh "data-land-id" cho buttonDel
+      buttonDel.setAttribute('data-plant-id', plantId);
+
+      // Gắn sự kiện onclick vào buttonDel
+      buttonDel.addEventListener('click', function(event) {
+        const clickedButton = event.target; // Truy cập button được click
+        const storedpLantId = clickedButton.getAttribute('data-plant-id'); // Lấy giá trị land_id từ thuộc tính tùy chỉnh
+
+        DeletePlant(event, storedpLantId); // Gọi hàm DeletepLant với plant_id tương ứng
+      });
+      
+      const buttonUp = document.createElement('button');
+      buttonUp.classList.add('btn', 'btn-success');
+      buttonUp.innerHTML = '<i class="fa fa-pencil-alt"></i>'
+      
+      const divBut = document.createElement('div');
+      divBut.classList.add('myButton');
+      divBut.appendChild(buttonDel);
+      divBut.appendChild(buttonUp);
+      
+      plantContainer.appendChild(divBut);
 
 
 
@@ -715,6 +668,169 @@ function CreatePlant(id, container) {
       alert("Không thể lấy danh sách cây trồng:", error);
     });
 }
+
+// XOÁ
+function DeleteSeason(event) {
+  if (!selectedSeasonId) {
+    // Nếu không có ID mùa vụ được chọn, không thực hiện xóa
+    alert('Vui lòng chọn mùa vụ trước khi xóa');
+    return;
+  }
+
+  // Hiển thị hộp thoại xác nhận
+  const confirmation = confirm("Bạn có chắc chắn muốn xóa mùa vụ?");
+
+  // Nếu người dùng xác nhận xóa
+  if (confirmation) {
+    // Gửi yêu cầu xóa mùa vụ đến API
+    const url = `/api/delete-season/${selectedSeasonId}`;
+    fetch(url, {
+      method: 'DELETE'
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Xóa thành công, thực hiện các hành động khác (nếu cần)
+          alert('Mùa vụ đã được xóa thành công');
+
+          // Load lại trang sau khi xóa thành công
+          location.reload();
+        } else {
+          // Xử lý lỗi nếu xóa không thành công
+          alert('Lỗi khi xóa mùa vụ');
+        }
+      })
+      .catch((error) => {
+        // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu xóa
+        alert('Lỗi khi gửi yêu cầu xóa mùa vụ');
+      });
+
+    // Đặt lại giá trị của selectedSeasonId sau khi xóa
+    selectedSeasonId = null;
+  }
+}
+
+function DeleteLand(event, landId) {
+  // Hiển thị hộp thoại xác nhận
+  const confirmation = confirm("Bạn có chắc chắn muốn xóa mảnh đất?");
+
+  // Nếu người dùng xác nhận xóa
+  if (confirmation) {
+    // Gửi yêu cầu xóa mảnh đất đến API
+    const url = `/api/delete-land/${landId}/`;
+    fetch(url, {
+      method: 'DELETE'
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Xóa thành công, thực hiện các hành động khác (nếu cần)
+          alert('Mảnh đất đã được xóa thành công');
+
+          // Load lại trang sau khi xóa thành công
+          location.reload();
+        } else {
+          // Xử lý lỗi nếu xóa không thành công
+          alert('Lỗi khi xóa mảnh đất');
+        }
+      })
+      .catch((error) => {
+        // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu xóa
+        alert('Lỗi khi gửi yêu cầu xóa mảnh đất');
+      });
+  }
+}
+
+function DeletePlant(event, plantID){
+    // Hiển thị hộp thoại xác nhận
+    const confirmation = confirm("Bạn có chắc chắn muốn xóa cây trồng?");
+
+    // Nếu người dùng xác nhận xóa
+    if (confirmation) {
+      // Gửi yêu cầu xóa mảnh đất đến API
+      const url = `/api/delete-plant/${plantID}/`;
+      fetch(url, {
+        method: 'DELETE'
+      })
+        .then((response) => {
+          if (response.ok) {
+            // Xóa thành công, thực hiện các hành động khác (nếu cần)
+            alert('Cây trồng đã được xóa thành công');
+  
+            // Load lại trang sau khi xóa thành công
+            location.reload();
+          } else {
+            // Xử lý lỗi nếu xóa không thành công
+            alert('Lỗi khi xóa cây trồng');
+          }
+        })
+        .catch((error) => {
+          // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu xóa
+          alert('Lỗi khi gửi yêu cầu xóa cây trồng');
+        });
+    }
+}
+
+// CẬP NHẬT 
+
+function UpdateSeason(event) {
+  event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+
+  if (!selectedSeasonId) {
+    // Nếu không có ID mùa vụ được chọn, không thực hiện cập nhật
+    alert('Vui lòng chọn mùa vụ trước khi cập nhật!');
+    return;
+  }
+
+  // Lấy giá trị từ các trường input
+  const seasonName = document.getElementById('name').value;
+  const timeStart = document.getElementById('time_s').value;
+  const timeEnd = document.getElementById('time_e').value;
+  const profit = document.getElementById('num').value;
+
+  // Tạo một đối tượng chứa dữ liệu cập nhật
+  const data = {
+    season_name: seasonName,
+    time_start: timeStart,
+    time_end: timeEnd,
+    profit: profit
+  };
+
+  // Xác nhận trước khi gửi yêu cầu cập nhật
+  if (confirm('Bạn có chắc chắn muốn cập nhật thông tin mùa vụ không?')) {
+    // Gửi yêu cầu cập nhật mùa vụ đến API
+    const url = `/api/update-season/${selectedSeasonId}/`;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Cập nhật thành công, thực hiện các hành động khác (nếu cần)
+          alert('Thay đổi thông tin thành công');
+
+          // Load lại trang sau khi cập nhật thành công
+          location.reload();
+        } else {
+          // Xử lý lỗi nếu cập nhật không thành công
+          alert('Lỗi khi cập nhật thông tin');
+        }
+      })
+      .catch((error) => {
+        // Xử lý lỗi nếu có lỗi trong quá trình gửi yêu cầu cập nhật
+        alert('Lỗi khi gửi yêu cầu cập nhật mùa vụ');
+      });
+
+    // Đặt lại giá trị của selectedSeasonId sau khi cập nhật
+    selectedSeasonId = null;
+  }
+}
+
+
+
+
+
 
 
 
