@@ -183,13 +183,13 @@ def search(request):
 def searchname(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
-        products = Product.objects.filter(name__icontains=term)
+        products = Product.objects.filter(name__icontains=term).distinct()[:10]
         return JsonResponse(list(products.values_list('name', flat=True)), safe=False)
 
 def searchadr(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
-        products = Adress.objects.filter(adress__icontains=term)
+        products = Adress.objects.filter(adress__icontains=term).distinct()[:10]
         return JsonResponse(list(products.values_list('adress', flat=True)), safe=False)
 
 
@@ -602,7 +602,7 @@ def maker(request):
 def makeradr(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
-        products = market.objects.filter(marketName__icontains=term)
+        products = market.objects.filter(marketName__icontains=term).distinct()[:10]
         return JsonResponse(list(products.values_list('marketName', flat=True)), safe=False)
     
 
@@ -611,7 +611,7 @@ def makeradr(request):
 def makerplant(request):
     if 'term' in request.GET:
         term = request.GET.get('term')
-        products = market.objects.filter(marketPlant__icontains=term)
+        products = market.objects.filter(marketPlant__icontains=term).distinct()[:10]
         return JsonResponse(list(products.values_list('marketPlant', flat=True)), safe=False)
 
 def market_detail(request, market_id):
