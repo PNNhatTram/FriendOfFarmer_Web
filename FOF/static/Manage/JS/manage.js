@@ -537,6 +537,7 @@ function CreatePlant(id, container) {
       container.innerHTML = ''; // Xóa nội dung hiện tại của landContainer
     
       for (let i = 0; i < numberOfplant; i++) {
+        const plantId = data[i].id; // Định nghĩa plant_id
       const plantContainer = document.createElement('div');
       plantContainer.classList.add('plantContainer');
 
@@ -544,13 +545,13 @@ function CreatePlant(id, container) {
       formModal.classList.add('formModal');
 
       const nameLabel = document.createElement('label');
-      nameLabel.setAttribute('for', 'plantName');
+      nameLabel.setAttribute('for', `plantName${plantId}`);
       nameLabel.textContent = 'Tên cây trồng: ';
 
       const nameInput = document.createElement('input');
       nameInput.setAttribute('type', 'text');
-      nameInput.setAttribute('name', 'plantName');
-      nameInput.setAttribute('id', 'plantName');
+      nameInput.setAttribute('name', `plantName${plantId}`);
+      nameInput.setAttribute('id', `plantName${plantId}`);//
       nameInput.value = data[i].name;
 
       formModal.appendChild(nameLabel);
@@ -564,13 +565,13 @@ function CreatePlant(id, container) {
       devFormModal.classList.add('formModal', 'col-7');
 
       const devLabel = document.createElement('label');
-      devLabel.setAttribute('for', 'plantDev');
+      devLabel.setAttribute('for', `plantDev${plantId}`);
       devLabel.textContent = 'Thời gian phát triển: ';
 
       const devInput = document.createElement('input');
       devInput.setAttribute('type', 'number');
-      devInput.setAttribute('name', 'plantDev');
-      devInput.setAttribute('id', 'plantDev');
+      devInput.setAttribute('name', `plantDev${plantId}`);
+      devInput.setAttribute('id', `plantDev${plantId}`);
       devInput.value = data[i].timeDev;
 
       devFormModal.appendChild(devLabel);
@@ -581,13 +582,13 @@ function CreatePlant(id, container) {
       typeFormModal.classList.add('formModal', 'col-4');
 
       const typeLabel = document.createElement('label');
-      typeLabel.setAttribute('for', 'plantType');
+      typeLabel.setAttribute('for', `plantType${plantId}`);
       typeLabel.textContent = 'Loại cây: ';
 
       const typeInput = document.createElement('input');
       typeInput.setAttribute('type', 'number');
-      typeInput.setAttribute('name', 'plantType');
-      typeInput.setAttribute('id', 'plantType');
+      typeInput.setAttribute('name', `plantType${plantId}`);
+      typeInput.setAttribute('id', `plantType${plantId}`);
       typeInput.value = data[i].type; 
 
       typeFormModal.appendChild(typeLabel);
@@ -600,13 +601,13 @@ function CreatePlant(id, container) {
       ndModal.classList.add('formModal');
       
       const ndLabel = document.createElement('label');
-      ndLabel.setAttribute('for', 'plantND');
+      ndLabel.setAttribute('for', `plantND${plantId}`);
       ndLabel.textContent = 'Khoáng chất: ';
       
       const ndInput = document.createElement('input');
       ndInput.setAttribute('type', 'text');
-      ndInput.setAttribute('name', 'plantND');
-      ndInput.setAttribute('id', 'plantND');
+      ndInput.setAttribute('name', `plantND${plantId}`);
+      ndInput.setAttribute('id', `plantND${plantId}`);
       ndInput.value = data[i].nd;
       
       ndModal.appendChild(ndLabel);
@@ -617,13 +618,13 @@ function CreatePlant(id, container) {
       bpModal.classList.add('formModal');
       
       const bpLabel = document.createElement('label');
-      bpLabel.setAttribute('for', 'plantBP');
+      bpLabel.setAttribute('for', `plantBP${plantId}`);
       bpLabel.textContent = 'Chu kỳ: ';
       
       const bpInput = document.createElement('input');
       bpInput.setAttribute('type', 'number');
-      bpInput.setAttribute('name', 'plantBP');
-      bpInput.setAttribute('id', 'plantBP');
+      bpInput.setAttribute('name', `plantBP${plantId}`);
+      bpInput.setAttribute('id', `plantBP${plantId}`);
       bpInput.value = data[i].bp;
       
       bpModal.appendChild(bpLabel);
@@ -652,22 +653,34 @@ function CreatePlant(id, container) {
       buttonDel.classList.add('btn', 'btn-danger');
       buttonDel.innerHTML = '<i class="fa fa-trash-alt"></i>'
 
-      const plantId = data[i].id; // Định nghĩa plant_id
-
-      // Gắn thuộc tính tùy chỉnh "data-land-id" cho buttonDel
-      buttonDel.setAttribute('data-plant-id', plantId);
+      
 
       // Gắn sự kiện onclick vào buttonDel
       buttonDel.addEventListener('click', function(event) {
         const clickedButton = event.target; // Truy cập button được click
-        const storedpLantId = clickedButton.getAttribute('data-plant-id'); // Lấy giá trị land_id từ thuộc tính tùy chỉnh
-
-        DeletePlant(event, storedpLantId); // Gọi hàm DeletepLant với plant_id tương ứng
+        DeletePlant(event, plantId); // Gọi hàm DeletepLant với plant_id tương ứng
       });
       
       const buttonUp = document.createElement('button');
       buttonUp.classList.add('btn', 'btn-success');
-      buttonUp.innerHTML = '<i class="fa fa-pencil-alt"></i>'
+      buttonUp.innerHTML = '<i class="fa fa-pencil-alt"></i>';
+      
+      buttonUp.addEventListener('click', function(event){
+        const clickedButton = event.target;
+        const plantid = document.getElementById(`plantName${plantId}`).value;
+        const plantDev = document.getElementById(`plantDev${plantId}`).value;
+        const plantType = document.getElementById(`plantType${plantId}`).value;
+        const plantND = document.getElementById(`plantND${plantId}`).value;
+        const plantBP = document.getElementById(`plantBP${plantId}`).value;
+        const data = {
+          plantid:plantid,
+          plantDev:plantDev,
+          plantType:plantType,
+          plantND:plantND,
+          plantBP:plantBP,
+        }
+        update_plant(event, plantId, data)
+      });
       
       const divBut = document.createElement('div');
       divBut.classList.add('myButton');
@@ -824,7 +837,7 @@ function update_plant(event, landID, data1){
     fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json1'
+        'Content-Type': 'application/json2'
       },
       body: JSON.stringify(data)
     })

@@ -453,24 +453,24 @@ def delete_plant(request, plant_id):
 def update_plant(request, land_id):
     try:
         if request.method == "POST":
-            if request.content_type == 'application/json1':
+            if request.content_type == 'application/json2':
                 data = json.loads(request.body)
-                land = Land.objects.get(id=land_id)
-                land.land_name = data.get('landname', '')
-                land.land_pos = data.get('landPost', '')
-                land.land_area = data.get('landArea', '')
-                land.land_pH = data.get('LandPH', '')
-                land.land_doAm = data.get('landDoAm', '')
-                land.save()
+                plant = Plant.objects.get(id=land_id)
+                plant.plant_name = data.get('plantid', '')
+                plant.plant_dev = data.get('plantDev', '')
+                plant.plant_type = data.get('plantType', '')
+                plant.plant_ND = data.get('plantND', '')
+                plant.plant_bp = data.get('plantBP', '')
+                plant.save()
                 return JsonResponse({'message': 'Sửa thành công'})
             else:
-                land = Land.objects.get(id=land_id)
-                land.land_name = request.POST.get('landname', '')
-                land.land_pos = request.POST.get('landPost', '')
-                land.land_area = request.POST.get('landArea', '')
-                land.land_pH = request.POST.get('LandPH', '')
-                land.land_doAm = request.POST.get('landDoAm', '')
-                land.save()
+                plant = Plant.objects.get(id=land_id)
+                plant.plant_name = data.get('plantid', '')
+                plant.plant_dev = data.get('plantDev', '')
+                plant.plant_type = data.get('plantType', '')
+                plant.plant_ND = data.get('plantND', '')
+                plant.plant_bp = data.get('plantBP', '')
+                plant.save()
                 return JsonResponse({'error': 'Không tồn tại'}, status=404)
     except:
         return JsonResponse({'error': 'Không tồn tại'}, status=404)
