@@ -620,12 +620,14 @@ def market_detail(request, market_id):
             market_obj = market.objects.get(id=market_id)
             user = market_obj.marketUser
             userjoin = request.user
+            customer = Customer.objects.get(user=user)
             # Lấy thông tin thương lái
             trader = Customer.objects.get(user=user)
             # Lấy thông tin khách hàng tham gia thị trường
             customer_join = Customer.objects.get(user=userjoin)
             if(trader == customer_join):
-                return redirect('maker', {'trader':trader,'customer_join':customer_join})
+                message = 'Bạn không thể tham gia thị trường của chính bạn!'
+                return render(request, 'Manage/makerDetail.html', {'message': message, 'market_obj': market_obj, 'user':user, 'customer':customer})
             else:
                 url = reverse('makerDetail', args=[market_id])
                 time = timezone.now()
@@ -637,7 +639,8 @@ def market_detail(request, market_id):
                     #Thông báo nếu đã tham gia
                     return redirect('maker')  
                 
-                return redirect('maker')    
+                message = 'Bạn đã tham gia thị trường này rồi!'
+                return render(request, 'Manage/makerDetail.html', {'message': message, 'market_obj': market_obj, 'user':user, 'customer':customer})   
         except:
             return redirect('maker')
         

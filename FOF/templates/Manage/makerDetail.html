@@ -14,7 +14,7 @@
 		</div>	
 		
 			<div class="detail__new">
-			<form method="POST">
+			<form method="POST" id="form_sm">
 			{% csrf_token %}
 				<p>Thị trường {{market.marketPlant}}</p>
 				<h2>Khu vực {{market.marketName}}</h2>
@@ -44,5 +44,10 @@
 	</section>
 {% endblock content %}
 {% block js_LP %}
+<script>
+	{% if message %}
+        alert('{{ message }}');
+    {% endif %}
+</script>
 <script src="{% static 'Manage/JS/makerDetail.js'%}"></script>
 {% endblock js_LP %}
