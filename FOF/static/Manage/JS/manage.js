@@ -373,6 +373,7 @@ function ClickLandInfor(event) {
         landContainer.innerHTML = ''; // Xóa nội dung hiện tại của landContainer
       
         for (let i = 0; i < numberOfLands; i++) {
+          const landId = landData[i].id; // Định nghĩa land_id
           const landDiv = document.createElement('div');
           landDiv.classList.add('formModal', 'special');
       
@@ -381,8 +382,8 @@ function ClickLandInfor(event) {
       
           const nameInput = document.createElement('input');
           nameInput.type = 'text';
-          nameInput.name = `nameLand${landData[i]}`;
-          nameInput.id = `nameLand${landData[i]}`;
+          nameInput.name = `nameLand${landId}`;
+          nameInput.id = `nameLand${landId}`;
           nameInput.value = landData[i].name;
       
           const rowDiv = document.createElement('div');
@@ -396,8 +397,8 @@ function ClickLandInfor(event) {
       
           const doamInput = document.createElement('input');
           doamInput.type = 'number';
-          doamInput.name = `landDoam${landData[i]}`;
-          doamInput.id = `landDoam${landData[i]}`;
+          doamInput.name = `landDoam${landId}`;
+          doamInput.id = `landDoam${landId}`;
           doamInput.value = landData[i].moisture;
       
           col1Div.appendChild(doamLabel);
@@ -411,8 +412,8 @@ function ClickLandInfor(event) {
       
           const pHInput = document.createElement('input');
           pHInput.type = 'number';
-          pHInput.name = `landpH${landData[i]}`;
-          pHInput.id = `landpH${landData[i]}`;
+          pHInput.name = `landpH${landId}`;
+          pHInput.id = `landpH${landId}`;
           pHInput.value = landData[i].ph;
       
           col2Div.appendChild(pHLabel);
@@ -426,8 +427,8 @@ function ClickLandInfor(event) {
       
           const areaInput = document.createElement('input');
           areaInput.type = 'number';
-          areaInput.name = `landArea${landData[i]}`;
-          areaInput.id = `landArea${landData[i]}`;
+          areaInput.name = `landArea${landId}`;
+          areaInput.id = `landArea${landId}`;
           areaInput.value = landData[i].area;
       
           col3Div.appendChild(areaLabel);
@@ -445,8 +446,8 @@ function ClickLandInfor(event) {
       
           const posInput = document.createElement('input');
           posInput.type = 'text';
-          posInput.name = `landPos${landData[i]}`;
-          posInput.id = `landPos${landData[i]}`;
+          posInput.name = `landPos${landId}`;
+          posInput.id = `landPos${landId}`;
           posInput.value = landData[i].position;
       
           posDiv.appendChild(posLabel);
@@ -461,43 +462,60 @@ function ClickLandInfor(event) {
           landContainer.appendChild(landDiv);
           
           const buttonDel = document.createElement('button');
-        buttonDel.classList.add('btn', 'btn-danger');
-        buttonDel.innerHTML = '<i class="fa fa-trash-alt"></i>';
+          buttonDel.classList.add('btn', 'btn-danger');
+          buttonDel.innerHTML = '<i class="fa fa-trash-alt"></i>';
 
-        const landId = landData[i].id; // Định nghĩa land_id
+          
 
-        // Gắn thuộc tính tùy chỉnh "data-land-id" cho buttonDel
-        buttonDel.setAttribute('data-land-id', landId);
+          // Gắn sự kiện onclick vào buttonDel
+          buttonDel.addEventListener('click', function(event) {
+            const clickedButton = event.target; // Truy cập button được click
+            DeleteLand(event, landId); // Gọi hàm DeleteLand với land_id tương ứng
+          });
 
-        // Gắn sự kiện onclick vào buttonDel
-        buttonDel.addEventListener('click', function(event) {
-          const clickedButton = event.target; // Truy cập button được click
-          const storedLandId = clickedButton.getAttribute('data-land-id'); // Lấy giá trị land_id từ thuộc tính tùy chỉnh
+          // update land
+          const buttonUp = document.createElement('button');
+          buttonUp.classList.add('btn', 'btn-success');
+          buttonUp.innerHTML = '<i class="fa fa-pencil-alt"></i>';
+          
+          buttonUp.addEventListener('click', function(event){
+            const clickedButton = event.target;
+            
+            const landname = document.getElementById(`nameLand${landId}`).value; 
+            const landDoAm = document.getElementById(`landDoam${landId}`).value;
+            const LandPH = document.getElementById(`landpH${landId}`).value;
+            const landArea = document.getElementById(`landArea${landId}`).value;
+            const landPost = document.getElementById(`landPos${landId}`).value;
 
-          DeleteLand(event, storedLandId); // Gọi hàm DeleteLand với land_id tương ứng
-        });
+            const data = {
+              landname:landname,
+              landDoAm:landDoAm,
+              LandPH:LandPH,
+              landArea:landArea,
+              landPost:landPost
+            }
+            UpdateLand(event, landId, data);
+            });
 
-        const buttonUp = document.createElement('button');
-        buttonUp.classList.add('btn', 'btn-success');
-        buttonUp.innerHTML = '<i class="fa fa-pencil-alt"></i>';
 
-        const divBut = document.createElement('div');
-        divBut.classList.add('myButton');
-        divBut.appendChild(buttonDel);
-        divBut.appendChild(buttonUp);
 
-        landDiv.appendChild(divBut);
+            const divBut = document.createElement('div');
+            divBut.classList.add('myButton');
+            divBut.appendChild(buttonDel);
+            divBut.appendChild(buttonUp);
+
+            landDiv.appendChild(divBut);
 
          
-          const headerPlant = document.createElement('h6');
-          headerPlant.textContent = 'Tổng quan về cây trồng: ';
-          headerPlant.style.fontWeight = '900';
-          landDiv.appendChild(headerPlant);
+            const headerPlant = document.createElement('h6');
+            headerPlant.textContent = 'Tổng quan về cây trồng: ';
+            headerPlant.style.fontWeight = '900';
+            landDiv.appendChild(headerPlant);
 
-          const plantContainer = document.createElement('div');
-          plantContainer.classList.add('formModal', 'plantContainerHehe');
-          landDiv.appendChild(plantContainer);
-          CreatePlant(landData[i].id, plantContainer);
+            const plantContainer = document.createElement('div');
+            plantContainer.classList.add('formModal', 'plantContainerHehe');
+            landDiv.appendChild(plantContainer);
+            CreatePlant(landData[i].id, plantContainer);
           
         }
       
@@ -739,6 +757,35 @@ function DeleteLand(event, landId) {
   }
 }
 
+function UpdateLand(event, landID, data1){
+  const confirmation = confirm("Bạn có chắc chắn muốn sửa thông tin mảnh đất?");
+  const data = data1;
+  if(confirmation){
+    const url = `/api/update_land/${landID}/`;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json1'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Xóa thành công, thực hiện các hành động khác (nếu cần)
+          alert('Mảnh đất đã được sửa thành công');
+
+          // Load lại trang sau khi xóa thành công
+          location.reload();
+        } else {
+          // Xử lý lỗi nếu sửa không thành công
+          alert('Lỗi khi sửa mảnh đất');
+        }
+      })
+  }
+}
+
+
+
 function DeletePlant(event, plantID){
     // Hiển thị hộp thoại xác nhận
     const confirmation = confirm("Bạn có chắc chắn muốn xóa cây trồng?");
@@ -768,11 +815,38 @@ function DeletePlant(event, plantID){
         });
     }
 }
+//update plant
+function update_plant(event, landID, data1){
+  const confirmation = confirm("Bạn có chắc chắn muốn sửa thông tin mảnh đất?");
+  const data = data1;
+  if(confirmation){
+    const url = `/api/update_plant/${landID}/`;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json1'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Xóa thành công, thực hiện các hành động khác (nếu cần)
+          alert('Thông tin cây đã được sửa thành công');
 
+          // Load lại trang sau khi xóa thành công
+          location.reload();
+        } else {
+          // Xử lý lỗi nếu sửa không thành công
+          alert('Lỗi khi sửa thông tin cây');
+        }
+      })
+  }
+}
 // CẬP NHẬT 
 
+
 function UpdateSeason(event) {
-  event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+  event.preventDefault(); // Ngăn chặn hành vi mặc định của form                                      
 
   if (!selectedSeasonId) {
     // Nếu không có ID mùa vụ được chọn, không thực hiện cập nhật
@@ -786,13 +860,21 @@ function UpdateSeason(event) {
   const timeEnd = document.getElementById('time_e').value;
   const profit = document.getElementById('num').value;
 
+
+  
+
+
   // Tạo một đối tượng chứa dữ liệu cập nhật
   const data = {
     season_name: seasonName,
     time_start: timeStart,
     time_end: timeEnd,
-    profit: profit
+    profit: profit,
+
   };
+
+
+
 
   // Xác nhận trước khi gửi yêu cầu cập nhật
   if (confirm('Bạn có chắc chắn muốn cập nhật thông tin mùa vụ không?')) {

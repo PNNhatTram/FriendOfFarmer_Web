@@ -26,8 +26,7 @@ class Land(models.Model):
     land_doAm = models.DecimalField(max_digits=5, decimal_places=2)
     season = models.ForeignKey(Season, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.land_name
+    
 
 
 class Plant(models.Model):

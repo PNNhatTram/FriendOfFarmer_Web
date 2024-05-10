@@ -50,13 +50,7 @@
 							<textarea name="loinhan" placeholder="Lời nhắn"></textarea required> <!-- Thêm thuộc tính name -->
 						</div>
 						<div class="button">
-							{% if messages %}
-						<ul class="messages">
-							{% for message in messages %}
-								<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-							{% endfor %}
-						</ul>
-						{% endif %}
+							
 							<input type="submit" value="GỬI ĐI"> <!-- Thay type="button" thành type="submit" -->
 							
 						</div>

@@ -273,7 +273,6 @@ def update_season_info(request, season_id):
         if request.method == 'POST':
             # Lấy đối tượng mùa vụ dựa trên season_id và user hiện tại
             season = Season.objects.get(pk=season_id, user=request.user)
-
             if request.content_type == 'application/json':
                 # Đọc dữ liệu từ yêu cầu JSON
                 data = json.loads(request.body)
@@ -284,6 +283,7 @@ def update_season_info(request, season_id):
                 season.time_end = data.get('time_end', '')
                 season.profit = data.get('profit', '')
                 # Cập nhật các trường thông tin khác tương ứng
+
             else:
                 # Cập nhật thông tin mùa vụ từ request.POST
                 season.season_name = request.POST.get('season_name', '')
@@ -361,6 +361,31 @@ def delete_land(request, land_id):
         return JsonResponse({'error': str(e)}, status=500)
     
 #### UPDATE LAND -- DONT HAVE
+@csrf_exempt
+def update_land(request, land_id):
+    try:
+        if request.method == "POST":
+            if request.content_type == 'application/json1':
+                data = json.loads(request.body)
+                land = Land.objects.get(id=land_id)
+                land.land_name = data.get('landname', '')
+                land.land_pos = data.get('landPost', '')
+                land.land_area = data.get('landArea', '')
+                land.land_pH = data.get('LandPH', '')
+                land.land_doAm = data.get('landDoAm', '')
+                land.save()
+                return JsonResponse({'message': 'Sửa thành công'})
+            else:
+                land = Land.objects.get(id=land_id)
+                land.land_name = request.POST.get('landname', '')
+                land.land_pos = request.POST.get('landPost', '')
+                land.land_area = request.POST.get('landArea', '')
+                land.land_pH = request.POST.get('LandPH', '')
+                land.land_doAm = request.POST.get('landDoAm', '')
+                land.save()
+                return JsonResponse({'error': 'Không tồn tại'}, status=404)
+    except:
+        return JsonResponse({'error': 'Không tồn tại'}, status=404)
 
 ### PLANT
 def plant_form(request):
@@ -423,6 +448,32 @@ def delete_plant(request, plant_id):
         return JsonResponse({'error': str(e)}, status=500)
 
 #### UPDATE PLANT -- DONT HAVE
+
+@csrf_exempt
+def update_plant(request, land_id):
+    try:
+        if request.method == "POST":
+            if request.content_type == 'application/json1':
+                data = json.loads(request.body)
+                land = Land.objects.get(id=land_id)
+                land.land_name = data.get('landname', '')
+                land.land_pos = data.get('landPost', '')
+                land.land_area = data.get('landArea', '')
+                land.land_pH = data.get('LandPH', '')
+                land.land_doAm = data.get('landDoAm', '')
+                land.save()
+                return JsonResponse({'message': 'Sửa thành công'})
+            else:
+                land = Land.objects.get(id=land_id)
+                land.land_name = request.POST.get('landname', '')
+                land.land_pos = request.POST.get('landPost', '')
+                land.land_area = request.POST.get('landArea', '')
+                land.land_pH = request.POST.get('LandPH', '')
+                land.land_doAm = request.POST.get('landDoAm', '')
+                land.save()
+                return JsonResponse({'error': 'Không tồn tại'}, status=404)
+    except:
+        return JsonResponse({'error': 'Không tồn tại'}, status=404)
 
 ## API TO GET DATA
 
@@ -573,17 +624,20 @@ def market_detail(request, market_id):
             trader = Customer.objects.get(user=user)
             # Lấy thông tin khách hàng tham gia thị trường
             customer_join = Customer.objects.get(user=userjoin)
-            url = reverse('makerDetail', args=[market_id])
-            time = timezone.now()
-            # Check if notification already exists
-            existing_notify = notify_market.objects.filter(maker=market_obj, makerAuth=trader, customer=customer_join).exists()
-            if  not existing_notify:
-                notify = notify_market.objects.create(maker=market_obj, makerAuth=trader, customer=customer_join, link=url, timejoin = time)
-                notify.save()
-                #Thông báo nếu đã tham gia
-                return redirect('maker')  
-            
-            return redirect('maker')    
+            if(trader == customer_join):
+                return redirect('maker', {'trader':trader,'customer_join':customer_join})
+            else:
+                url = reverse('makerDetail', args=[market_id])
+                time = timezone.now()
+                # Check if notification already exists
+                existing_notify = notify_market.objects.filter(maker=market_obj, makerAuth=trader, customer=customer_join).exists()
+                if  not existing_notify:
+                    notify = notify_market.objects.create(maker=market_obj, makerAuth=trader, customer=customer_join, link=url, timejoin = time)
+                    notify.save()
+                    #Thông báo nếu đã tham gia
+                    return redirect('maker')  
+                
+                return redirect('maker')    
         except:
             return redirect('maker')
         

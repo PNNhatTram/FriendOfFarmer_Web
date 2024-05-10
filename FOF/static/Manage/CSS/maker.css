@@ -321,7 +321,7 @@
 @media screen and (max-width: 361.9px) {
 
   /* RESULT  */
-  .res__name, .res__suppli {
+  .res__name, .res__suppli, .res__place {
     display: none;
   }
 }

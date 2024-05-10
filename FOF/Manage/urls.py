@@ -42,7 +42,10 @@ urlpatterns = [
     path('api/delete-season/<int:season_id>/', views.delete_season, name='delete_season'),
     path('api/update-season/<int:season_id>/', views.update_season_info, name='update_season'),
     path('api/delete-land/<int:land_id>/', views.delete_land, name='delete_land'),
+    path('api/update_land/<int:land_id>/', views.update_land, name = 'update_land'),
     path('api/delete-plant/<int:plant_id>/', views.delete_plant, name='delete_plant'),
+    path('api/update_plant/<int:land_id>/', views.update_plant, name = 'update_plant'),
+
     
     
     
