@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate 
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpRequest
 from .models import *
 from django.contrib import messages
 from django.http import JsonResponse
@@ -180,7 +181,7 @@ def search(request):
                 keysadr = Product.objects.filter(adress=address)  # Corrected line here
         else:
             keysadr = Product.objects.all()
-    p = Paginator(keysadr, 5)
+    p = Paginator(keysadr, 10)
     page = request.GET.get('page')
     list_item = p.get_page(page)
 
