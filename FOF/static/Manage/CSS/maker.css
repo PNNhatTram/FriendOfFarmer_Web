@@ -82,8 +82,8 @@
 
   position: absolute;
   bottom: 5%;
-  left: 55%;
-
+  left: 50%;
+  transform: translate(-50%, -50%); /* Di chuyển button đi 50% của kích thước của nó về bên trái và trên */
   transition: all .5s;
 }
 .find__box button:hover {

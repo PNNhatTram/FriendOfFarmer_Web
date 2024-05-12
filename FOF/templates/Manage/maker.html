@@ -50,43 +50,46 @@
 				<button>Tìm kiếm</button>
 			</form>
 		</div>
-		<div class="d-inline-block">
-			<select class="form-select" aria-label="Sắp xếp sản phẩm">
-				<option selected disabled>Sắp xếp theo giá</option>
-				<option value="1">Tăng dần</option>
-				<option value="2">Giảm dần</option>
-			</select>
-		</div>
+		
 	</section>
 
 	<!-- RESULT  -->
-	
-	<section class="result container section">
-		
-		<div class="row my__row__header row__common">
-			<div class="col res__num common">
-				ID Market
-			</div>
-			<div class="col-2 res__name common">
-				Loại nông sản
-			</div>
-			<div class="col-2 res__place common">
-				Thị trường
-			</div>
-			<div class="col-2 res__suppli common">
-				Thương lái
-			</div>
-			<div class="col res__price common">
-				Giá cả (VNĐ/kg)
-			</div>
-			<div class="col-3 res__trend common">
-				Xu hướng giá
-			</div>
-			<div class="col res__check common">
-				Chi tiết thị trường
-			</div>
-
+	<section class = "result container section">
+	<div class="d-inline-block">
+		<select class="form-select" aria-label="Sắp xếp sản phẩm">
+			<option selected disabled>Sắp xếp theo giá</option>
+			<option value="1">Tăng dần</option>
+			<option value="2">Giảm dần</option>
+		</select>
+	</div>
+	<div class="row my__row__header row__common">
+		<div class="col res__num common">
+			ID Market
 		</div>
+		<div class="col-2 res__name common">
+			Loại nông sản
+		</div>
+		<div class="col-2 res__place common">
+			Thị trường
+		</div>
+		<div class="col-2 res__suppli common">
+			Thương lái
+		</div>
+		<div class="col res__price common">
+			Giá cả (VNĐ/kg)
+		</div>
+		<div class="col-3 res__trend common">
+			Xu hướng giá
+		</div>
+		<div class="col res__check common">
+			Chi tiết thị trường
+		</div>
+
+	</div>
+	
+	
+	<section class="result1">	
+		
 		{% comment %} {%if obj in keys1%} {% endcomment %}
 		{% for obj in keys1 %}
  			 {% if obj in keys2 %}
@@ -123,7 +126,7 @@
 	
 
 	</section>
-
+	</section>
 	<!-- REGISTER  -->
 	<section class="feedback container-fluid section">
 		
@@ -190,7 +193,7 @@
 			}
 			
 			// Gắn các phần tử đã sắp xếp vào vị trí mới
-			$('.result').html($sortedItems);
+			$('.result1').html($sortedItems);
 		});
 		
 		// Mặc định sắp xếp khi trang được tải
@@ -200,7 +203,7 @@
 			var priceB = parseFloat($(b).find('.res__price').text().replace(/\D/g,''));
 			return priceA - priceB;
 		});
-		$('.result').html($sortedItems);
+		$('.result1').html($sortedItems);
 	});
 </script>
 <!--autocomplete code for Nongsan and Thitruong-->
