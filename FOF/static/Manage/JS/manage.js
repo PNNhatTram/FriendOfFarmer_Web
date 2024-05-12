@@ -37,25 +37,55 @@ function formatDate(date) {
 }
   }
 
-  // Lấy thoong tin đất --------------------------------------
   function showLandInfo(landId) {
-    // Gọi API hoặc thực hiện các thao tác khác để lấy dữ liệu cho landId cụ thể
     fetch(`/api/get-land-info/${landId}`)
       .then((response) => response.json())
       .then((landInfo) => {
-        // Lấy phần tử map từ lớp .land__row
-        var map = document.querySelector(".land__row .map"); 
-        var area = document.getElementById('dientich');
-        var pH_num = document.getElementById('pH'); 
-        var doAm = document.getElementById('doam'); 
-        // Điền dữ liệu vào phần tử map        
-        map.innerHTML = landInfo.position;
-        area.innerHTML = landInfo.area; 
-        ph_dec = landInfo.ph / 14 * 100; 
-        pH_num.style.width = ph_dec + '%';
-        doAm.style.width = landInfo.moisture + '%';
+        var address = landInfo.land_pos;
+        var geocodingUrl = `https://api.goong.io/geocode/v1/search?text=${encodeURIComponent(address)}&api_key=vo75DWsl4FEL08TE09YCwdQ3aHK0nxrVLRWVQUHv`;
+  
+        fetch(geocodingUrl)
+          .then(response => response.json())
+          .then(data => {
+            if (data.features && data.features.length > 0) {
+              var coordinates = data.features[0].geometry.coordinates;
+              var center = [coordinates[0], coordinates[1]];
+  
+              goongjs.accessToken = 'vo75DWsl4FEL08TE09YCwdQ3aHK0nxrVLRWVQUHv';
+              var map = new goongjs.Map({
+                container: 'map',
+                style: 'https://tiles.goong.io/assets/goong_map_web.json',
+                center: center,
+                zoom: 9
+              });
+  
+              var marker = new goongjs.Marker()
+                .setLngLat(center)
+                .addTo(map);
+  
+              var area = document.getElementById('dientich');
+              var pH_num = document.getElementById('pH');
+              var doAm = document.getElementById('doam');
+  
+              if (area && pH_num && doAm) {
+                area.innerHTML = landInfo.area;
+                pH_num.style.width = (landInfo.ph / 14 * 100) + '%';
+                doAm.style.width = landInfo.moisture + '%';
+              } else {
+                console.error('Không tìm thấy các phần tử HTML cần thiết.');
+              }
+            } else {
+              console.error('Không tìm thấy tọa độ cho địa chỉ:', address);
+            }
+          })
+          .catch(error => {
+            console.error('Lỗi khi chuyển đổi địa chỉ thành tọa độ:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Lỗi khi lấy thông tin đất:', error);
       });
-  }
+  }  
 
   // Lấy thông tin chi tiết đất đai ---------------------------------
   function ClickLand(event) {

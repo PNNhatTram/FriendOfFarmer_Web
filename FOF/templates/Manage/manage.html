@@ -4,7 +4,12 @@
 <title>Friend of Farmer | Quản lý</title>
 {% endblock title%}
 {% block head %}
-  <link rel="stylesheet" href="{% static 'Manage/CSS/manage.css' %}">
+  <link rel="stylesheet" href="{% static 'Manage/CSS/manage.css' %}"> 
+  <!-- goong -->
+  <script src='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js'></script>
+  <link href='https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css' rel='stylesheet' />
+
+  <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 {% endblock head %}
 
 
@@ -32,7 +37,7 @@
           <div class="off__text">
             Chứa tất cả những thông tin về tất cả các mùa vụ đã gieo trồng.
           </div>
-          <div class="dropdown mt-3">
+          <div class="dropdown mt-3" id="danhmuc">
             {% for item in season %}
               <button class="my-btn modify season-button" data-season-id="{{ item.id }}" onclick="ClickSeason(event); ClickLand(event)">
                 {{ item.season_name }}
@@ -66,8 +71,7 @@
         {% comment %} hahah {% endcomment %}
       </div>
       <div class="land__row row my-3">
-        <div class="map col-7">
-        
+        <div class="map col-7">          
         </div>
         <div class="land__overall col-5">
           <h3>DIỆN TÍCH: <span id="dientich"></span> ha</h3>
@@ -163,7 +167,7 @@
     <div class="notify">
       <p>VUI LÒNG TẠO 1 MÙA VỤ MỚI ĐỂ TIẾN HÀNH THEO DÕI!</p>
       <form action="{% url 'create' %}">
-        <button class="my-btn">THÊM MỚI</button>
+        <button class="my-btn" id = "newSeasonB">THÊM MỚI</button>
       </form>
     </div>
   </section>
@@ -172,8 +176,50 @@
     <p class="error">Vui lòng đăng nhập.</p>
 {% endif %}
 
+{% if user.is_authenticated %}
+<!-- Introjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+  if (localStorage.getItem('doneTour') === 'yes') {
+    // Tour đã được hoàn thành trước đây; không hiện tour
+} else {
+    var intro = introJs();
+    intro.setOptions({
+        showProgress: true,
+        showBullets: false,
+    });
+
+    intro.oncomplete(function() {
+        // Khi người dùng nhấn "Done", set giá trị trong localStorage
+        localStorage.setItem('doneTour', 'yes');
+    });
+
+    intro.onexit(function() {
+        // Cũng set giá trị khi người dùng thoát ra khỏi intro
+        localStorage.setItem('doneTour', 'no');
+    });
+
+    // Khởi tạo tour
+    intro.start();
+}
+	document.addEventListener("DOMContentLoaded", function() {	
+    introJs().setOptions({
+        steps: [{
+            title: 'Welcome to Manage of FOF',
+            intro: 'Đây là nơi giúp bạn quản lý toàn bộ vụ mùa bao gồm thời gian thu hoạch, năng suất, đất đai, cây trồng....'
+        },
+		{
+			element:document.querySelector('#newSeasonB'),
+			intro: 'Thêm một vụ mùa mới' 
+		}
+		]
+    }).start();
+});
+</script>
+{% endif%}
 {% endblock content %}
 
 {% block js_LP %}
   <script src="{% static 'Manage/JS/manage.js'%}"></script>
+
 {% endblock js_LP %}

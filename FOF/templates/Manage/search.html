@@ -6,6 +6,7 @@
 {% block head %}
   <link rel="stylesheet" href="{% static 'Manage/CSS/search.css' %}">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 
 {% endblock head %}
 
@@ -25,7 +26,7 @@
                   <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" id="product" name="searched_name" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
                   <p>Sản Phẩm: {{ searched_name }}</p>
                   <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" id="searched_adr" name="searched_adr" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
-                  <button class="my-btn" type="submit">TÌM KIẾM</button>
+                  <button class="my-btn" type="submit" id = "search_product">TÌM KIẾM</button>
                   <p>Địa Chỉ: {{ searched_adr }}</p>
                </form>
                         
@@ -96,5 +97,29 @@
          });
       </script>
    {% endblock js_LP %}
-   
+<!-- Introjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {	
+    introJs().setOptions(
+		{
+        steps: [{
+            intro: 'Đây là nơi tìm kiếm nguyên liệu cho bạn'
+        },
+		{
+			element:document.querySelector('#product'),
+			intro: 'Nhập tên sản phẩm'
+		},
+		{
+			element:document.querySelector('#searched_adr'),
+			intro: 'Nhập nơi bạn muốn mua'
+		},
+		{
+			element:document.querySelector('#search_product'),
+			intro: 'Click để tìm kiếm'
+		}
+		]
+    }).start();
+});
+</script>
 {% endblock content %}

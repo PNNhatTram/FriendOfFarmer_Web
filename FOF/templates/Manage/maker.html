@@ -6,6 +6,8 @@
 {% block head %}
 <link rel="stylesheet" href="{%static 'Manage/CSS/maker.css'%}"/>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+<link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -51,7 +53,7 @@
 	</section>
 
 	<!-- RESULT  -->
-	<section class="result container section">
+	<section class="result container section" id="result_box">
 		<div class="row my__row__header row__common">
 			<div class="col res__num common">
 				ID Market
@@ -151,6 +153,26 @@
 {%else%}
 <p class = "error">Vui lòng đăng nhập.</p>
 {%endif%}
+<!-- Introjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {	
+    introJs().setOptions(
+		{
+        steps: [{
+            intro: 'Chào mừng đến với thị trường của người nông dân'
+        },
+		{
+			element:document.querySelector('.find__box'),
+			intro: 'Nhập tên nông sản và địa điểm bạn muốn bán. Sau đó click tìm kiếm'
+		},
+		{
+			element:document.querySelector('#result_box'),
+			intro: 'Xu hướng thị trường ngày nay'
+		}]
+    }).start();
+});
+</script>
 {% endblock content %}
 
 {% block js_LP %}

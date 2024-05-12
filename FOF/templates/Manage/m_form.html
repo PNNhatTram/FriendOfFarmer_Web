@@ -5,11 +5,12 @@
 {% endblock title%}
 {% block head %}
   <link rel="stylesheet" href="{% static 'Manage/CSS/m_form.css' %}">
+  <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 {% endblock head %}
 
 {% block form %}
 
-<section class="manage section container">
+<section class="manage section container" id="m_form">
   <form action="" method="post">  
     {% csrf_token %} 
     <p>THÔNG TIN MÙA VỤ</p>
@@ -25,11 +26,29 @@
     <label for="num">Lợi nhuận mong muốn: </label>
     <input type="number" name="num" id="num">
 
-    <button class="my-btn">
+    <button class="my-btn" id="createSB">
       TẠO MÙA VỤ
     </button>
   </form>
 </section>
 
+<!-- Introjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {	
+    introJs().setOptions({
+        steps: [
+		{
+			element:document.querySelector('#m_form'),
+			intro: 'Nhập các thông tin chi tiết về mùa vụ'
+		},
+    {
+			element:document.querySelector('#createSB'),
+			intro: 'Click để tạo mùa vụ mới'
+		}
+		]
+    }).start();
+});
+</script>
 
 {% endblock form %}

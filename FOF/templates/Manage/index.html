@@ -5,6 +5,7 @@
 {% endblock title%}
 {% block head %}
   <link rel="stylesheet" href="{% static 'Manage/CSS/index.css' %}">
+  <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 {% endblock head %}
 
 
@@ -219,30 +220,76 @@
 		</div>
 	</div>
 </section>
+
+{% if user.is_authenticated %}
+<!-- Introjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
 <script>
-	if (localStorage.getItem('doneTour') === 'yes') {
-		// Tour đã được hoàn thành trước đây; không hiện tour
-	} else {
-		var intro = introJs();
-		intro.setOptions({
-			showProgress: true,
-			showBullets: false,
-		});
+    if (localStorage.getItem('doneTour') === 'yes') {
+        // Tour đã được hoàn thành trước đây; không hiện tour
+    } else {
+        var intro = introJs();
+        intro.setOptions({
+            showProgress: true,
+            showBullets: false,
+        });
 
-		intro.oncomplete(function() {
-			// Khi người dùng nhấn "Done", set giá trị trong localStorage
-			localStorage.setItem('doneTour', 'yes');
-		});
+        intro.oncomplete(function() {
+            // Khi người dùng nhấn "Done", set giá trị trong localStorage
+            localStorage.setItem('doneTour', 'yes');
+        });
 
-		intro.onexit(function() {
-			// Cũng set giá trị khi người dùng thoát ra khỏi intro
-			localStorage.setItem('doneTour', 'no');
-		});
+        intro.onexit(function() {
+            // Cũng set giá trị khi người dùng thoát ra khỏi intro
+            localStorage.setItem('doneTour', 'no');
+        });
 
-		// Khởi tạo tour
-		intro.start();
-	}
+        // Khởi tạo tour
+        intro.start();
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {    
+        introJs().setOptions(
+            {
+            steps: [{
+                title: 'Welcome to FOF',
+                intro: 'Chúng ta hãy đến với phần hướng dẫn!'
+            },
+            {
+                element:document.querySelector('#navbarSupportedContent'),
+                intro: 'Các công cụ hỗ trợ'
+            },
+            {
+                element:document.querySelector('#manageNavItem'),
+                intro: 'Giúp bạn kiểm tra tình trạng vụ mùa, đất đai, cây trồng,... Thống kê năng suất, lãi suất, chi phí sản xuất thông qua các mùa vụ.'
+            },
+            {
+                element:document.querySelector('#searchNavItem'),
+                intro: 'Giúp nông dân tìm kiếm thị trường thích hợp để bán và xuất khẩu, là môi trường để các thương lái cập nhật nhu cầu mua bán của mình.'
+            },
+            {
+                element:document.querySelector('#materialNavItem'),
+                intro: 'Giúp bạn tìm kiếm các nguyên vật liệu giá rẻ cho nông nghiệp'
+            },
+            {
+                element:document.querySelector('#contactNavItem'),
+                intro: 'Nơi đóng góp ý kiến, những câu hỏi cần giải đáp của bạn trong quá trình sử dụng'
+            },
+            {
+                element:document.querySelector('#notificationNavItem'),
+                intro: 'Nhận thông báo nhanh chóng'
+            },
+            {
+                element:document.querySelector('#newsNavItem'),
+                intro: 'Nhận tin tức hữu ích, mới nhất về nông nghiệp từ cộng đồng'
+            },
+            {
+                element:document.querySelector('#search-input'),
+                intro: 'Tìm kiếm các thông tin trong website'
+            }
+            ]
+        }).start();
+    });
 </script>
-
-
+{% endif %}
 {%endblock content_index%}
