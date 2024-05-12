@@ -49,14 +49,15 @@
 				{% comment %} <p>Nơi muốn bán: {{ maker }}</p> {% endcomment %}
 				<button>Tìm kiếm</button>
 			</form>
+			<div class="d-inline-block">
+				<select class="form-select" aria-label="Sắp xếp sản phẩm">
+					<option selected disabled>Sắp xếp theo giá</option>
+					<option value="1">Tăng dần</option>
+					<option value="2">Giảm dần</option>
+				</select>
+			</div>
 		</div>
-		<div class="d-inline-block">
-			<select class="form-select" aria-label="Sắp xếp sản phẩm">
-				<option selected disabled>Sắp xếp theo giá</option>
-				<option value="1">Tăng dần</option>
-				<option value="2">Giảm dần</option>
-			</select>
-		</div>
+	
 	</section>
 
 	<!-- RESULT  -->

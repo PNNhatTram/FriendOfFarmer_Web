@@ -293,6 +293,24 @@ background-color: #EFF2F5;
    
  }
 
+    .page__resource {
+    font-weight: bold;
+    }
+ 
+    .page__resource a{
+      color: #609966;
+
+      }
+      .page__resource a:hover {
+        /* Xóa hiệu ứng hover */
+        color: inherit;
+      }
+      
+      .page__resource:focus {
+        /* Xóa hiệu ứng focus */
+        outline: none;
+      }
+
 
 
 /* FOOTER  */

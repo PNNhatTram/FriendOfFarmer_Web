@@ -19,6 +19,8 @@ import json
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from datetime import datetime
+# import pagination
+from django.core.paginator import Paginator 
 
 
 # INDEX
@@ -178,7 +180,11 @@ def search(request):
                 keysadr = Product.objects.filter(adress=address)  # Corrected line here
         else:
             keysadr = Product.objects.all()
-    return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys, "keys1":keysadr, "searched_adr":searched_adr})
+    p = Paginator(keysadr, 5)
+    page = request.GET.get('page')
+    list_item = p.get_page(page)
+
+    return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys, "keys1":keysadr, "searched_adr":searched_adr, "list_item": list_item})
 
 def searchname(request):
     if 'term' in request.GET:
