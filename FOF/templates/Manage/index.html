@@ -13,11 +13,10 @@
 
 <!-- BANNER  -->
 <section class="banner container-fluid section">
-	<div class="banner__row row">
-	   
+	<div class="banner__row row">	
 		<div class="col-5 ba__col5">
 			<div class="container ba__text">
-				<h3 class="animate__animated animate__fadeInDown">FOF - HỆ SINH THÁI NÔNG NGHIỆP HIỆN ĐẠI</h3>
+				<h3 class="animate__animated animate__fadeInDown">HỆ SINH THÁI NÔNG NGHIỆP HIỆN ĐẠI</h3>
 				<p class="animate__animated animate__fadeInUp">Đáp ứng các nhu cầu cần thiết của nông dân. Là người bạn tin cậy đem lại nguồn thị trường rộng mở. Cầu nối giữa nông dân và thương lái.</p>
 				<div class="banner__sub row animate__animated animate__fadeInUp">
 					<div class="col-4 sub__col">
@@ -110,6 +109,7 @@
 					<a class="nav-link" href="{%url 'manage'%}">Learn More</a>
 				</button>
 			</div>
+			
 			<div class="col-5 of__col5">
 				<img class="img-fluid" src="{% static 'Manage/IMG/img4.jpg' %}" alt="">
 			</div>
@@ -149,11 +149,11 @@
 <!-- CUSTOMER  -->
 <section class="customer section container">
 	<div class="offer__text">
-		<h3>FEEDBACK TỪ NGƯỜI DÙNG</h3>
+		<h3>PHẢN HỒI TỪ NGƯỜI DÙNG</h3>
 		<p>FOF tin rằng dịch vụ mà chúng tôi mang lại là sự hài lòng hoàn hảo mà nhà nông cũng như thương lái để lại những feedback tuyệt vời cho chúng tôi.</p>
 	</div>
 	<div class="cus__row row">
-		<div class="cus_col3 col-lg-3 col-6">
+		<div class="col-lg-3 col-6 cus_col3">
 			<div class="card" style="width: 18rem;">
 				<img src="{% static 'Manage/IMG/feedback8.jpg'%}" class="card-img-top" alt="...">
 				<div class="card-body">
@@ -198,9 +198,7 @@
 
 
 <!-- REGISTER  -->
-<section class="feedback container-fluid section">
-	
-	
+<section class="feedback container-fluid section">	
 	<div class="row feed__row">
 		<div class="col-6 fe__col6__1 ">
 			<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
@@ -219,6 +217,7 @@
 		</div>
 	</div>
 </section>
+
 <script>
 	if (localStorage.getItem('doneTour') === 'yes') {
 		// Tour đã được hoàn thành trước đây; không hiện tour
@@ -243,6 +242,5 @@
 		intro.start();
 	}
 </script>
-
 
 {%endblock content_index%}

@@ -6,7 +6,9 @@
 {% block head %}
   <link rel="stylesheet" href="{% static 'Manage/CSS/contact.css' %}">
 {% endblock head %}
-{%block content_index%}
+
+
+{%block content%}
 <!-- contact -->
 {%if user.is_authenticated%}	
 
@@ -64,4 +66,4 @@
 {%else%}
 <p class="error">Vui lòng đăng nhập.</p>
 {%endif%}
-{%endblock content_index%}
+{%endblock content%}

@@ -276,6 +276,11 @@
   .res__trend {
     display: none;
   }
+
+  .finding .container .section h3{
+    font-size: 0.75rem;
+  }
+
 }
 @media screen and (max-width: 575.9px) {
   /* FEEDBACK  */
@@ -297,6 +302,15 @@
     padding: 0;
     margin: 0;
   }
+  .finding h3 {
+    font-size: 0.5rem;
+  }
+
+  .result
+  {
+    font-size: 0.75rem;
+
+  }
 }
 @media screen and (max-width: 479.9px) {
   /* SEARCH BOX  */
@@ -310,12 +324,31 @@
   }
 }
 @media screen and (max-width: 422.9px) {
-.foot__row .f_col4 {
-  display: none;
+  .foot__row .f_col4 {
+    display: none;
+  }
+  .foot__row .f_col8 {
+    width: 100%;
+  }
+
+  .farm__mode .f_btn p{
+    font-size: 0.5rem;
+  }
+
+
+  .result .option{
+    font-size: 0.5rem;
+  }
+
+  .find__row h3 {
+    font-size: 1rem;
+
 }
-.foot__row .f_col8 {
-  width: 100%;
+.find__row .col-4  p {
+  font-size: 0.75rem;
+  
 }
+
 }
 
 @media screen and (max-width: 361.9px) {
@@ -324,6 +357,8 @@
   .res__name, .res__suppli, .res__place {
     display: none;
   }
+
+
 }
 
 

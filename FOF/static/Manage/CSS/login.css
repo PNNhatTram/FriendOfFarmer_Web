@@ -146,4 +146,13 @@ a {
   .social-label {
     display: none;
   }
+
+
+}
+
+@media screen and (max-width: 413px) {
+  .signup {
+    font-size: 0.5rem;
+  }
+  
 }

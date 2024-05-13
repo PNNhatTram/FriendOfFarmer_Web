@@ -23,11 +23,10 @@
 
 	
 	<section class="finding container section">
-		<div class="row find__row my-3">
+		<div class="row find__row my-3">	
 			<div class="col-8 f_col8">
-				<h3>TÌM KIẾM THỊ TRƯỜNG TIÊU THỤ NÔNG SẢN</h3>
+				<h3>TÌM KIẾM THỊ TRƯỜNG TIÊU THỤ</h3>
 				<p>Hãy cho chúng tôi biết nông sản cùng với nơi bạn muốn bán nông sản. Chúng tôi sẽ tìm giúp bạn!</p>
-				
 			</div>
 			<div class="col-4 f_col4" >
 				<div class="farm__mode f_btn">
@@ -55,82 +54,75 @@
 
 	<!-- RESULT  -->
 	<section class = "result container section">
-	<div class="d-inline-block">
-		<select class="form-select" aria-label="Sắp xếp sản phẩm">
-			<option selected disabled>Sắp xếp theo giá</option>
-			<option value="1">Tăng dần</option>
-			<option value="2">Giảm dần</option>
-		</select>
-	</div>
-	<div class="row my__row__header row__common">
-		<div class="col res__num common">
-			ID Market
+		<div class="d-inline-block">
+			<select class="form-select" aria-label="Sắp xếp sản phẩm">
+				<option selected disabled>Sắp xếp theo giá</option>
+				<option value="1">Tăng dần</option>
+				<option value="2">Giảm dần</option>
+			</select>
 		</div>
-		<div class="col-2 res__name common">
-			Loại nông sản
-		</div>
-		<div class="col-2 res__place common">
-			Thị trường
-		</div>
-		<div class="col-2 res__suppli common">
-			Thương lái
-		</div>
-		<div class="col res__price common">
-			Giá cả (VNĐ/kg)
-		</div>
-		<div class="col-3 res__trend common">
-			Xu hướng giá
-		</div>
-		<div class="col res__check common">
-			Chi tiết thị trường
-		</div>
+		<div class="row my__row__header row__common">
+			<div class="col res__num common">
+				ID Market
+			</div>
+			<div class="col-2 res__name common">
+				Loại nông sản
+			</div>
+			<div class="col-2 res__place common">
+				Thị trường
+			</div>
+			<div class="col-2 res__suppli common">
+				Thương lái
+			</div>
+			<div class="col res__price common">
+				Giá cả (VNĐ/kg)
+			</div>
+			<div class="col-3 res__trend common">
+				Xu hướng giá
+			</div>
+			<div class="col res__check common">
+				Chi tiết thị trường
+			</div>
 
-	</div>
+		</div>
 	
 	
-	<section class="result1">	
-		
-		{% comment %} {%if obj in keys1%} {% endcomment %}
-		{% for obj in keys1 %}
- 			 {% if obj in keys2 %}
-				<div class="row my__row__res row__common align-items-center">
-					<div class="col res__num common">
-					<a href="{% url 'makerDetail' obj.id %}">
-						<span><i class="fa-regular fa-star"></i>&nbsp; {{ obj.id }}</span>
-					</a>
+		<section class="result1">	
+			
+			{% comment %} {%if obj in keys1%} {% endcomment %}
+			{% for obj in keys1 %}
+				{% if obj in keys2 %}
+					<div class="row my__row__res row__common align-items-center">
+						<div class="col res__num common">
+						<a href="{% url 'makerDetail' obj.id %}">
+							<span><i class="fa-regular fa-star"></i>&nbsp; {{ obj.id }}</span>
+						</a>
+						</div>
+						<div class="col-2 res__name common">
+						{{ obj.marketPlant }}
+						</div>
+						<div class="col-2 res__place common">
+						{{ obj.marketName }}
+						</div>
+						<div class="col-2 res__suppli common">
+						{{ obj.marketUser }}
+						</div>
+						<div class="col res__price common" style="color: #16c784;">
+						{{ obj.marketFee }}
+						</div>
+						<div class="col-3 res__trend common">
+						<img src="{% static 'Manage/IMG/825.svg' %}" alt="trend">
+						</div>
+						<div class="col res__check common confirm-btn" onclick="location.href='{%url 'makerDetail' obj.id%}'">
+						Chi Tiết
+						</div>
 					</div>
-					<div class="col-2 res__name common">
-					{{ obj.marketPlant }}
-					</div>
-					<div class="col-2 res__place common">
-					{{ obj.marketName }}
-					</div>
-					<div class="col-2 res__suppli common">
-					{{ obj.marketUser }}
-					</div>
-					<div class="col res__price common" style="color: #16c784;">
-					{{ obj.marketFee }}
-					</div>
-					<div class="col-3 res__trend common">
-					<img src="{% static 'Manage/IMG/825.svg' %}" alt="trend">
-					</div>
-					<div class="col res__check common confirm-btn" onclick="location.href='{%url 'makerDetail' obj.id%}'">
-					Chi Tiết
-					</div>
-				</div>
-
-				
-  			{% endif %}
-		{% endfor %}
-		
-	
-
-	</section>
+				{% endif %}
+			{% endfor %}
+		</section>
 	</section>
 	<!-- REGISTER  -->
 	<section class="feedback container-fluid section">
-		
-		
 			<div class="row feed__row">
 				<div class="col-6 fe__col6__1 ">
 					<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
@@ -147,21 +139,11 @@
 					<div class="overplay"></div>
 				</div>
 			</div>
-		
-				
-		
 	</section>
-
-	
 	{%else%}
 	<p class = "error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG TÍNH NĂNG NÀY.</p>
 	{%endif%}
 	{%endif%}
-
-	
-
-
-
 {%else%}
 <p class = "error">Vui lòng đăng nhập.</p>
 {%endif%}

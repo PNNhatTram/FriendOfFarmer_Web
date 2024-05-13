@@ -10,10 +10,10 @@
     justify-self: space-between;
     background-color:#fff ;
     border-radius: 6px;
-    padding: auto;
+    /* padding: auto; */
     box-shadow: 0 5px 10px #000 ;
     width: 60%;
-    margin: 40px auto 40px auto;
+    margin: 40px 0 40px 0;
     flex-direction: row;
    
 }
@@ -37,7 +37,7 @@
 }
 
 .contact_container .content .left-side .detail{
-    margin: 14px;
+    /* margin: 14px; */
     color: #fff;
 }
 .contact_container .content .left-side .detail .topic{
@@ -54,6 +54,7 @@
 .contact_container .content .right-side{
     width: 70%;
     margin: 30px 40px 50px 30px;
+    text-align: justify; 
     
 }
 .content .right-side .topic{
@@ -118,10 +119,18 @@
     .detail {
         display: none;
     }
+    .contact_container .content {
+        display: none;
+        align-items: center;
+        justify-content: none;
+    }
     .contact_container .content .left-side {
         display: none; /* Ẩn phần tử "left-side" */
       }
-    .right-side {
+    
+    .contact_container .content .right-side{
         width: 200%;
+        
+        
     }
 }
