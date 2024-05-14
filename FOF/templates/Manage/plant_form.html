@@ -15,9 +15,13 @@
       <h2>THÔNG TIN CÂY TRỒNG</h2>
 
       <label for="plant_name">Tên cây trồng</label>
-      <input type="text" name="plant_name" id="plant_name" placeholder="Lúa" />
-
-      <label for="plant_dev">Thời gian phát triển</label>
+      <select name="plant_name" id="plant_name" class = "id_mv">
+        {% for item in plantmode %}
+        <option value="{{ item.plant_name }}">{{ item.plant_name }}</option>
+        {% endfor %}
+      </select>
+    
+      <label for="plant_dev" style="display: block">Thời gian phát triển</label>
       <input type="number" name="plant_dev" id="plant_dev" placeholder="3 (tháng)" />
 
       <label for="plant_type">Loại cây</label>

@@ -430,9 +430,9 @@ def plant_form(request):
 
     # Lấy các đất đai của người dùng hiện tại dựa trên các mùa vụ
     
-   
+    plantmode = Plant_Mode.objects.all()
     land_list = Land.objects.filter(season__in=seasons)
-    context = {'land_list': land_list}
+    context = {'land_list': land_list, 'plantmode': plantmode} 
 
     return render(request, "Manage/plant_form.html", context)
 
@@ -564,6 +564,25 @@ def get_plant_by_land(request, land_id):
     })
 
   return JsonResponse(data, safe=False)
+
+def get_plant_from_mode(request):
+    try:
+        plant_modes = Plant_Mode.objects.all()
+        plant_info_list = []
+
+        for plant_mode in plant_modes:
+            plant_info = {
+                'plant_name': plant_mode.plant_name,
+                'plant_pH_min': plant_mode.plant_pH_min,
+                'plant_pH_max': plant_mode.plant_pH_max,
+                'plant_DoAm_min': plant_mode.plant_DoAm_min,
+                'plant_DoAm_max': plant_mode.plant_DoAm_max
+            }
+            plant_info_list.append(plant_info)
+
+        return JsonResponse(plant_info_list, safe=False)
+    except Plant_Mode.DoesNotExist:
+        return JsonResponse({'error': 'Không tìm thấy cây trồng'})
 
 def infor(request):
     if request.method == 'GET':

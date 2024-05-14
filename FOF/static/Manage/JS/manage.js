@@ -128,7 +128,7 @@ function formatDate(date) {
 function ClickLandShowPlant(event){
   // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
   const landId = event.target.dataset.landId;
-
+  var infoCaytrong = [];
   // Kiểm tra seasonId có tồn tại và hợp lệ
   if (landId) {
     // Construct the URL to fetch land data for the provided season ID
@@ -137,147 +137,172 @@ function ClickLandShowPlant(event){
     .then((response) => response.json())
     .then((plantData) => {
       
-
-        var plantdiv = document.getElementById('plant');
-        // Tạo phần tử h4 và gán nội dung
-        var h4 = document.createElement('h4');
-        h4.textContent = 'THÔNG TIN CÂY TRỒNG';
-
-        // Tạo phần tử div có lớp "row p__row"
-        var rowDiv = document.createElement('div');
-        rowDiv.className = 'row p__row';
-
-        // Tạo các phần tử div có lớp tương ứng và gán nội dung
-        var col1 = document.createElement('div');
-        col1.className = 'col-2 plant__id';
-        col1.textContent = 'STT';
-
-        var col2 = document.createElement('div');
-        col2.className = 'col-3 plant__name';
-        col2.textContent = 'Tên loại cây';
-
-        var col3 = document.createElement('div');
-        col3.className = 'col-3 plant__detail';
-        col3.textContent = 'Thông tin chi tiết';
-
-        var col4 = document.createElement('div');
-        col4.className = 'col-2 plant__status';
-        col4.textContent = 'Tình trạng';
-
-        var col5 = document.createElement('div');
-        col5.className = 'col-2 plant__time';
-        col5.textContent = 'Thời gian thu hoạch';
-
-        // Gắn các phần tử con vào phần tử cha
-        rowDiv.appendChild(col1);
-        rowDiv.appendChild(col2);
-        rowDiv.appendChild(col3);
-        rowDiv.appendChild(col4);
-        rowDiv.appendChild(col5);
-
-        plantdiv.appendChild(h4);
-        plantdiv.appendChild(rowDiv); 
-        
-        var cnt = 0;
-        for (item of plantData){
-          cnt++;
-         // Tạo phần tử div có lớp "row p__row"
-        var rowDiv = document.createElement('div');
-        rowDiv.className = 'row p__row';
-
-        // Tạo các phần tử div có lớp tương ứng và gán nội dung
-        var col1 = document.createElement('div');
-        col1.className = 'col-2 plant__id';
-        col1.textContent = cnt;
-
-        var col2 = document.createElement('div');
-        col2.className = 'col-3 plant__name';
-        col2.textContent = item.name;
-
-        var col3 = document.createElement('div');
-        col3.className = 'col-3 plant__detail';
-        
-
-
-        // Tạo phần tử ul
-        var ul = document.createElement('ul');
-
-        // Tạo các phần tử li và gán nội dung
-        var loaiCayTrong = document.createElement('li');
-        loaiCayTrong.textContent = 'Loại cây trồng: ' + typePlant(item.type);
-
-        var thoiGianPhatTrien = document.createElement('li');
-        thoiGianPhatTrien.textContent = 'Thời gian phát triển: ' + item.timeDev + ' tháng';
-
-        var chuKyBonPhan = document.createElement('li');
-        chuKyBonPhan.textContent = 'Chu kỳ bón phân: ' + item.bp + ' tháng';
-
-        var nongDoKhoang = document.createElement('li');
-        nongDoKhoang.textContent = 'Chất khoáng cần thiết: ' + item.nd;
-
-        // Gắn các phần tử li vào phần tử ul
-        ul.appendChild(loaiCayTrong);
-        ul.appendChild(thoiGianPhatTrien);
-        ul.appendChild(chuKyBonPhan);
-        ul.appendChild(nongDoKhoang);
-
-        // Gắn phần tử ul vào phần tử col3
-        col3.appendChild(ul);
-
-
-
-
-
-        
-        var col4 = document.createElement('div');
-        col4.className = 'col-2 plant__status';
-        col4.textContent = 'Tốt';
-
-        var col5 = document.createElement('div');
-        col5.className = 'col-2 plant__time';
-        let endTime = calculateEndDate(document.querySelector('.season__info .season-start-time').textContent, item.timeDev); 
-        col5.textContent = calculateDaysLeft(endTime) + ' ngày';
-
-        // Gắn các phần tử con vào phần tử cha
-        rowDiv.appendChild(col1);
-        rowDiv.appendChild(col2);
-        rowDiv.appendChild(col3);
-        rowDiv.appendChild(col4);
-        rowDiv.appendChild(col5);
-
-        plantdiv.appendChild(rowDiv); 
- 
+        const landURL = `/api/get-land-info/${landId}`;
+        fetch(landURL)
+        .then((response)=> response.json())
+        .then((landData)=> {
+          var plantdiv = document.getElementById('plant');
+          // Tạo phần tử h4 và gán nội dung
+          var h4 = document.createElement('h4');
+          h4.textContent = 'THÔNG TIN CÂY TRỒNG';
+  
+          // Tạo phần tử div có lớp "row p__row"
+          var rowDiv = document.createElement('div');
+          rowDiv.className = 'row p__row';
+  
+          // Tạo các phần tử div có lớp tương ứng và gán nội dung
+          var col1 = document.createElement('div');
+          col1.className = 'col-2 plant__id';
+          col1.textContent = 'STT';
+  
+          var col2 = document.createElement('div');
+          col2.className = 'col-3 plant__name';
+          col2.textContent = 'Tên loại cây';
+  
+          var col3 = document.createElement('div');
+          col3.className = 'col-3 plant__detail';
+          col3.textContent = 'Thông tin chi tiết';
+  
+          var col4 = document.createElement('div');
+          col4.className = 'col-2 plant__status';
+          col4.textContent = 'Tình trạng';
+  
+          var col5 = document.createElement('div');
+          col5.className = 'col-2 plant__time';
+          col5.textContent = 'Thời gian thu hoạch';
+  
+          // Gắn các phần tử con vào phần tử cha
+          rowDiv.appendChild(col1);
+          rowDiv.appendChild(col2);
+          rowDiv.appendChild(col3);
+          rowDiv.appendChild(col4);
+          rowDiv.appendChild(col5);
+  
+          plantdiv.appendChild(h4);
+          plantdiv.appendChild(rowDiv); 
           
-            
-        }
-       
-        document.getElementById('num_plant').innerHTML = cnt;
-       
-        
-        
-        function parseDateString(dateString) {
-          var parts = dateString.split('-');
-          var day = parseInt(parts[0], 10);
-          var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
-          var year = parseInt(parts[2], 10);
-          return new Date(year, month, day);
-        }
-        
-        var timeCollect = document.getElementById('timeCollect');
-        var seasonStartDateString = document.querySelector('.season__info .season-start-time').textContent;
-        var timeDev = plantData[0].timeDev;
-        
-        
-        var timeCollectValue = calculateEndDate(seasonStartDateString, timeDev);
-        // Gán giá trị cho phần tử HTML
-        timeCollect.innerHTML = timeCollectValue;
+        var cnt = 0;
+        var infoCaytrong = [];
 
-       
+        for (item of plantData) {
+          cnt++;
+          // Tạo phần tử div có lớp "row p__row"
+          const plantSamURL = `api/get-plantmode/`;
+          fetch(plantSamURL)
+            .then((response) => response.json())
+            .then((plantSample) => {
+              var rowDiv1 = document.createElement('div');
+          rowDiv1.className = 'row p__row';
 
+          // Tạo các phần tử div có lớp tương ứng và gán nội dung
+          var pID = document.createElement('div');
+          pID.className = 'col-2 plant__id';
+          pID.textContent = cnt;
+
+          var pName = document.createElement('div');
+          pName.className = 'col-3 plant__name';
+          pName.textContent = item.name;
+
+          var pDetail = document.createElement('div');
+          pDetail.className = 'col-3 plant__detail';
+
+          // Tạo phần tử ul
+          var ul = document.createElement('ul');
+
+          // Tạo các phần tử li và gán nội dung
+          var loaiCayTrong = document.createElement('li');
+          loaiCayTrong.textContent = 'Loại cây trồng: ' + typePlant(item.type);
+
+          var thoiGianPhatTrien = document.createElement('li');
+          thoiGianPhatTrien.textContent = 'Thời gian phát triển: ' + item.timeDev + ' tháng';
+
+          var chuKyBonPhan = document.createElement('li');
+          chuKyBonPhan.textContent = 'Chu kỳ bón phân: ' + item.bp + ' tháng';
+
+          var nongDoKhoang = document.createElement('li');
+          nongDoKhoang.textContent = 'Chất khoáng cần thiết: ' + item.nd;
+
+          // Gắn các phần tử li vào phần tử ul
+          ul.appendChild(loaiCayTrong);
+          ul.appendChild(thoiGianPhatTrien);
+          ul.appendChild(chuKyBonPhan);
+          ul.appendChild(nongDoKhoang);
+
+          // Gắn phần tử ul vào phần tử col3
+          pDetail.appendChild(ul);
+              for (var itemP of plantSample) {
+                if (itemP.plant_name == item.name) {
+                  infoCaytrong.push(itemP.plant_pH_min);
+                  infoCaytrong.push(itemP.plant_pH_max);
+                  infoCaytrong.push(itemP.plant_DoAm_min);
+                  infoCaytrong.push(itemP.plant_DoAm_max);
+                }
+              }
+
+              var pStatus = document.createElement('div');
+              
+              if (
+                landData.ph > infoCaytrong[0] &&
+                landData.ph < infoCaytrong[1] &&
+                landData.moisture > infoCaytrong[2] &&
+                landData.moisture < infoCaytrong[3]
+              ) {
+                pStatus.textContent = 'Tốt';
+                pStatus.className = 'col-2 plant__status1';
+              } else {
+                pStatus.textContent = 'Xấu';
+                pStatus.className = 'col-2 plant__status2';
+              }
+
+              var pTime = document.createElement('div');
+              pTime.className ='col-2 plant__time';
+              let endTime = calculateEndDate(
+                document.querySelector('.season__info .season-start-time').textContent,
+                item.timeDev
+              );
+              pTime.textContent = calculateDaysLeft(endTime) + ' ngày';
+
+              // Gắn các phần tử con vào phần tử cha
+              rowDiv1.appendChild(pID);
+              rowDiv1.appendChild(pName);
+              rowDiv1.appendChild(pDetail);
+              rowDiv1.appendChild(pStatus);
+              rowDiv1.appendChild(pTime);
+
+              plantdiv.appendChild(rowDiv1);
+            });
+        }
+         
+          document.getElementById('num_plant').innerHTML = cnt;
+         
+          
+          
+          function parseDateString(dateString) {
+            var parts = dateString.split('-');
+            var day = parseInt(parts[0], 10);
+            var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
+            var year = parseInt(parts[2], 10);
+            return new Date(year, month, day);
+          }
+          
+          var timeCollect = document.getElementById('timeCollect');
+          var seasonStartDateString = document.querySelector('.season__info .season-start-time').textContent;
+          var timeDev = plantData[0].timeDev;
+          
+          
+          var timeCollectValue = calculateEndDate(seasonStartDateString, timeDev);
+          // Gán giá trị cho phần tử HTML
+          timeCollect.innerHTML = timeCollectValue;
+  
+         
+  
+        
+        
+          // Gán giá trị cho phần tử HTML
+          document.getElementById('time_left').textContent = calculateDaysLeft(timeCollectValue) + " days left"
+        });
+        
       
-      
-        // Gán giá trị cho phần tử HTML
-        document.getElementById('time_left').textContent = calculateDaysLeft(timeCollectValue) + " days left"
     });
   }
 }

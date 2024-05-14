@@ -209,3 +209,13 @@ font-weight: bold;
   width: 17%;
   margin-left: auto;
 }
+.plant__status1 {
+  background-color: rgba(0, 128, 0, 0.201);
+  padding: 10px;
+  border-radius: 10px;
+}
+.plant__status2 {
+  background-color: rgba(255, 0, 0, 0.264);
+  padding: 10px;
+  border-radius: 10px;
+}
