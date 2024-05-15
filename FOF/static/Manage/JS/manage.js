@@ -124,74 +124,70 @@ function formatDate(date) {
       });
     }
 }
-// Lấy thông tin cây trồng
+
 function ClickLandShowPlant(event){
-  // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
   const landId = event.target.dataset.landId;
-  var infoCaytrong = [];
+  
   // Kiểm tra seasonId có tồn tại và hợp lệ
   if (landId) {
-    // Construct the URL to fetch land data for the provided season ID
-    const plantURL = `/api/get-plant-by-land/${landId}`;
-    fetch(plantURL)
-    .then((response) => response.json())
-    .then((plantData) => {
-      
-        const landURL = `/api/get-land-info/${landId}`;
-        fetch(landURL)
-        .then((response)=> response.json())
-        .then((landData)=> {
-          var plantdiv = document.getElementById('plant');
-          // Tạo phần tử h4 và gán nội dung
-          var h4 = document.createElement('h4');
-          h4.textContent = 'THÔNG TIN CÂY TRỒNG';
-  
-          // Tạo phần tử div có lớp "row p__row"
-          var rowDiv = document.createElement('div');
-          rowDiv.className = 'row p__row';
-  
-          // Tạo các phần tử div có lớp tương ứng và gán nội dung
-          var col1 = document.createElement('div');
-          col1.className = 'col-2 plant__id';
-          col1.textContent = 'STT';
-  
-          var col2 = document.createElement('div');
-          col2.className = 'col-3 plant__name';
-          col2.textContent = 'Tên loại cây';
-  
-          var col3 = document.createElement('div');
-          col3.className = 'col-3 plant__detail';
-          col3.textContent = 'Thông tin chi tiết';
-  
-          var col4 = document.createElement('div');
-          col4.className = 'col-2 plant__status';
-          col4.textContent = 'Tình trạng';
-  
-          var col5 = document.createElement('div');
-          col5.className = 'col-2 plant__time';
-          col5.textContent = 'Thời gian thu hoạch';
-  
-          // Gắn các phần tử con vào phần tử cha
-          rowDiv.appendChild(col1);
-          rowDiv.appendChild(col2);
-          rowDiv.appendChild(col3);
-          rowDiv.appendChild(col4);
-          rowDiv.appendChild(col5);
-  
-          plantdiv.appendChild(h4);
-          plantdiv.appendChild(rowDiv); 
-          
-        var cnt = 0;
-        var infoCaytrong = [];
 
+    // ------------------ HEADER ------------------
+    var plantdiv = document.getElementById('plant');
+    // Tạo phần tử h4 và gán nội dung
+    var h4 = document.createElement('h4');
+    h4.textContent = 'THÔNG TIN CÂY TRỒNG';
+    // Tạo phần tử div có lớp "row p__row"
+    var rowDiv = document.createElement('div');
+    rowDiv.className = 'row p__row';
+    // Tạo các phần tử div có lớp tương ứng và gán nội dung
+    var col1 = document.createElement('div');
+    col1.className = 'col-2 plant__id';
+    col1.textContent = 'STT';
+    var col2 = document.createElement('div');
+    col2.className = 'col-3 plant__name';
+    col2.textContent = 'Tên loại cây';
+    var col3 = document.createElement('div');
+    col3.className = 'col-3 plant__detail';
+    col3.textContent = 'Thông tin chi tiết';
+    var col4 = document.createElement('div');
+    col4.className = 'col-2 plant__status';
+    col4.textContent = 'Tình trạng';
+    var col5 = document.createElement('div');
+    col5.className = 'col-2 plant__time';
+    col5.textContent = 'Thời gian thu hoạch';
+
+    // Gắn các phần tử con vào phần tử cha
+    rowDiv.appendChild(col1);
+    rowDiv.appendChild(col2);
+    rowDiv.appendChild(col3);
+    rowDiv.appendChild(col4);
+    rowDiv.appendChild(col5);
+
+    plantdiv.appendChild(h4);
+    plantdiv.appendChild(rowDiv); 
+    var cnt = 0;
+    var infoCaytrong = [];
+
+    const plantSamURL = `api/get-plantmode/`;
+    fetch(plantSamURL)
+    .then((response) => response.json())
+    .then((plantSample)=> {
+      
+      const landURL = `/api/get-land-info/${landId}`;
+      fetch(landURL)
+      .then((response) => response.json())
+      .then((landData)=> {
+        
+        const plantURL = `/api/get-plant-by-land/${landId}`;
+        fetch(plantURL)
+        .then((response) => response.json())
+        .then((plantData) => {
+
+          
         for (item of plantData) {
           cnt++;
-          // Tạo phần tử div có lớp "row p__row"
-          const plantSamURL = `api/get-plantmode/`;
-          fetch(plantSamURL)
-            .then((response) => response.json())
-            .then((plantSample) => {
-              var rowDiv1 = document.createElement('div');
+          var infoCaytrong = [];
+          var rowDiv1 = document.createElement('div');
           rowDiv1.className = 'row p__row';
 
           // Tạo các phần tử div có lớp tương ứng và gán nội dung
@@ -238,6 +234,8 @@ function ClickLandShowPlant(event){
                   infoCaytrong.push(itemP.plant_DoAm_max);
                 }
               }
+              console.log("Test cay trong ", item.id)
+              console.log(infoCaytrong);
 
               var pStatus = document.createElement('div');
               
@@ -270,20 +268,13 @@ function ClickLandShowPlant(event){
               rowDiv1.appendChild(pTime);
 
               plantdiv.appendChild(rowDiv1);
-            });
         }
-         
-          document.getElementById('num_plant').innerHTML = cnt;
+
+        document.getElementById('num_plant').innerHTML = cnt;
          
           
           
-          function parseDateString(dateString) {
-            var parts = dateString.split('-');
-            var day = parseInt(parts[0], 10);
-            var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
-            var year = parseInt(parts[2], 10);
-            return new Date(year, month, day);
-          }
+         
           
           var timeCollect = document.getElementById('timeCollect');
           var seasonStartDateString = document.querySelector('.season__info .season-start-time').textContent;
@@ -300,16 +291,33 @@ function ClickLandShowPlant(event){
         
           // Gán giá trị cho phần tử HTML
           document.getElementById('time_left').textContent = calculateDaysLeft(timeCollectValue) + " days left"
-        });
-        
       
-    });
+      
+      })
+
+
+      })
+
+    })
   }
 }
+
+
+
+
 // hàm zô tri
+
+
 function Earse(event){
   var p = document.getElementById('plant');
   p.innerHTML = ' ';
+}
+function parseDateString(dateString) {
+  var parts = dateString.split('-');
+  var day = parseInt(parts[0], 10);
+  var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
+  var year = parseInt(parts[2], 10);
+  return new Date(year, month, day);
 }
 // hàm tính toán ngày kết thúc - thu hoạch -------------------
 function calculateEndDate(startDate, timeDev) {
