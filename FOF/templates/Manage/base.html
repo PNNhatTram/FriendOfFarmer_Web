@@ -150,25 +150,25 @@
 						<li class="nav-item">
 							<a class="nav-link " aria-current="page" href="{%url 'index'%}"> <i class="fa fa-home"></i> </a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="manageItem">
 							<a class="nav-link" href="{%url 'manage'%}">Quản lý</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="tradeItem">
 							<a class="nav-link" href="{% url 'maker'%}">Tìm kiếm</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="materialItem">
 							<a class="nav-link" href="{%url 'search'%}">Nguyên liệu</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="contactItem">
 							<a class="nav-link" href="{% url 'contact'%}">Liên hệ</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="hotNewsItem">
 							<a class="nav-link" href="#">Tin nóng</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="listItem">
 							<a class="nav-link" href="#">Danh mục</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item" id="notifyItem">
 							{% if user.is_authenticated %}
 							<div class="nav-link">
 							<span onclick="location.href='{%url 'notify'%}'">{{ request.user.customer.count_unread_notifications }} Thông báo</span>

@@ -5,6 +5,7 @@
 {% endblock title%}
 {% block head %}
 <link rel="stylesheet" href="{%static 'Manage/CSS/maker_sell.css'%}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 {% endblock head %}
 {% block content %}
 		<!-- SEARCH BOX  -->
@@ -85,5 +86,58 @@
 					messages[0].style.display = 'none';
 				}
 			}, 5000);
+		</script>
+
+			{% if user.is_authenticated %}
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+			<script>
+				function startTour() {
+					if (localStorage.getItem('doneTourMakerSell') === 'yes') {
+						// Tour đã được hoàn thành trước đây; không hiện tour
+						return;
+					}
+			
+					var intro = introJs();
+					intro.setOptions({
+						showProgress: true,
+						showBullets: false,
+						steps: [
+							{
+								intro: 'Đây là nơi bạn đánh giá thị trường và đưa ra yêu cầu của mình'
+							},
+							{
+								element: document.querySelector('.find__box'),
+								intro: 'Điền yêu cầu của bạn vào đây'
+							},
+							{
+								element: '#submitButton',
+								intro: 'Click để gửi yêu cầu'
+							}
+						]
+					});
+			
+					intro.oncomplete(function() {
+						// Khi người dùng nhấn "Done", set giá trị trong localStorage
+						localStorage.setItem('doneTourMakerSell', 'yes');
+					});
+			
+					intro.onexit(function() {
+						// Cũng set giá trị khi người dùng thoát ra khỏi intro
+						localStorage.setItem('doneTourMakerSell', 'yes');
+					});
+			
+					// Khởi tạo tour
+					intro.start();
+				}
+			
+				// Kiểm tra trạng thái tour khi trang được tải
+				window.onload = function() {
+					if (localStorage.getItem('doneTourMakerSell') !== 'yes') {
+						localStorage.setItem('doneTourMakerSell', 'no');
+						startTour();
+					}
+				};
 			</script>
+			{%endif%}
+
 {% endblock content %}

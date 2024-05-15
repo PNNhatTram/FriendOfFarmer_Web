@@ -43,13 +43,25 @@ function formatDate(date) {
     fetch(`/api/get-land-info/${landId}`)
       .then((response) => response.json())
       .then((landInfo) => {
-        // Lấy phần tử map từ lớp .land__row
-        var map = document.querySelector(".land__row .map"); 
+        var mapContainer = document.getElementById('map'); // Lấy container cho bản đồ từ ID 'map'
+        mapContainer.innerHTML = ''; // Xóa bản đồ hiện tại nếu có 
         var area = document.getElementById('dientich');
         var pH_num = document.getElementById('pH'); 
         var doAm = document.getElementById('doam'); 
+        
         // Điền dữ liệu vào phần tử map        
-        map.innerHTML = landInfo.position;
+        goongjs.accessToken = 'waGtXEnjW1d7EVK5RI6XA57FNjobxksYfUgIl6TT';
+        var map = new goongjs.Map({
+            container: 'map', // container id
+            style: 'https://tiles.goong.io/assets/goong_map_web.json', // stylesheet location
+            center: [105.83991, 21.028], // starting position [lng, lat]
+            zoom: 12 // starting zoom
+            });
+        
+        var marker = new goongjs.Marker()
+        .setLngLat([105.83991, 21.028])
+        .addTo(map);
+
         area.innerHTML = landInfo.area; 
         ph_dec = landInfo.ph / 14 * 100; 
         pH_num.style.width = ph_dec + '%';

@@ -5,6 +5,9 @@
 {% endblock title%}
 {% block head %}
   <link rel="stylesheet" href="{% static 'Manage/CSS/manage.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css" rel="stylesheet" />
 {% endblock head %}
 
 
@@ -66,7 +69,7 @@
         {% comment %} hahah {% endcomment %}
       </div>
       <div class="land__row row my-3">
-        <div class="map col-7">
+        <div class="map col-7" id="map">
         
         </div>
         <div class="land__overall col-5">
@@ -163,7 +166,7 @@
     <div class="notify">
       <p>VUI LÒNG TẠO 1 MÙA VỤ MỚI ĐỂ TIẾN HÀNH THEO DÕI!</p>
       <form action="{% url 'create' %}">
-        <button class="my-btn">THÊM MỚI</button>
+        <button class="my-btn" id="createFirst">THÊM MỚI</button>
       </form>
     </div>
   </section>
@@ -171,6 +174,54 @@
 {% else %}
     <p class="error">Vui lòng đăng nhập.</p>
 {% endif %}
+
+{% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourManage') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+				{
+					intro: 'Đây là nơi bạn sẽ quản lý vụ mùa'
+				},
+        {
+          element: '#createFirst',
+          intro: 'Hãy tạo 1 vụ mùa mới'
+        }
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourManage', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourManage', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourManage') !== 'yes') {
+			localStorage.setItem('doneTourManage', 'no');
+			startTour();
+		}
+	};
+</script>
+{%endif%}
 
 {% endblock content %}
 

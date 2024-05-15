@@ -5,6 +5,7 @@
 {% endblock title%}
 {% block head %}
   <link rel="stylesheet" href="{% static 'Manage/CSS/index.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 {% endblock head %}
 
 
@@ -218,29 +219,85 @@
 	</div>
 </section>
 
+{% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
 <script>
-	if (localStorage.getItem('doneTour') === 'yes') {
-		// Tour đã được hoàn thành trước đây; không hiện tour
-	} else {
+	function startTour() {
+		if (localStorage.getItem('doneTourIndex') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
 		var intro = introJs();
 		intro.setOptions({
 			showProgress: true,
 			showBullets: false,
+			steps: [
+				{
+					title: 'WELCOME',
+					intro: 'Chào mừng đến với website Friend of Farmer - FOF'
+				},
+				{
+					element: '#navbarSupportedContent',
+					intro: 'Đây là những công cụ vô cùng hữu ích cho bạn'
+				},
+				{
+					element: '#manageItem',
+					intro: 'Giúp bạn quản lý thời gian của vụ mùa, tình trạng đất đai, năng suất cây trồng'
+				},
+				{
+					element: '#tradeItem',
+					intro: 'Giúp bạn tìm kiếm thị trường giá cả nông sản lý tưởng'
+				},
+				{
+					element: '#materialItem',
+					intro: 'Giúp bạn tìm kiếm nguyên liệu nông nghiệp một cách nhanh chóng'
+				},
+				{
+					element: '#contactItem',
+					intro: 'Nếu bạn cần bất kì sự hỗ trợ hoặc cần giải đáp các thiết mắc, hãy dùng nó'
+				},
+				{
+					element: '#hotNewsItem',
+					intro: 'Cập nhật các tin nóng mới nhất trong cả cộng đồng người dùng'
+				},
+				{
+					element: '#listItem',
+					intro: 'Danh mục'
+				},
+				{
+					element: '#notifyItem',
+					intro: 'Nơi xem những thông báo mới nhất giữa bạn và thương lái'
+				},
+				{
+					element: '#search-input',
+					intro: 'Tra cứu bất cứ điều gì trong website của chúng tôi'
+				}
+			]
 		});
 
 		intro.oncomplete(function() {
 			// Khi người dùng nhấn "Done", set giá trị trong localStorage
-			localStorage.setItem('doneTour', 'yes');
+			localStorage.setItem('doneTourIndex', 'yes');
 		});
 
 		intro.onexit(function() {
 			// Cũng set giá trị khi người dùng thoát ra khỏi intro
-			localStorage.setItem('doneTour', 'no');
+			localStorage.setItem('doneTourIndex', 'yes');
 		});
 
 		// Khởi tạo tour
 		intro.start();
 	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourIndex') !== 'yes') {
+			localStorage.setItem('doneTourIndex', 'no');
+			startTour();
+		}
+	};	
 </script>
+{%endif%}
 
 {%endblock content_index%}
