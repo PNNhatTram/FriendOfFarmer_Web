@@ -5,6 +5,7 @@
 {% endblock title%}
 {% block head %}
 <link rel="stylesheet" href="{% static 'Manage/CSS/userin4.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
 {% endblock head %}
 
 {% block form %}
@@ -95,7 +96,64 @@
     {% else %}
     <p>Vui lòng đăng nhập!</p>
     {% endif %}
+    {% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourIn4') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
 
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+				{
+					element: document.querySelector('.infor'),
+					intro: 'Điền thông tin cá nhân của bạn vào đây'
+				},
+                {
+                    title: 'Lưu ý',
+                    element: '#type',
+					intro: 'Chọn chế độ sử dụng, tuỳ theo việc bạn là nông dân hay thương lái mà sẽ có thể sử dụng các chức năng khác nhau!'
+				},
+				{
+					element: '#submitButton',
+					intro: 'Click để xác nhận thông tin'
+				},
+				{
+                    title: 'Lưu ý',
+					element: '#editBtn',
+					intro: 'Nếu bạn muốn chỉnh sửa thông tin của mình thì trước tiên phải click vào nút CHỈNH SỬA!'
+				}
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourIn4', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourIn4', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourIn4') !== 'yes') {
+			localStorage.setItem('doneTourIn4', 'no');
+			startTour();
+		}
+	};
+</script>
+{%endif%}
     <script>
 
         // Lấy ra nút "Sửa thông tin"
