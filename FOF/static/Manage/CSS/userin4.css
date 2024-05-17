@@ -44,7 +44,9 @@ input[type="submit"], .hahaha {
     text-transform: uppercase;
     font-weight: bold;
 }
-
+.col-3{
+  width: 25%;
+}
 input[type="submit"]:hover, .hahaha:hover {
     background-color: white; 
     border: 1px solid #609966;
@@ -92,6 +94,9 @@ input[type="submit"]:hover, .hahaha:hover {
     /* RESULT  */
     .res__check {
       display: none;
+    }
+    .col-3{
+      width: 50%;
     }
   }
   @media screen and (max-width: 1199.9px) {
@@ -144,6 +149,9 @@ input[type="submit"]:hover, .hahaha:hover {
       width: 100%; /* Thiết lập chiều rộng của cột là 100% */
       margin-bottom: 10px; /* Thêm khoảng cách giữa các cột */
     }
+    .hide-on-mobile {
+      display: none;
+  }
   }
   
   @media screen and (max-width: 517px) {
@@ -166,6 +174,9 @@ input[type="submit"]:hover, .hahaha:hover {
       display: block;
       width: 100%;
       margin: 1rem 0;
+    }
+    .col-3{
+      width: 75%;
     }
   }
   @media screen and (max-width: 437px) {
