@@ -31,8 +31,8 @@
                         
                            
                <div class="find__result d-flex justify-content-center row">
-                  {% for product in list_item %}
-                     
+                  {% for product in keys1 %}
+                     {%if product in keys %}
                         <div class="find__item my-2 col-sm-3 mb-5">
                            <img class="img-fluid" src="{{ product.IMG_URL }}" alt="sanpham">
                            <p class="name" style="text-transform: uppercase;">{{ product.name }}</p>
@@ -49,7 +49,7 @@
                               MUA NGAY
                            </button>
                         </div>
-                   
+                     {%endif%}
                   {% endfor %}
                </div>
              

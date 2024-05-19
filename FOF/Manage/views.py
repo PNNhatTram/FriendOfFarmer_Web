@@ -181,11 +181,9 @@ def search(request):
                 keysadr = Product.objects.filter(adress=address)  # Corrected line here
         else:
             keysadr = Product.objects.all()
-    p = Paginator(keysadr, 10)
-    page = request.GET.get('page')
-    list_item = p.get_page(page)
+    
 
-    return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys, "keys1":keysadr, "searched_adr":searched_adr, "list_item": list_item})
+    return render(request, 'Manage/search.html', {"searched_name":searched_name, "keys":keys, "keys1":keysadr, "searched_adr":searched_adr})
 
 def searchname(request):
     if 'term' in request.GET:
