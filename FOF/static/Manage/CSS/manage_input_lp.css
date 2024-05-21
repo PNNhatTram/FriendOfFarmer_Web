@@ -1,3 +1,17 @@
+.manage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.manage p {
+  background-color: #EFF2F5;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #616E85;
+  text-align: center;
+}
 .manage__overall h5 {
     font-size: 1.5rem;
     font-weight: bold;

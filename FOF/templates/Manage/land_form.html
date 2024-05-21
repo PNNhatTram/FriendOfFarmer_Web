@@ -3,7 +3,7 @@
 <title>Friend of Farmer | Quản lý</title>
 {% endblock title%}
 {% block head %}
-<link rel="stylesheet" href="{% static 'Manage/CSS/manage_input_lp.css' %}" />
+<link rel="stylesheet" href="{% static 'Manage/CSS/m_form.css' %}" />
 {% endblock head %} {% block content_lp %}
 
 {% block landform %}
@@ -11,48 +11,87 @@
 
 {%endblock%}
 <section class="manage section container">
+  <div class="row">
+		<div class="col manage__overall" >
+			<button class="my-btn" style="width: 50px;" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#season__man" aria-controls="offcanvasExample">
+			  <i class="fa fa-bars"></i>
+			</button>
+	  
+			<div class="offcanvas offcanvas-start season" tabindex="-1" id="season__man" aria-labelledby="offcanvasExampleLabel">
+			  	<div class="offcanvas-header season__header">
+					<h5 class="offcanvas-title" id="offcanvasExampleLabel">MÙA VỤ GIEO TRỒNG</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			  	</div>
+			  	<div class="offcanvas-body">
+					<div class="off__text">
+				  		Chứa tất cả những thông tin về tất cả các mùa vụ đã gieo trồng.
+					</div>
+					<div class="dropdown mt-3">
+					{% for item in season %}
+						<button class="my-btn modify season-button" data-season-id="{{ item.id }}" onclick="ClickSeason(event); ClickLand(event)">
+						{{ item.season_name }}
+						</button>
+					{% endfor %}
+		
+						<button class="click" style="margin-top: 2rem;" id="click1" onclick="location.href='{% url 'create' %}'">
+							THÊM VỤ MÙA
+						</button>
+						<button class="click" onclick="location.href='{% url 'land' %}'">
+							THÊM ĐẤT ĐAI
+						</button>
+						<button class="click" onclick="location.href='{% url 'plant' %}'">
+							THÊM CÂY TRỒNG
+						</button>
+						
+					</div>
+			  	</div>
+			</div>
+		</div>
+	</div>
 
-<div class="land__form">					
-  <form action="" method="post">
-    {% csrf_token %} 
-    <h2>THÔNG TIN ĐẤT</h2>
+  {% comment %} <div class="land__form ">{% endcomment %}
+    <form action="" method="post">
+      {% csrf_token %} 
+      <p>THÔNG TIN ĐẤT</p>
+      
+      <label for="land_name">Tên mảnh đất:</label>
+      <input type="text" name="land_name" id="land_name" placeholder="Mảnh đất 1">
+
+      
+      <label for="land_pos">Vị trí đất:</label>
+      <input type="text" name="land_pos" id="land_pos" placeholder="Nhập địa chỉ hoặc tọa độ GPS">
+
+      <!-- Gợi ý địa chỉ -->
+      <div id="suggestions"></div>
     
-    <label for="land_name">Tên mảnh đất:</label>
-    <input type="text" name="land_name" id="land_name" placeholder="Mảnh đất 1">
-
     
-    <label for="land_pos">Vị trí đất:</label>
-    <input type="text" name="land_pos" id="land_pos" placeholder="Nhập địa chỉ hoặc tọa độ GPS">
-
-    <!-- Gợi ý địa chỉ -->
-    <div id="suggestions"></div>
+      <label for="land_area">Diện tích (ha):</label>
+      <input type="number" name="land_area" id="land_area" placeholder="500">
+    
+    
+      <label for="land_pH">Độ pH:</label>
+      <input type="number" name="land_pH" id="land_pH" step="0.01" placeholder="7.5">
+    
+    
+      <label for="land_doAm">Độ ẩm (%):</label>
+      <input type="number" name="land_doAm" id="land_doAm" step="0.01" placeholder="75">
   
-   
-    <label for="land_area">Diện tích (ha):</label>
-    <input type="number" name="land_area" id="land_area" placeholder="500">
-   
-   
-    <label for="land_pH">Độ pH:</label>
-    <input type="number" name="land_pH" id="land_pH" step="0.01" placeholder="7.5">
-   
-   
-    <label for="land_doAm">Độ ẩm (%):</label>
-    <input type="number" name="land_doAm" id="land_doAm" step="0.01" placeholder="75">
- 
-    
-    <label for="id_mv">Mùa vụ:</label>
-    <select name="id_mv" id="id_mv" {% if not season_list %}disabled{% endif %}>
-      <option value="" selected {% if not season_list %}disabled{% endif %}>--- Select Season ---</option>
-      {% if season_list %}
-        {% for item in season_list %}
-          <option value="{{ item.id }}">{{ item.season_name }}</option>
-        {% endfor %}
-      {% endif %}
-    </select>   
-    
-    <button type="submit" class="my-btn modify">Lưu thông tin</button>
-  </form>
-  </div>
+      
+      <label for="id_mv">Mùa vụ:</label>
+      <select name="id_mv" id="id_mv" {% if not season_list %}disabled{% endif %}>
+        <option value="" selected {% if not season_list %}disabled{% endif %}>--- Select Season ---</option>
+        {% if season_list %}
+          {% for item in season_list %}
+            <option value="{{ item.id }}">{{ item.season_name }}</option>
+          {% endfor %}
+        {% endif %}
+      </select>   
+      
+      <button type="submit" class="my-btn modify">Lưu thông tin</button>
+    </form>
+  {% comment %} </div> {% endcomment %}
+
 </section>
 
 

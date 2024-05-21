@@ -1,18 +1,58 @@
-{% extends "Manage/base.html" %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'Manage/CSS/manage_input_lp.css' %}" />
-{% endblock head %} {% block content_lp %}
+{% extends "Manage/base.html" %} {% load static %} 
 {%block title%}
 <title>Friend of Farmer | Quản lý</title>
 {% endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Manage/CSS/m_form.css' %}" />
+{% endblock head %} {% block content_lp %}
+
 {% block landform %}
 
 
 {%endblock%}
 <section class="manage section container">
-  <div class="land__form plant__form">
+  <div class="row">
+		<div class="col manage__overall" >
+			<button class="my-btn" style="width: 50px;" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#season__man" aria-controls="offcanvasExample">
+			  <i class="fa fa-bars"></i>
+			</button>
+	  
+			<div class="offcanvas offcanvas-start season" tabindex="-1" id="season__man" aria-labelledby="offcanvasExampleLabel">
+			  	<div class="offcanvas-header season__header">
+					<h5 class="offcanvas-title" id="offcanvasExampleLabel">MÙA VỤ GIEO TRỒNG</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			  	</div>
+			  	<div class="offcanvas-body">
+					<div class="off__text">
+				  		Chứa tất cả những thông tin về tất cả các mùa vụ đã gieo trồng.
+					</div>
+					<div class="dropdown mt-3">
+					{% for item in season %}
+						<button class="my-btn modify season-button" data-season-id="{{ item.id }}" onclick="ClickSeason(event); ClickLand(event)">
+						{{ item.season_name }}
+						</button>
+					{% endfor %}
+		
+						<button class="click" style="margin-top: 2rem;" id="click1" onclick="location.href='{% url 'create' %}'">
+							THÊM VỤ MÙA
+						</button>
+						<button class="click" onclick="location.href='{% url 'land' %}'">
+							THÊM ĐẤT ĐAI
+						</button>
+						<button class="click" onclick="location.href='{% url 'plant' %}'">
+							THÊM CÂY TRỒNG
+						</button>
+						
+					</div>
+			  	</div>
+			</div>
+		</div>
+	</div>
+  {% comment %} <div class="land__form plant__form"> {% endcomment %}
     <form action="" method="post">  
       {% csrf_token %}
-      <h2>THÔNG TIN CÂY TRỒNG</h2>
+      <p>THÔNG TIN CÂY TRỒNG</p>
 
       <label for="plant_name">Tên cây trồng</label>
       <select name="plant_name" id="plant_name" class = "id_mv">

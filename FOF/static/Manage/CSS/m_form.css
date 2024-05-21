@@ -1,4 +1,5 @@
  /* MANAGE  */
+ 
  .manage form p {
     font-size: 1.5rem;
     font-weight: bold;
@@ -27,6 +28,79 @@
     border-radius: 5px;
 
 }
+.manage__overall h5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 0;
+  }
+
+.modify {
+    display: block;
+    width: 100%;
+    margin: 1rem 0
+}
+.season__header {
+    padding-bottom: 0;
+  }
+  .season .offcanvas-body {
+    padding-top: 0;
+  }
+  .season .offcanvas-body .off__text {
+    font-size: 1rem;
+    line-height: 25px;
+    color: #609966;
+    padding: 0;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+  .season__info {
+    background-color: #EFF2F5;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #616E85;
+    width: 60%;
+    margin-right: auto;
+  }
+  .season__info p {
+    color: #616E85;
+    font-size: 1.2rem;
+    
+  }
+  .season__info span {
+    color: #609966;
+    font-size: 1.2rem;
+    
+  }
+.myButton button{
+    margin-right: 15px;
+}
+.myButton {
+    width: 20%;
+    margin-left: auto;
+}
+.click {
+    width: 100%;
+    height: 40px;
+    background-color: #EFF2F5;
+    border-radius: 5px;
+    border: none;
+    padding: 0 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    margin-bottom: 1rem;
+}
+
+#id_mv, #id_land, .id_mv {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #EFF2F5;
+  }
 @media screen and (max-width: 795px) {
     .manage form p {
         font-size: 1.5rem;
