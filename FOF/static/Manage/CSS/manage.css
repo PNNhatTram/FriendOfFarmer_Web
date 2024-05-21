@@ -173,8 +173,6 @@ font-weight: bold;
 }
 .formModal input, .landItem input{
   width: 50%;
-  
-
   border-bottom: 1px solid black;
   border-top: none;
   border-left: none;
@@ -219,7 +217,9 @@ font-weight: bold;
   padding: 10px;
   border-radius: 10px;
 }
-
+.modal-content{
+  width: 150%;
+}
 @media screen and (max-width: 580px) {
   .season__info p {
     font-size: 1rem;
@@ -235,5 +235,11 @@ font-weight: bold;
   }
   .land__plant h4{
     font-size: 1rem;
+  }
+}
+@media screen and (max-width: 1020px) {
+
+  .modal-content{
+    width: 100%;
   }
 }
