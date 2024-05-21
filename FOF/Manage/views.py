@@ -791,7 +791,8 @@ def dksd(request):
     return render(request, 'Manage/dksd.html')
 def csrt(request):
      return render(request, 'Manage/csrt.html')
-
+def hdsd(request):
+    return render(request, 'Manage/hdsd.html')
 def feedback(request): 
     contact = Contact.objects.all()
 

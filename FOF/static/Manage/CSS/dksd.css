@@ -2,22 +2,22 @@
     min-height: 75px;
     height: fit-content;
     width: 100%;
-    padding: 20px 0 20px 0 ;
+    padding: 10px 0 10px 0 ;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto 0 auto;
     justify-content: flex-start;
   }
   .dksd_container .container {
-    margin: 50px 50px 50px 50px;
+    margin: 25px 25px 25px 25px;
     justify-content: center;
     align-items: center;
     max-width: 1320px;
-    padding: 10px 40px 10px 40px;
+    /* padding: 10px 40px 10px 40px; */
     /* flex-direction: column; */
   }
   .dksd_container .container_top {
-    padding: 20px 30px 20px 30px;
+    /* padding: 20px 30px 20px 30px; */
     align-items: center;
     justify-content: center;
   }
@@ -25,7 +25,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    margin: 0 0 0 50px;
+    /* margin: 0 0 0 50px; */
   }
   
 .txt_headingTxt {
@@ -60,8 +60,8 @@
     font-size: 20px;
     line-height: 34px;
     font-weight: bold;
-    padding: 0px 0 0px 0;
-    margin: 0 0 0 0;
+    /* padding: 0px 0 0px 0;
+    margin: 0 0 0 0; */
   }
   
   .txt_content {
@@ -82,4 +82,56 @@
 .txt_headingTxt ol li{
   margin: 20px 0;
   text-transform: uppercase;
+}
+.image {
+  color: black;
+  width: 100%;
+  height: auto;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 10px 7px;
+  border-radius: 10px;
+}
+
+@media screen  and (max-width: 500px) {
+
+
+.txt_content {
+  font-size: 0.7rem;
+  font-weight: normal;
+  line-height: 15px;
+  
+}
+.txt_subHeadingTxt {
+  color: rgb(102, 102, 102);
+  font-size: 0.8rem;
+  line-height: 28px;
+  font-weight: bold;
+  /* padding: 0px 0 0px 0;
+  margin: 0 0 0 0; */
+}
+.txt_headingTxt .spe{
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 60%;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #EFF2F5;
+  border-radius: 10px;
+  padding: 10px;
+  color: #616E85;
+
+}
+  
+.txt_headingTxt {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 34px;
+  color: #609966;
+  /* padding: 0 10px 0 10px;
+  margin: 0 0 0 0; */
+
+}
 }

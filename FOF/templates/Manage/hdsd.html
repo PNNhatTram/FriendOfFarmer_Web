@@ -1,0 +1,66 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+{%block title%}
+<title>Friend of Farmer | Hướng dẫn sử dụng</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/dksd.css' %}">
+{% endblock head %}
+
+
+
+{%block content_csrt%}
+<section>
+    <div class ="dksd_container container">
+        <div class = "dksd_container container_top">
+            <div class ="topText">
+                <div class="txt_headingTxt"> 
+                    <p class = "spe">Hướng dẫn sử dụng </p>
+                    <ol>
+                        <li class="txt_subHeadingTxt">Trang chủ
+                            <p class="txt_content">
+                                Để có thể sử dụng các tính năng của chúng tôi, mời bạn hoàn thành thông tin người dùng.
+                            </p>
+                            <img class="image" src="{% static 'Manage/IMG/hdsd1.png'%}">
+                        </li>
+                        <li class="txt_subHeadingTxt">Quản lí
+                            <p class="txt_content">
+                                Ta bắt đầu với biểu tượng này
+                            </p>
+                            <img class="image" src="{% static 'Manage/IMG/hdsd2.png'%}" style="width: 20%">
+
+                            <p class="txt_content">
+                                Các chức năng mình có thể thao tác trên mùa vụ của nông dân.
+                            </p>
+                            <img class="image" src="{% static 'Manage/IMG/hdsd3.png'%}" style="width: 40%">
+                            
+                            <p class="txt_content">
+                                Khi chọn vào mùa vụ mà nông dân đã tạo, sẽ hiện lên các thông tin của mùa vụ đó ở đây.
+                            </p>
+                            <img class="image" src="{% static 'Manage/IMG/hdsd4.png'%}">
+                        </li>
+                        <li class="txt_subHeadingTxt">Tìm kiếm thị trường
+                            <p class="txt_content">
+                                Nếu bạn là nông dân: Chọn nông sản và nơi bạn muốn bán, sau đó chọn tìm kiếm, sẽ hiện ra những kết quả phù hợp với bạn.
+                            </p>
+                            <img class="image" src="{% static 'Manage/IMG/hdsd5.png'%}">
+                            <p class="txt_content">
+                                Nếu bạn là thương lái: Hoàn thành các thông tin sau, chúng tôi sẽ kiếm khách hàng cho bạn.
+                            </p>
+                            <img class="image" src="{% static 'Manage/IMG/hdsd6.png'%}">
+                        </li>
+                        <li class="txt_subHeadingTxt">Tìm kiếm nguyên vật liệu
+                            <p class="txt_content">
+                                Nhập tên sản phẩm mà bạn muốn mua, chúng tôi sẽ đưa ra những cửa hàng có giá thành hợp lí nhất.
+                            </p>
+                            <img class="image" src="{% static 'Manage/IMG/hdsd7.png'%}">
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+{%endblock content_csrt%}
