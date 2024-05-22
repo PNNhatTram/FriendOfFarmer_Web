@@ -3,6 +3,10 @@
 __Nội dung__: Hướng đến đối tượng thương lái, nông dân và người tiêu dùng
 có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạnh đó trang
 web cũng là công cụ để quản lý mùa vụ cho nông dân.
+## **HƯỚNG DẪN SỬ DỤNG WEBSITE**
+- Link: abc.xyz 
+## **PHÂN CÔNG CÔNG VIỆC THÀNH VIÊN**
+- Xem chi tiết tại sheet: https://docs.google.com/spreadsheets/d/1OX2Wu_FgxVtVBel5lGmshl33nZuvg2LNXuAl5wX8C_Y/edit?usp=sharing
 
 ## **THÀNH VIÊN:**
  
@@ -18,7 +22,7 @@ web cũng là công cụ để quản lý mùa vụ cho nông dân.
 
 ### **A – TẠO USER**
 - Đăng ký tài khoản
-- Đăng nhập
+- Đăng nhập Google hoặc username
 - Quên mật khẩu
 
 ### **B – QUẢN LÝ MÙA VỤ**
@@ -39,6 +43,7 @@ web cũng là công cụ để quản lý mùa vụ cho nông dân.
         - Số lượng nông sản ở mỗi cây thu hoạch được.
 - Trợ lý ảo: phân tích những yếu tố thời tiết, phân bón, các điều kiện
 bất thường để đưa ra những đề xuất cho nông dân. (Chức năng thêm – tuỳ vào khả năng nhóm – optional)
+* ĐÁNH GIÁ MỨC ĐỘ HOÀN THÀNH PHẦN B: 75%
 
 ### **C – TIỆN ÍCH BỔ SUNG**
   
@@ -52,12 +57,15 @@ nhu cầu mua bán của mình.
 hợp.
 - Cập nhật nhu cầu của thương lái.
 - Quản lý giao dịch mua bán giữa nông dân và thương lái.
+- Đánh giá: 100%
 
 __2. Tìm kiếm các nguyên vật liệu giá rẻ cho nông nghiệp:__
 - Chọn loại nguyên vật liệu (với các bộ lọc)
 - Đưa ra các đường link sản phẩm với mức giá rẻ (dẫn đến các trang
 TMĐT khác)
+- Đánh giá: 100%
 
-## **FRAMEWORK:**
-- __FRONT END__: Bootstrap
+## **CÔNG NGHỆ SỬ DỤNG**
+- __FRONT END__: HTML, CSS, JS (Bootstrap)
 - __BACK END__: Django
+- __DATABASE__: SQLite
