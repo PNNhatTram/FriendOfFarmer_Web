@@ -4,7 +4,7 @@ __Nội dung__: Hướng đến đối tượng thương lái, nông dân và ng
 có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạnh đó trang
 web cũng là công cụ để quản lý mùa vụ cho nông dân.
 ## **HƯỚNG DẪN SỬ DỤNG WEBSITE**
-- Link: abc.xyz 
+- Docker: docker pull dark1234tan735/fof-app
 ## **PHÂN CÔNG CÔNG VIỆC THÀNH VIÊN**
 - Xem chi tiết tại sheet: https://docs.google.com/spreadsheets/d/1OX2Wu_FgxVtVBel5lGmshl33nZuvg2LNXuAl5wX8C_Y/edit?usp=sharing
 
@@ -43,7 +43,7 @@ web cũng là công cụ để quản lý mùa vụ cho nông dân.
         - Số lượng nông sản ở mỗi cây thu hoạch được.
 - Trợ lý ảo: phân tích những yếu tố thời tiết, phân bón, các điều kiện
 bất thường để đưa ra những đề xuất cho nông dân. (Chức năng thêm – tuỳ vào khả năng nhóm – optional)
-* ĐÁNH GIÁ MỨC ĐỘ HOÀN THÀNH PHẦN B: 75%
+* ĐÁNH GIÁ MỨC ĐỘ HOÀN THÀNH PHẦN B: 100%
 
 ### **C – TIỆN ÍCH BỔ SUNG**
   
@@ -66,6 +66,6 @@ TMĐT khác)
 - Đánh giá: 100%
 
 ## **CÔNG NGHỆ SỬ DỤNG**
-- __FRONT END__: HTML, CSS, JS (Bootstrap)
+- __FRONT END__: HTML, CSS (Bootstrap), JS 
 - __BACK END__: Django
 - __DATABASE__: SQLite
