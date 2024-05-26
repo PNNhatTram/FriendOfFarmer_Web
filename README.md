@@ -24,7 +24,7 @@ web cũng là công cụ để quản lý mùa vụ cho nông dân.
 
 ### **A – TẠO USER**
 - Đăng ký tài khoản
-- Đăng nhập Google hoặc username
+- Đăng nhập username
 - Quên mật khẩu
 
 ### **B – QUẢN LÝ MÙA VỤ**
