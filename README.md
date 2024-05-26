@@ -4,7 +4,7 @@ __Nội dung__: Hướng đến đối tượng thương lái, nông dân và ng
 có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạnh đó trang
 web cũng là công cụ để quản lý mùa vụ cho nông dân.
 ## **HƯỚNG DẪN SỬ DỤNG WEBSITE**
-- Link website: foft4k.me
+- Link website: https://www.foft4k.me
 - Docker: docker pull dark1234tan735/fof-app
 - Link hướng dẫn: https://drive.google.com/file/d/1GBuCpVVOr2j1Wqhj0KYKuELuc766_6tQ/view?usp=sharing
 ## **PHÂN CÔNG CÔNG VIỆC THÀNH VIÊN**
