@@ -5,6 +5,7 @@ có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạn
 web cũng là công cụ để quản lý mùa vụ cho nông dân.
 ## **HƯỚNG DẪN SỬ DỤNG WEBSITE**
 - Docker: docker pull dark1234tan735/fof-app
+- Link hướng dẫn: https://drive.google.com/file/d/1GBuCpVVOr2j1Wqhj0KYKuELuc766_6tQ/view?usp=sharing
 ## **PHÂN CÔNG CÔNG VIỆC THÀNH VIÊN**
 - Xem chi tiết tại sheet: https://docs.google.com/spreadsheets/d/1OX2Wu_FgxVtVBel5lGmshl33nZuvg2LNXuAl5wX8C_Y/edit?usp=sharing
 
@@ -68,4 +69,4 @@ TMĐT khác)
 ## **CÔNG NGHỆ SỬ DỤNG**
 - __FRONT END__: HTML, CSS (Bootstrap), JS 
 - __BACK END__: Django
-- __DATABASE__: SQLite
+- __DATABASE__: SQLite 
