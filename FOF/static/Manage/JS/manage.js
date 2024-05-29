@@ -41,29 +41,38 @@ function formatDate(date) {
   function showLandInfo(landId) {
     // Gọi API hoặc thực hiện các thao tác khác để lấy dữ liệu cho landId cụ thể
     fetch(`/api/get-land-info/${landId}`)
-      .then((response) => response.json())
-      .then((landInfo) => {
+      .then(response => response.json())
+      .then(landInfo => {
         var mapContainer = document.getElementById('map'); // Lấy container cho bản đồ từ ID 'map'
         mapContainer.innerHTML = ''; // Xóa bản đồ hiện tại nếu có 
+  
         var area = document.getElementById('dientich');
         var pH_num = document.getElementById('pH'); 
         var doAm = document.getElementById('doam'); 
-        
-        // Điền dữ liệu vào phần tử map        
-        goongjs.accessToken = 'waGtXEnjW1d7EVK5RI6XA57FNjobxksYfUgIl6TT';
-        var map = new goongjs.Map({
-            container: 'map', // container id
-            style: 'https://tiles.goong.io/assets/goong_map_web.json', // stylesheet location
-            center: [105.83991, 21.028], // starting position [lng, lat]
-            zoom: 12 // starting zoom
-            });
-        
-        var marker = new goongjs.Marker()
-        .setLngLat([105.83991, 21.028])
-        .addTo(map);
+  
+        var address = landInfo.position;
+        var geocodingUrl = `https://rsapi.goong.io/geocode?address=${encodeURIComponent(address)}&api_key=irESJaYhu9GSYh2g8waOxsDolPKwMzkFcGKNGxNy`;
+        // Điền dữ liệu vào phần tử map    
+        fetch(geocodingUrl)
+          .then(response => response.json())
+          .then(data => {
+            if (data.results && data.results.length > 0) {
+              var coordinates = data.results[0].geometry.location;
+  
+              goongjs.accessToken = '76fm0WBI9CoZBRilYTxoUnyku8eMfbHH8sqyMow2';
+              var map = new goongjs.Map({
+                container: 'map', // container id
+                style: 'https://tiles.goong.io/assets/goong_map_web.json', // stylesheet location
+                center: [coordinates.lng, coordinates.lat], // starting position [lng, lat]
+                zoom: 12 // starting zoom
+              });
 
+            }
+          });
+  
+        // Điền dữ liệu vào phần tử thông tin
         area.innerHTML = landInfo.area; 
-        ph_dec = landInfo.ph / 14 * 100; 
+        var ph_dec = landInfo.ph / 14 * 100; 
         pH_num.style.width = ph_dec + '%';
         doAm.style.width = landInfo.moisture + '%';
       });
