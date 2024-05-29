@@ -158,15 +158,17 @@ type="text/css"
             {{ item.season_name }}
           </button>
         {% endfor %}
+        </div> 
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-success" onclick="UpdateSeason(event)">Cập nhật</button>
+      <button type="button" class="btn btn-danger" onclick="DeleteSeason(event)">Xoá</button>
       </div>
     </div>
       
     
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-success" onclick="UpdateSeason(event)">Cập nhật</button>
-      <button type="button" class="btn btn-danger" onclick="DeleteSeason(event)">Xoá</button>
-    </div>
+    
   </div>
 </div>
 
