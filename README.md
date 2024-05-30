@@ -1,19 +1,24 @@
 # **TÊN ĐỀ TÀI: QUẢN LÝ NÔNG SẢN**
 
-__Nội dung__: Hướng đến đối tượng thương lái, nông dân có nhu cầu tìm kiếm nguồn nông sản sạch với giá tốt một cách nhanh chóng, dễ dàng. Bên cạnh đó trang web cũng là công cụ để quản lý mùa vụ giúp nông dân linh hoạt trong việc theo dõi tiến độ, tình trạng mùa vụ từ đó gia tăng lợi nhuận.
-
-## **GITHUB**
-- __Link__: PNNhatTram/PNNhatTram.github.io at backend (Nhánh backend)
+__Nội dung__: Hướng đến đối tượng thương lái, nông dân và người tiêu dùng
+có nhu cầu tìm kiếm nguồn nông sản sạch với giá rẻ. Bên cạnh đó trang
+web cũng là công cụ để quản lý mùa vụ cho nông dân.
+## **HƯỚNG DẪN SỬ DỤNG WEBSITE**
+- Link website: https://www.foft4k.me
+- Docker: docker pull dark1234tan735/fof-app
+- Link hướng dẫn: https://drive.google.com/file/d/1GBuCpVVOr2j1Wqhj0KYKuELuc766_6tQ/view?usp=sharing
+## **PHÂN CÔNG CÔNG VIỆC THÀNH VIÊN**
+- Xem chi tiết tại sheet: https://docs.google.com/spreadsheets/d/1OX2Wu_FgxVtVBel5lGmshl33nZuvg2LNXuAl5wX8C_Y/edit?usp=sharing
 
 ## **THÀNH VIÊN:**
  
-|Họ và tên|MSSV|Chức vụ|Đóng góp|
-| :------------:|:-------------:|:-----:|:-----:|
-|Nguyễn Đức Tấn|22521303|nhóm trưởng|20%|
-|Lâm Xuân Thái|22521317|thành viên|25%|
-|Phạm Minh Tân|22521310|thành viên|25%|
-|Phan Nguyễn Nhật Trâm|22521501|thành viên|15%|
-|Nguyễn Kim Khánh|22520643|thành viên|15%|
+|Họ và tên|MSSV|Chức vụ|
+| :------------:|:-------------:|:-----:|
+|Nguyễn Đức Tấn|22521303|nhóm trưởng|
+|Lâm Xuân Thái|22521317|thành viên|
+|Phạm Minh Tân|22521310|thành viên|
+|Phan Nguyễn Nhật Trâm|22521501|thành viên|
+|Nguyễn Kim Khánh|22520643|thành viên|
 
 ## **HƯỚNG DẪN SETUP MÔI TRƯỜNG DJANGO**
 
@@ -41,6 +46,7 @@ __Nội dung__: Hướng đến đối tượng thương lái, nông dân có nh
 - Sau khi hoàn tất vào docker desktop click biểu tượng ▶️
 - Đặt ports = 500 -> Run
 - Vào trình duyệt nhập địa chỉ: 127.0.0.1:500
+
 
 ## **TÍNH NĂNG**
 
@@ -82,3 +88,9 @@ __Nội dung__: Hướng đến đối tượng thương lái, nông dân có nh
 ## **OTHER**
 - Web khi deloy có sử dụng giao thức HTTPS, chứng chỉ SSL/TLS 
 - Dùng CloudFlare chống DDos, Botnet  
+
+
+## **CÔNG NGHỆ SỬ DỤNG**
+- __FRONT END__: HTML, CSS (Bootstrap), JS 
+- __BACK END__: Django
+- __DATABASE__: SQLite 
