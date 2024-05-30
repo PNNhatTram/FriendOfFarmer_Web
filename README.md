@@ -5,16 +5,6 @@ __Nội dung__: Hướng đến đối tượng thương lái, nông dân có nh
 ## **GITHUB**
 - __Link__: PNNhatTram/PNNhatTram.github.io at backend (Nhánh backend)
 
-## **CÁC LINK** 
-- __Video youtube__: https://youtu.be/KVGzDfvy9iU?si=4tfp8oNwm3RNQuJt Django Framework | NT208.O22.ANTT - YouTube 
-- __Link website__: https://www.foft4k.me/
-
-__Ghi chú__: Do domain deloy sử dụng SQLite nên khi deloy, dữ liệu chỉ giữ được 4 phút rồi sẽ bị reset. Để sử dụng đầy đủ full chức năng của web, có thể sử dụng phiên bản local tại github hoặc ở docker
-
-## **ACCOUNT TEST**
-- __Username__: dungtt 
-- __Password__: 12345Dung@
-
 ## **THÀNH VIÊN:**
  
 |Họ và tên|MSSV|Chức vụ|Đóng góp|
